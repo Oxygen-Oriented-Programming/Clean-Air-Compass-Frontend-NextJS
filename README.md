@@ -1,4 +1,4 @@
-# Clean-Air-Compass
+# CleanAir Compass
 
 ### *Oliver Speir* / *Harper Foley* / *Jason Christopher* / *Dennis Nichols* / *DeShon Dixon*
 
