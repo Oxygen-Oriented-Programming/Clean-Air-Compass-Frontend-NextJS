@@ -1,28 +1,39 @@
 import Map from './Map'
 import Form from './Form'
-import { useState } from 'react';
+import { useState } from 'react'
+import axios from 'axios';
 
 export default function Homepage() {
     const [locationName, setLocationName] = useState(null);
+    const [locationData, setLocationData] = useState(null);
+    const [distance, setDistance] = useState('');
 
     function handleLocationInput(e) {
         setLocationName(e.target.value);
     }
 
+    function handleDistanceChange(e) {
+        setDistance(e.target.value);
+    };
+
     async function handleSubmit(e) {
         e.preventDefault();
-        // change to call Fast API:
-        // let locationData = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${locationName}&format=json`);
-        // 
+        const zipRegex = /^\d{5}(-\d{4})?$/;
+        const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+        if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
+            // let apiData = 
+            // pass distance too so we can change the zoom
+            // setLocationData(apiData)
+        } else {
+            alert("This is not a valid city name or zip code")
+        }
     }
     
     return (
         <>
             <h1>Clean Air Compass</h1>
-            <Form handleLocationInput={handleLocationInput} handleSubmit={handleSubmit} />
-            {/* The line below is just to show the update to state */}
-            <h1>{ locationName }</h1> 
-            <Map />
+            <Form handleLocationInput={handleLocationInput} handleDistanceChange={handleDistanceChange} handleSubmit={handleSubmit} />
+            <Map locationData={locationData} />
         </>
     )
 }

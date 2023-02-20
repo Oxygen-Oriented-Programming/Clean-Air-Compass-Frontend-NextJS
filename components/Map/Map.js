@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 
-function Map() {
+function Map(props) {
   const [geojsonData, setGeojsonData] = useState(null);
 
   // useEffect(() => {
@@ -14,7 +14,6 @@ function Map() {
   // }, []);
 
   useEffect(() => {
-    // Set the sample data as the GeoJSON data in state
     setGeojsonData({
       type: 'FeatureCollection',
       features: [
@@ -94,7 +93,7 @@ function Map() {
   }
 
   return (
-    <MapContainer className={style.map} center={[47.000, -122.000]} zoom={8} scrollWheelZoom={false}>
+    <MapContainer className={style.map} center={props.locationData ? [props.locationData.lat, props.locationData.lon] : [47.000, -122.000]} zoom={8} scrollWheelZoom={false}>
       <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
