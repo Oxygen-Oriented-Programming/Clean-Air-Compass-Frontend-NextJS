@@ -1,12 +1,13 @@
-import Map from '../components/Map'
-import Form from '../components/Form'
+import Homepage from '@/components/Homepage';
+import Head from 'next/head';
 
 export default function Home() {
     return (
         <>
-            <h1>Clean Air Compass</h1>
-            <Form />
-            <Map />
+            <Head>
+                <title>Clean Air Compass</title>
+            </Head>
+            <Homepage />
         </>
     )
 }
