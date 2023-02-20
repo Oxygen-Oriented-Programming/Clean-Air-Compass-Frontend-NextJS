@@ -6,7 +6,7 @@ import polygons from 'assets/polygons_sample.json';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 
-function Map() {
+function Map(props) {
   const [geojsonData, setGeojsonData] = useState(null);
 
   // useEffect(() => {
@@ -61,7 +61,7 @@ function Map() {
   return (
     <MapContainer
       className={style.map}
-      center={[47.0, -122.0]}
+      center={props.locationData ? [props.locationData.lat, props.locationData.lon] : [47.000, -122.000]}
       zoom={4}
       scrollWheelZoom={false}
     >
