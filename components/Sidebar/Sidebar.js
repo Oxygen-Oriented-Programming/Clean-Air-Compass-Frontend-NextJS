@@ -17,31 +17,39 @@ export default function Sidebar(props) {
         />
         <Link
           className='block px-4 py-2.5 text-sm font-normal rounded transition duration-100 hover:bg-gray-700 text-white bg-black'
-          href='/'>Home
+          href='/'
+        >
+          Home
         </Link>
         <Link
           className='block px-4 py-2.5 font-normal text-sm rounded transition duration-100 hover:bg-gray-700 text-white bg-black'
-          href='/'>About
+          href='/'
+        >
+          About
         </Link>
         <Link
           className='block px-4 py-2.5 font-normal text-sm rounded transition duration-100 hover:bg-gray-700 text-white bg-black'
-          href='/'>Features
+          href='/'
+        >
+          Features
         </Link>
         <Link
           className='block px-4 py-2.5 font-normal text-sm rounded transition duration-100 hover:bg-gray-700 text-white bg-black'
-          href='/'>More
+          href='/'
+        >
+          More
         </Link>
         <MobileLogin />
-    </div>
+      </div>
 
-    {/* Sidebar */}
-    <div class='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
-    {/* Logo */}
-      <div className='flex items-center pt-2 space gap-x-2.5 '>
-        <Image className=' w-11 h-11' src={logo} alt='' />
-        <span className='text-lg font-extrabold text-white'>
-          <h1>CleanAir Compass</h1>
-        </span>
+      {/* Sidebar */}
+      <div className='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
+        {/* Logo */}
+        <div className='flex items-center pt-2 space gap-x-2.5 '>
+          <Image className=' w-11 h-11' src={logo} alt='' />
+          <span className='text-lg font-extrabold text-white'>
+            <h1>CleanAir Compass</h1>
+          </span>
         </div>
         {/* Nav*/}
         <nav>
@@ -56,19 +64,27 @@ export default function Sidebar(props) {
             {/* Page Links */}
             <Link
               className='block px-4 py-2.5 font-normal rounded transition duration-100 hover:bg-gray-700 text-white'
-              href='/'>Home
+              href='/'
+            >
+              Home
             </Link>
             <Link
               className='block px-4 py-2.5 font-normal rounded transition duration-100 hover:bg-gray-700 text-white'
-              href='/'>About
+              href='/'
+            >
+              About
             </Link>
             <Link
               className='block px-4 py-2.5 font-normal rounded transition duration-100 hover:bg-gray-700 text-white'
-              href='/'>Features
+              href='/'
+            >
+              Features
             </Link>
             <Link
               className='block px-4 py-2.5 font-normal rounded transition duration-100 hover:bg-gray-700 text-white'
-              href='/'>More
+              href='/'
+            >
+              More
             </Link>
           </div>
         </nav>
@@ -76,7 +92,7 @@ export default function Sidebar(props) {
         <div className='flex items-center bg-black'>
           <Login />
         </div>
-    </div>
+      </div>
     </>
   );
 }
