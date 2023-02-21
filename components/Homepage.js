@@ -9,31 +9,33 @@ import logo from '../public/logo.png';
 import Link from 'next/link';
 
 export default function Homepage() {
-  const [locationName, setLocationName] = useState(null);
+  const [locationName, setLocationName] = useState('');
   const [locationData, setLocationData] = useState(null);
-  const [distance, setDistance] = useState('');
 
   function handleLocationInput(e) {
     setLocationName(e.target.value);
   }
-
-  function handleDistanceChange(e) {
-    setDistance(e.target.value);
-  }
-  const App = () => {
-    const [open, setOpen] = useState(true);
-  };
 
   async function handleSubmit(e) {
     e.preventDefault();
     const zipRegex = /^\d{5}(-\d{4})?$/;
     const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
     if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
-      // let apiData =
-      // pass distance too so we can change the zoom
-      // setLocationData(apiData)
+      let baseUrl = "https://dolphin-app-ebj76.ondigitalocean.app/points/";
+      let url = baseUrl + locationName;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const apiData = await response.json();
+        setLocationData(apiData);
+      } catch (error) {
+        console.error(error);
+        alert("An error occurred while fetching data from the API");
+      }
     } else {
-      alert('This is not a valid city name or zip code');
+      alert("This is not a valid city name or zip code");
     }
   }
 
@@ -50,7 +52,7 @@ export default function Homepage() {
         {/* mobile menu bar */}
         <div className='flex items-center justify-between pl-3 text-gray-100 bg-black w-fit sm:w-screen md:hidden'>
           {/* Logo */}
-          <div class='mobile-menu-button flex items-center space gap-x-2.5 bg-black'>
+          <div className='mobile-menu-button flex items-center space gap-x-2.5 bg-black'>
             {/* Mobile Search */}
             <div className='flex items-center justify-center bg-black'>
               <MobileForm
@@ -94,7 +96,7 @@ export default function Homepage() {
         </div>
 
         {/* Sidebar */}
-        <div class='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
+        <div className='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
           {/* Logo */}
           <div className='flex items-center pt-2 space gap-x-2.5 '>
             <Image className=' w-11 h-11' src={logo} alt='' />
@@ -109,7 +111,7 @@ export default function Homepage() {
               <div className='flex flex-col items-center w-full space-y-2.5'>
                 <Form
                   handleLocationInput={handleLocationInput}
-                  handleDistanceChange={handleDistanceChange}
+                  locationName = {locationName}
                   handleSubmit={handleSubmit}
                 />
               </div>
