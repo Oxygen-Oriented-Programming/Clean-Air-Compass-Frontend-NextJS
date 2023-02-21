@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Form(props) {
+export default function MobileForm(props) {
   const [locationName, setLocationName] = useState(null);
 
   function handleLocationInput(e) {
@@ -18,7 +18,7 @@ export default function Form(props) {
     <>
       <div
         onSubmit={props.handleSubmit}
-        className=' w-fit p2.5 mt-3 flex text-center items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700'
+        className='flex flex-row justify-center text-center duration-300 bg-gray-700 rounded-md cursor-pointer w-fit'
       >
         <i className='bg-transparent text-md bi bi-search'></i>
         <label>
@@ -28,14 +28,14 @@ export default function Form(props) {
             value={locationName}
             onChange={props.handleLocationInput}
             placeholder='City / Zip Code'
-            className='h-10 text-lg text-center bg-transparent focus:outline-none'
+            className='text-sm text-center bg-transparent h-7 focus:outline-none'
           />
         </label>
         {/* The line below is just to show the update to state */}
       </div>
-      <div className='p-3'>
+      <div className='p-2'>
         <button
-          className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
+          className='px-2 py-1 m-auto text-xs font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
           id='formButton'
           type='submit'
         >
