@@ -278,6 +278,7 @@
 }
 
 .map {
-  width: 100%;
+  width: 50%;
   height: 40rem;
+  margin: auto;
 }
