@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Homepage() {
     const [locationName, setLocationName] = useState('');
     const [locationData, setLocationData] = useState('');
+    const [loading, setLoading] = useState(false);
 
     function handleLocationInput(e) {
         setLocationName(e.target.value);
@@ -15,6 +16,7 @@ export default function Homepage() {
         const zipRegex = /^\d{5}(-\d{4})?$/;
         const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
         if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
+            setLoading(true);
             let baseUrl = "https://dolphin-app-ebj76.ondigitalocean.app/points/";
             let url = baseUrl + locationName;
             console.log(url);
@@ -25,6 +27,7 @@ export default function Homepage() {
                 console.log(response)
                 console.log(apiData);
                 console.log(locationData);
+                setLoading(false);
             } catch (error) {
                 console.error(error);
                 alert("An error occurred while fetching data from the API");
@@ -37,7 +40,7 @@ export default function Homepage() {
     return (
         <>
             <div className='relative min-h-screen md:flex '>
-                <Sidebar handleLocationInput={handleLocationInput} handleSubmit={handleSubmit} />
+                <Sidebar handleLocationInput={handleLocationInput} handleSubmit={handleSubmit} loading = {loading} />
                 <div className='flex-1 '>
                     <Map className='' locationData={locationData} />
                 </div>
