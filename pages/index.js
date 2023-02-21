@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Map from '../components/Map';
 import Form from '../components/Form';
@@ -87,4 +88,20 @@ export default function Home() {
       <Form />
     </>
   );
+=======
+import Homepage from '../components/Homepage';
+import Login from '../components/Login';
+import Head from 'next/head';
+
+export default function Home() {
+    return (
+        <>
+            <Head>
+                <title>Clean Air Compass</title>
+            </Head>
+            <Login></Login>
+            <Homepage />
+        </>
+    )
+>>>>>>> dfe1d420e4721235fab8d9533ecf8111fca2898b
 }
