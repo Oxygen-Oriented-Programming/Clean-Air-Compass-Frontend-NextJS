@@ -43,7 +43,7 @@ export default function Form(props) {
         </button>
       </div>
       {/* <h1>{locationName}</h1> */}
-        {/* <label htmlFor="distance">Select a distance range:</label>
+      {/* <label htmlFor="distance">Select a distance range:</label>
         <select name="distance" id="distance" onChange={props.handleDistanceChange}>
           <option value="5">Within 5 miles</option>
           <option value="25">Within 25 miles</option>
