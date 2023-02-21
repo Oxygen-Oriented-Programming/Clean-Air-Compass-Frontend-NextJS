@@ -2,15 +2,15 @@ import Map from './Map';
 import Sidebar from './Sidebar/Sidebar';
 import { useState } from 'react';
 
-export default function Homepage() {
-    const [locationName, setLocationName] = useState('');
-    const [locationData, setLocationData] = useState('');
-    const [loading, setLoading] = useState(false);
+const [locationName, setLocationName] = useState('');
+const [locationData, setLocationData] = useState('');
+const [loading, setLoading] = useState(false);
 
-    function handleLocationInput(e) {
-        setLocationName(e.target.value);
-    }
 
+  function handleLocationInput(e) {
+    setLocationName(e.target.value);
+  }
+  
     async function handleSubmit(e) {
         e.preventDefault();
         const zipRegex = /^\d{5}(-\d{4})?$/;
@@ -36,7 +36,7 @@ export default function Homepage() {
             alert("This is not a valid city name or zip code");
         }
     }
-
+  }
     return (
         <>
             <div className='relative min-h-screen md:flex '>
