@@ -9,8 +9,8 @@ import logo from '../public/logo.png';
 import Link from 'next/link';
 
 export default function Homepage() {
-    const [locationName, setLocationName] = useState(null);
-    const [locationData, setLocationData] = useState(null);
+    const [locationName, setLocationName] = useState('');
+    const [locationData, setLocationData] = useState('');
 
     function handleLocationInput(e) {
         setLocationName(e.target.value);
@@ -23,13 +23,15 @@ export default function Homepage() {
         if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
         let baseUrl = "https://dolphin-app-ebj76.ondigitalocean.app/points/";
         let url = baseUrl + locationName;
+        console.log(url);
         try {
             const response = await fetch(url);
-            if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-            }
             const apiData = await response.json();
             setLocationData(apiData);
+            
+            console.log(response)
+            console.log(apiData);
+            console.log(locationData);
         } catch (error) {
             console.error(error);
             alert("An error occurred while fetching data from the API");

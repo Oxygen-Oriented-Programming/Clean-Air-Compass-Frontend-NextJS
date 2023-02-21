@@ -1,24 +1,10 @@
 import 'leaflet/dist/leaflet.css';
 import style from '../../styles/Home.module.css';
 import { useState, useEffect } from 'react';
-import data from 'assets/points.json';
-import polygons from 'assets/polygons_sample.json';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 
 function Map(props) {
-  const [geojsonData, setGeojsonData] = useState(null);
-
-  // useEffect(() => {
-  //   fetch('/api/air-quality-map')
-  //     .then(res => res.json())
-  //     .then(data => setGeojsonData(data));
-  // }, []);
-
-  useEffect(() => {
-    setGeojsonData(polygons);
-    // console.log(data)
-  }, []);
 
   // function getColor(airQuality) {
   //   return airQuality > 300
@@ -63,19 +49,22 @@ function Map(props) {
       className={style.map}
       center={
         props.locationData
-          ? [props.locationData.lat, props.locationData.lon]
+          ? [props.locationData.center_point[1], props.locationData.center_point[0]]
           : [47.0, -122.0]
       }
-      zoom={4}
+      zoom= {
+        props.locationData ?
+        14 : 8
+      }
       scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      {geojsonData && (
+      {props.locationData && (
         <GeoJSON
-          data={geojsonData}
+          data={props.locationData.features}
           style={(feature) => ({
             color: null,
             fillOpacity: 0.5,
