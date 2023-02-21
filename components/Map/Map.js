@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import style from '../../styles/Home.module.css';
 import { useState, useEffect } from 'react';
-import data from 'assets/points.json'
+import data from 'assets/points.json';
 import polygons from 'assets/polygons_sample.json';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -16,7 +16,7 @@ function Map(props) {
   // }, []);
 
   useEffect(() => {
-    setGeojsonData(polygons)
+    setGeojsonData(polygons);
     // console.log(data)
   }, []);
 
@@ -39,8 +39,8 @@ function Map(props) {
   const pointToLayer = (feature, latlng) => {
     return L.circleMarker(latlng, {
       radius: 8,
-      fillColor: "#ff7800",
-      color: "#000",
+      fillColor: '#ff7800',
+      color: '#000',
       weight: 1,
       opacity: 1,
       fillOpacity: 0.8,
@@ -50,24 +50,28 @@ function Map(props) {
   const getFillColor = (interpolatedValue) => {
     // You can define your own color scale based on the interpolated value
     if (interpolatedValue < 10) {
-      return "green";
+      return 'green';
     } else if (interpolatedValue >= 10 && interpolatedValue < 20) {
-      return "yellow";
+      return 'yellow';
     } else {
-      return "red";
+      return 'red';
     }
   };
 
   return (
     <MapContainer
       className={style.map}
-      center={props.locationData ? [props.locationData.lat, props.locationData.lon] : [47.000, -122.000]}
+      center={
+        props.locationData
+          ? [props.locationData.lat, props.locationData.lon]
+          : [47.0, -122.0]
+      }
       zoom={4}
       scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
       {geojsonData && (
         <GeoJSON
