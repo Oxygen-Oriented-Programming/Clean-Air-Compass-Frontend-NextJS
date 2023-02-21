@@ -57,6 +57,7 @@ export default function Sidebar(props) {
             {/* Search */}
             <div className='flex flex-col items-center w-full space-y-2.5'>
               <Form
+                loading={props.loading}
                 handleLocationInput={props.handleLocationInput}
                 handleSubmit={props.handleSubmit}
               />

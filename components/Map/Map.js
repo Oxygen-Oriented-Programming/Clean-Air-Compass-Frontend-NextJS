@@ -7,9 +7,9 @@ import { useState, useEffect } from 'react';
 
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 function Map(props) {
+  const [mapRef, setMapRef] = useState(null);
+  
   // function getColor(airQuality) {
   //   return airQuality > 300
   //   ? '#800026'
@@ -48,14 +48,9 @@ function Map(props) {
     }
   };
 
-  const { data, error, isLoading } = useSWR(
-    'https://dolphin-app-ebj76.ondigitalocean.app/points/',
-    fetcher
-  );
-  console.log(data);
-
   return (
     <MapContainer
+      key={props.locationData ? props.locationData.center_point : null}
       className={style.map}
       center={
         props.locationData
@@ -65,7 +60,8 @@ function Map(props) {
             ]
           : [47.0, -122.0]
       }
-      zoom={props.locationData ? 14 : 8}
+      
+      zoom={props.locationData ? 11 : 8}
       scrollWheelZoom={true}
       style={{ width: '100vw', height: '100vh' }}
     >
