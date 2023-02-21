@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 
 function Map(props) {
-
+  const [mapRef, setMapRef] = useState(null);
+  
   // function getColor(airQuality) {
   //   return airQuality > 300
   //   ? '#800026'
@@ -43,24 +44,26 @@ function Map(props) {
       return 'red';
     }
   };
-
+  console.log(mapRef);
   return (
     <MapContainer
+      key={props.locationData ? props.locationData.center_point : null}
       className={style.map}
       center={
         props.locationData
-          ? [props.locationData.center_point[1], props.locationData.center_point[0]]
+          ? [
+              props.locationData.center_point[1],
+              props.locationData.center_point[0],
+            ]
           : [47.0, -122.0]
       }
-      zoom= {
-        props.locationData ?
-        14 : 8
-      }
+      zoom={props.locationData ? 11 : 8}
       scrollWheelZoom={false}
+      // ref={(map) => setMapRef(map)}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {props.locationData && (
         <GeoJSON
