@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
+import Link from "next/link";
 
 export default function Login({ providers }) {
   const { data: session, status } = useSession();
@@ -34,11 +35,11 @@ export default function Login({ providers }) {
   }
 
   return (
-    <a
+    <Link
       href='/api/auth/signin'
       className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
     >
       Sign in
-    </a>
+    </Link>
   );
 }
