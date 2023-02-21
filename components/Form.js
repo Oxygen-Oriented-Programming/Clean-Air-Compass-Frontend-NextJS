@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Form() {
+export default function Form(props) {
   const [locationName, setLocationName] = useState(null);
 
   function handleLocationInput(e) {
@@ -17,7 +17,7 @@ export default function Form() {
   return (
     <>
       <div
-        onSubmit={handleSubmit}
+        onSubmit={props.handleSubmit}
         className='p2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700'
       >
         <i className='bg-transparent text-md bi bi-search'></i>
@@ -25,8 +25,7 @@ export default function Form() {
           <input
             name='location'
             type='text'
-            value={locationName}
-            onChange={handleLocationInput}
+            onChange={props.handleLocationInput}
             placeholder='Search for a City/Zip Code'
             className='w-full h-10 ml-4 text-xl text-left bg-transparent focus:outline-none '
           />
@@ -42,7 +41,14 @@ export default function Form() {
           Submit
         </button>
       </div>
-      <h1>{locationName}</h1>
+
+  {/* <label htmlFor="distance">Select a distance range:</label>
+      <select name="distance" id="distance" onChange={props.handleDistanceChange}>
+          <option value="5">Within 5 miles</option>
+          <option value="25">Within 25 miles</option>
+          <option value="100">Within 100 miles</option>
+          <option value="500">Within 500 miles</option>
+        </select> */}
     </>
   );
 }

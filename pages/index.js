@@ -1,8 +1,11 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Login from '../components/Login';
+import Homepage from '../components/Homepage';
 import Map from '../components/Map';
 import Form from '../components/Form';
 import Image from 'next/image';
 import logo from '../public/logo.png';
+import Head from 'next/head';
 
 export default function Home() {
   function dropdown(e) {
@@ -77,7 +80,10 @@ export default function Home() {
 
         <div className='p2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-600'>
           <i className='bi bi-box-arrow-in-right'></i>
-          <span className='ml-4 text-lg text-gray-200'>Login</span>
+          <span className='ml-4 text-lg text-gray-200'>
+          <Login></Login>
+          Login
+          </span>
         </div>
       </div>
       <span className='absolute text-4xl text-white cursor-pointer top-5 left-4'>
@@ -85,6 +91,7 @@ export default function Home() {
       </span>
       <Map />
       <Form />
+      <Homepage />
     </>
   );
 }
