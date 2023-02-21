@@ -9,33 +9,34 @@ import logo from '../public/logo.png';
 import Link from 'next/link';
 
 export default function Homepage() {
-  const [locationName, setLocationName] = useState(null);
-  const [locationData, setLocationData] = useState(null);
+    const [locationName, setLocationName] = useState(null);
+    const [locationData, setLocationData] = useState(null);
 
-  function handleLocationInput(e) {
-    setLocationName(e.target.value);
-  }
+    function handleLocationInput(e) {
+        setLocationName(e.target.value);
+    }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const zipRegex = /^\d{5}(-\d{4})?$/;
-    const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
-    if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
-      let baseUrl = "https://dolphin-app-ebj76.ondigitalocean.app/points/";
-      let url = baseUrl + locationName;
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const zipRegex = /^\d{5}(-\d{4})?$/;
+        const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+        if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
+        let baseUrl = "https://dolphin-app-ebj76.ondigitalocean.app/points/";
+        let url = baseUrl + locationName;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const apiData = await response.json();
+            setLocationData(apiData);
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred while fetching data from the API");
         }
-        const apiData = await response.json();
-        setLocationData(apiData);
-      } catch (error) {
-        console.error(error);
-        alert("An error occurred while fetching data from the API");
-      }
-    } else {
-      alert("This is not a valid city name or zip code");
+        } else {
+        alert("This is not a valid city name or zip code");
+        }
     }
 
     return (
