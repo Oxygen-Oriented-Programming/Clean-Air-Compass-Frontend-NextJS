@@ -4,6 +4,8 @@ import Login from "./Login";
 import MobileLogin from "./MobileLogin";
 import NavLinks from "./NavLinks";
 import NavTitle from "./NavTitle";
+import SetDefaultLocation from './SetDefaultLocation';
+
 
 export default function Sidebar(props) {
   return (
