@@ -31,6 +31,7 @@ export default function Homepage({BASE_URL}) {
     e.preventDefault();
 
     console.log(baseUrl);
+
     const zipRegex = /^\d{5}(-\d{4})?$/;
     const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
     if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
@@ -52,23 +53,26 @@ export default function Homepage({BASE_URL}) {
       }
     } else {
       alert("This is not a valid city name or zip code");
+
     }
   }
 
   return (
     <>
-      <div className="relative min-h-screen md:flex ">
+      <div className='relative min-h-screen md:flex '>
         <Sidebar
           handleLocationInput={handleLocationInput}
           handleSubmit={handleSubmit}
           loading={loading}
         />
+
         <Map
           className=""
           locationData={locationData}
           setMap={setMap}
           map={map}
         />
+        
         {showRightSidebar && (
           <RightSidebar
             sidebar_show={showRightSidebar}
@@ -80,8 +84,10 @@ export default function Homepage({BASE_URL}) {
             sidebar_show={showRightSidebar}
             set_show={setShowRightSidebar}
             text="More Info"
+
           />
         ) : null}
+        <Chart />
       </div>
     </>
   );
