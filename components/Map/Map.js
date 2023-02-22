@@ -15,33 +15,53 @@ export default function Map(props) {
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
       radius: 8,
-      fillColor: '#ff7800',
-      color: '#000',
+      fillColor: getFillColor(feature.properties["pm2.5"]),
+      color: "#000",
       weight: 1,
       opacity: 1,
       fillOpacity: 0.8,
     });
   };
 
-  const getFillColor = (interpolatedValue) => {
-    // You can define your own color scale based on the interpolated value
-    if (interpolatedValue <= 8) {
-      return '#00ff00';
-    } else if (interpolatedValue >= 9 && interpolatedValue <= 16 ) {
-      return '#99ff33';
-    } else if (interpolatedValue >= 17 && interpolatedValue <= 24 ) {
-      return '#ccff33';
-    } else if (interpolatedValue >= 25 && interpolatedValue <= 32 ) {
-      return '#ffff00';
-    } else if (interpolatedValue >= 33 && interpolatedValue <= 40 ) {
-      return '#ffcc00';
-    } else if (interpolatedValue >= 41 && interpolatedValue <= 48 ) {
-      return '#ff9900';
-    } else if (interpolatedValue >= 49 && interpolatedValue <= 56 ) {
-      return '#ff3300';
-    } else {
-      return '#990033';
+const getFillColor = (interpolatedValue) => {
+  // You can define your own color scale based on the interpolated value
+  if (interpolatedValue >= 49 && interpolatedValue <= 56) {
+    return "#990033";
+  } else if (interpolatedValue >= 41) {
+    return "#ff3300";
+  } else if (interpolatedValue >= 33) {
+    return "#ff9900";
+  } else if (interpolatedValue >= 25 ) {
+    return "#ffcc00";
+  } else if (interpolatedValue >= 17 ) {
+    return "#ffff00";
+  } else if (interpolatedValue >= 9 ) {
+    return "#ccff33";
+  } else if (interpolatedValue > 0) {
+    return "#99ff33";
+  } else {
+    return "grey";
+  }
+};
+
+
+  const onEachFeature = (feature, layer) => {
+    const properties = feature.properties;
+    let tooltipContent = "";
+
+    for (const key in properties) {
+      if (properties.hasOwnProperty(key)) {
+        tooltipContent += `<b>${key}:</b> ${properties[key]}<br>`;
+      }
     }
+
+    layer.bindPopup(tooltipContent);
+    layer.on("mouseover", function () {
+      this.openPopup();
+    });
+    layer.on("mouseout", function () {
+      this.closePopup();
+    });
   };
 
   return (
@@ -68,21 +88,8 @@ export default function Map(props) {
         url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
       />
 
-      <Marker
-        position={
-          props.locationData
-            ? [
-                props.locationData.center_point[1],
-                props.locationData.center_point[0],
-              ]
-            : [47.0, -122.0]
-        }
-      >
-        <Popup>
-          Data1 <br /> Data2
-        </Popup>
-      </Marker>
       {props.locationData && (
+        <>
         <GeoJSON
           data={props.locationData.features}
           style={(feature) => ({
@@ -90,7 +97,16 @@ export default function Map(props) {
             fillOpacity: 0.6,
             fillColor: getFillColor(feature.properties.interpolated_value),
           })}
+          onEachFeature = {onEachFeature}
+          
         />
+        <GeoJSON
+          data={props.locationData.points}
+          pointToLayer = {pointToLayer}
+          onEachFeature = {onEachFeature}
+        />
+        </>
+
       )}
     </MapContainer>
   );

@@ -28,9 +28,16 @@ export default NextAuth({
                 if (token.token.account.id_token) {
                     user_credential["auth_token"] = token.token.account.id_token
                 }
+                return user_credential
             }
-            return user_credential
+            // return user_credential
         }
     },
     secret: "G98di5p1KYGycZRa9wOhULNe0uwEv9JwPOv1Nw+wWZI=",
+    jwt: {
+        signingKey: {"kty":"oct","kid":"--","alg":"HS256","k":"--"},
+        verificationOptions: {
+          algorithms: ["HS256"]
+        }
+      }
 });
