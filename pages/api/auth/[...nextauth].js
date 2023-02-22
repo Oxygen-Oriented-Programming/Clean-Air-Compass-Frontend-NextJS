@@ -17,13 +17,14 @@ export default NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async signIn(user) {
+    async signIn({user, account, profile, session}) {
       if (user) {
-        console.log("user = true")
-        const idToken = user.account.id_token;
-        console.log("id token", idToken)
+        const idToken = account.id_token;
         try {
-          const response = await fetch(
+          console.log("api call")
+          let data_ = null
+          let response_ = null
+          await fetch(
             `http://127.0.0.1:8000/accounts/google/`,
             {
               method: "post",
@@ -33,72 +34,33 @@ export default NextAuth({
               }),
             }
           )
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          const auth_token = response.data
-          console.log(auth_token)
-          user.auth_token = auth_token
+          .then((response) => response_ = response.json())
+          .then((data) => data_ = data )
+          if (data_.auth_token){
+            console.log(data_.auth_token)
+          }
+          if (!data_.auth_token){
+            user.auth_token = data_
+          }
           return true
         } catch (error) {
-            return false;
+            return true;
         }
       }
-      return false;
     },
-    async jwt(token, user, account, profile, isNewUser) {
-      // console.log(token)
-      return token;
+    async jwt({token, user, account, profile, isNewUser}) {
+      if(user){
+        const {auth_token} = user;
+        token.auth_token = auth_token
+      }
+      return token
     },
+ 
     async session({ session, user, token }) {
-      // console.log(session)
-      // return session
+      if(token.auth_token){
+        session.auth_token = token.auth_token
+      }
+      return session
     },
   },
 });
-
-// // let response = await fetch(`http://127.0.0.1:8000/accounts/google/`, {method: 'post',headers: {'Content-Type': 'application/json',},body: JSON.stringify({ auth_token: token.token.account.id_token })});
-
-
-// import NextAuth from "next-auth";
-// import GoogleProvider from "next-auth/providers/google"
-
-// var user_credential = []
-
-// export default NextAuth({
-//     providers: [
-//         GoogleProvider({
-//             clientId: '1005718204366-tbjlqqhbjor349kpshags3kedmhomul9.apps.googleusercontent.com',
-//             clientSecret: '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',
-//         }),
-//     ],
-//     session: {
-//         strategy: "jwt",
-//       },
-//     callbacks: {
-//         async jwt(token, user, account, profile, isNewUser) {
-//             return token;
-//         },
-//         async session({ token }) {
-//             if(token){
-//                 user_credential = {
-//                     "provider": token.token.account.provider,
-//                 }
-//                 if (token.token.account.access_token) {
-//                     user_credential["auth_token"] = token.token.account.access_token
-//                 }
-//                 if (token.token.account.id_token) {
-//                     user_credential["auth_token"] = token.token.account.id_token
-//                 }
-//                 return user_credential
-//             }
-//             // return user_credential
-//         }
-//     },
-//     secret: "G98di5p1KYGycZRa9wOhULNe0uwEv9JwPOv1Nw+wWZI=",
-//     jwt: {
-//         signingKey: {"kty":"oct","kid":"--","alg":"HS256","k":"--"},
-//         verificationOptions: {
-//           algorithms: ["HS256"]
-//         }
-//       }
-// });
