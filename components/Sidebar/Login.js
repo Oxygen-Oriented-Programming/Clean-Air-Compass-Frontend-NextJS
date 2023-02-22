@@ -37,11 +37,13 @@ export default function Login({ providers }) {
   }
 
   return (
+     <div className="flex items-center bg-black">
     <Link
       href='/api/auth/signin'
       className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
     >
       Sign in
     </Link>
+    </div>
   );
 }
