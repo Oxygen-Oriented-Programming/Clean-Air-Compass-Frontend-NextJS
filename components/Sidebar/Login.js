@@ -7,8 +7,8 @@ export default function Login() {
   const {data: session, status } = useSession();
   if (status === 'authenticated') {
     return (
-      // <SetDefaultLocation user_id={user.user_id} auth_token={user.tokens}></SetDefaultLocation>
-      <h1>logged in as {session.user.name} default = {session.auth_token.default_location}</h1>
+      <SetDefaultLocation user_id={session.auth_token.user_id} auth_token={session.auth_token.tokens} default_location={session.auth_token.default_location}></SetDefaultLocation>
+      // <h1>logged in as {session.user.name} default = {session.auth_token.default_location}</h1>
     );
   }
 

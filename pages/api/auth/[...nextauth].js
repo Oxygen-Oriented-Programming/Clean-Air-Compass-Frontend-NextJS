@@ -59,8 +59,8 @@ export default NextAuth({
     async session({ session, user, token }) {
       if(token.auth_token){
         session.auth_token = token.auth_token
+        return session
       }
-      return session
     },
   },
 });

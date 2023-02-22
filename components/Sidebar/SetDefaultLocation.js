@@ -1,4 +1,6 @@
-export default function SetDefaultLocation({auth_token, user_id}) {
+import { useSession } from "next-auth/react";
+
+export default function SetDefaultLocation({auth_token, user_id, default_location}) {
 
   async function backendapi_setLocation(e){
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function SetDefaultLocation({auth_token, user_id}) {
       })
     .catch((error) => {
         console.log("catching")
-        fetch(`http://127.0.0.1:8000/default_locations/${user_number}/`, {
+        fetch(`http://127.0.0.1:8000/default_locations/${default_location}/`, {
             method: "put",
             headers: {
               "Content-Type": "application/json",
