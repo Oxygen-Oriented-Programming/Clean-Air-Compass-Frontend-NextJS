@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import faqChart from 'public/faqChart.png';
 
-export default function RightSidebar(props) {
+export default function Chart(props) {
   console.log(props);
   return (
     <>

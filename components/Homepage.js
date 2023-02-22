@@ -3,7 +3,8 @@ import Sidebar from "./Sidebar/Sidebar";
 import { useState } from "react";
 import RightSidebarButton from "./RightSidebarButton";
 import RightSidebar from "./RightSidebar";
-import { env } from "@/next.config";
+import Chart from "./Chart";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 console.log(BASE_URL);
 
