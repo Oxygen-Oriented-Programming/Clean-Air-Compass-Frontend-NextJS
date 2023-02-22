@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import Link from "next/link";
+import SetDefaultLocation from './SetDefaultLocation';
 
 export default function Login({ providers }) {
   const { data: session, status } = useSession();
@@ -28,11 +29,9 @@ export default function Login({ providers }) {
   console.log(status)
   console.log(session)
   console.log(user)
-  if (status === 'authenticated') {
+  if (user) {
     return (
-      <p className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'>
-        Hi 
-      </p>
+      <SetDefaultLocation user_id={user.user_id} auth_token={user.tokens}></SetDefaultLocation>
     );
   }
 

@@ -5,6 +5,7 @@ import MobileLogin from './MobileLogin';
 import Image from 'next/image';
 import logo from 'public/logo.png';
 import Link from 'next/link';
+import SetDefaultLocation from './SetDefaultLocation';
 
 export default function Sidebar(props) {
   return (
@@ -35,7 +36,7 @@ export default function Sidebar(props) {
     </div>
 
     {/* Sidebar */}
-    <div class='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
+    <div className='sidebar w-64 px-2 space-y-2.5 text-blue-100 bg-black absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out'>
     {/* Logo */}
       <div className='flex items-center pt-2 space gap-x-2.5 '>
         <Image className=' w-11 h-11' src={logo} alt='' />
