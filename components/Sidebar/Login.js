@@ -9,7 +9,6 @@ export default function Login({ providers }) {
   useEffect(() => {
     if (session) {
       if (session.provider === 'google') {;
-        console.log(session.provider)
         var auth_token = session.auth_token;
         backendapi_google(auth_token);
       }

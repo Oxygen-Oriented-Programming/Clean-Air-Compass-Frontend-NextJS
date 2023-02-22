@@ -4,10 +4,12 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import style from '../../styles/Home.module.css';
 import useSWR from 'swr';
 import { useState, useEffect } from 'react';
+import MapDescendent from './MapDescendent';
 
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
-function Map(props) {
+export default function Map(props) {
+
   const [mapRef, setMapRef] = useState(null);
 
   const pointToLayer = (feature, center_point) => {
@@ -64,21 +66,23 @@ const getFillColor = (interpolatedValue) => {
 
   return (
     <MapContainer
-      key={props.locationData ? props.locationData.center_point : null}
+      // key={props.locationData ? props.locationData.center_point : null}
       className={style.map}
       center={
-        props.locationData
-          ? [
-              props.locationData.center_point[1],
-              props.locationData.center_point[0],
-            ]
-          : [47.0, -122.0]
+        // props.locationData
+        //   ? [
+        //       props.locationData.center_point[1],
+        //       props.locationData.center_point[0],
+        //     ]
+        //   : 
+          [47.0, -122.0]
       }
       
-      zoom={props.locationData ? 11 : 8}
+      zoom={props.locationData ? 12 : 8}
       scrollWheelZoom={true}
       style={{ width: '100vw', height: '100vh' }}
     >
+      <MapDescendent setMap={props.setMap} />
       <TileLayer
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>contributors'
         url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
@@ -90,7 +94,7 @@ const getFillColor = (interpolatedValue) => {
           data={props.locationData.features}
           style={(feature) => ({
             color: null,
-            fillOpacity: 0.5,
+            fillOpacity: 0.6,
             fillColor: getFillColor(feature.properties.interpolated_value),
           })}
           onEachFeature = {onEachFeature}
@@ -107,5 +111,3 @@ const getFillColor = (interpolatedValue) => {
     </MapContainer>
   );
 }
-
-export default Map;
