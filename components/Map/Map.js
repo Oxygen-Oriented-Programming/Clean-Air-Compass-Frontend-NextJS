@@ -65,6 +65,7 @@ const getFillColor = (interpolatedValue) => {
   };
 
   return (
+     <div className='flex-1 '>
     <MapContainer
       // key={props.locationData ? props.locationData.center_point : null}
       className={style.map}
@@ -109,5 +110,6 @@ const getFillColor = (interpolatedValue) => {
 
       )}
     </MapContainer>
+    </div>
   );
 }
