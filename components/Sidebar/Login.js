@@ -8,7 +8,6 @@ export default function Login({ providers }) {
   useEffect(() => {
     if (session) {
       if (session.provider === 'google') {;
-        console.log(session.provider)
         var auth_token = session.auth_token;
         backendapi_google(auth_token);
       }
@@ -25,9 +24,6 @@ export default function Login({ providers }) {
     .then((response) => response.json())
     .then((data) => setUser(data))
   }
-  console.log(status)
-  console.log(session)
-  console.log(user)
   if (status === 'authenticated') {
     return (
       <p className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'>

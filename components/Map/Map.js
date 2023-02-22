@@ -4,27 +4,13 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import style from '../../styles/Home.module.css';
 import useSWR from 'swr';
 import { useState, useEffect } from 'react';
+import MapDescendent from './MapDescendent';
 
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
-function Map(props) {
+export default function Map(props) {
+
   const [mapRef, setMapRef] = useState(null);
-  
-  // function getColor(airQuality) {
-  //   return airQuality > 300
-  //   ? '#800026'
-  //   : airQuality > 200
-  //   ? '#BD0026'
-  //   : airQuality > 150
-  //   ? '#E31A1C'
-  //   : airQuality > 100
-  //   ? '#FC4E2A'
-  //   : airQuality > 50
-  //   ? '#FD8D3C'
-  //   : airQuality > 0
-  //   ? '#FEB24C'
-  //   : '#FFEDA0';
-  // }
 
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
@@ -39,32 +25,44 @@ function Map(props) {
 
   const getFillColor = (interpolatedValue) => {
     // You can define your own color scale based on the interpolated value
-    if (interpolatedValue < 10) {
-      return 'green';
-    } else if (interpolatedValue >= 10 && interpolatedValue < 20) {
-      return 'yellow';
+    if (interpolatedValue <= 8) {
+      return '#00ff00';
+    } else if (interpolatedValue >= 9 && interpolatedValue <= 16 ) {
+      return '#99ff33';
+    } else if (interpolatedValue >= 17 && interpolatedValue <= 24 ) {
+      return '#ccff33';
+    } else if (interpolatedValue >= 25 && interpolatedValue <= 32 ) {
+      return '#ffff00';
+    } else if (interpolatedValue >= 33 && interpolatedValue <= 40 ) {
+      return '#ffcc00';
+    } else if (interpolatedValue >= 41 && interpolatedValue <= 48 ) {
+      return '#ff9900';
+    } else if (interpolatedValue >= 49 && interpolatedValue <= 56 ) {
+      return '#ff3300';
     } else {
-      return 'red';
+      return '#990033';
     }
   };
 
   return (
     <MapContainer
-      key={props.locationData ? props.locationData.center_point : null}
+      // key={props.locationData ? props.locationData.center_point : null}
       className={style.map}
       center={
-        props.locationData
-          ? [
-              props.locationData.center_point[1],
-              props.locationData.center_point[0],
-            ]
-          : [47.0, -122.0]
+        // props.locationData
+        //   ? [
+        //       props.locationData.center_point[1],
+        //       props.locationData.center_point[0],
+        //     ]
+        //   : 
+          [47.0, -122.0]
       }
       
-      zoom={props.locationData ? 11 : 8}
+      zoom={props.locationData ? 12 : 8}
       scrollWheelZoom={true}
       style={{ width: '100vw', height: '100vh' }}
     >
+      <MapDescendent setMap={props.setMap} />
       <TileLayer
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>contributors'
         url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
@@ -89,7 +87,7 @@ function Map(props) {
           data={props.locationData.features}
           style={(feature) => ({
             color: null,
-            fillOpacity: 0.5,
+            fillOpacity: 0.6,
             fillColor: getFillColor(feature.properties.interpolated_value),
           })}
         />
@@ -97,5 +95,3 @@ function Map(props) {
     </MapContainer>
   );
 }
-
-export default Map;
