@@ -8,6 +8,12 @@ export default function Form(props) {
           onSubmit={props.handleSubmit}
           className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700'
         >
+          <label
+            htmlFor='first_name'
+            className='block mb-2 font-medium text-gray-900 text-md dark:text-white'
+          >
+            Enter Location
+          </label>
           <input
             className='h-10 text-lg font-normal text-center bg-transparent rounded-lg'
             name='location'
@@ -15,6 +21,7 @@ export default function Form(props) {
             onChange={props.handleLocationInput}
             placeholder='City / Zip Code'
           />
+
           <div className='p-3'>
             {props.loading ? (
               <LoadingButton />
