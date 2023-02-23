@@ -1,7 +1,4 @@
-export default function SetDefaultLocation({
-  auth_token,
-  user_id,
-}) {
+export default function SetDefaultLocation({ auth_token, user_id }) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
     const location = e.target.default_location.value;
@@ -10,7 +7,7 @@ export default function SetDefaultLocation({
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${auth_token}`,
+        Authorization: `Token ${auth_token}`,
       },
       body: JSON.stringify({ user: user_number, default_location: location }),
     })
@@ -29,7 +26,7 @@ export default function SetDefaultLocation({
             method: 'put',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Token ${auth_token}`,
+              Authorization: `Token ${auth_token}`,
             },
             body: JSON.stringify({
               user: user_number,
@@ -41,12 +38,12 @@ export default function SetDefaultLocation({
   }
   return (
     <>
-      <div className='flex flex-col items-center w-full space-y-2.5'>
+      <div className='flex flex-col items-center w-full h-full space-y-2.5 bg-black'>
         <form
           onSubmit={backendapi_setLocation}
-          className='items-center p-3 px-4 mt-3 text-center duration-300 bg-gray-800 rounded-md cursor-pointer w-fit'
+          className='items-center p-2.5 px-4 mt-3 text-center duration-300 bg-gray-800 rounded-md cursor-pointer w-fit'
         >
-          <div>
+          <div className='p-2.5'>
             <label
               htmlFor='first_name'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'

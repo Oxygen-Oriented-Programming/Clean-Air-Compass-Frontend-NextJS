@@ -1,10 +1,9 @@
 import LoadingButton from './LoadingButton';
 
 export default function Form(props) {
-  
   return (
     <>
-      <div className='flex flex-col items-center w-full space-y-2.5'>
+      <div className='flex flex-col items-center w-full h-full space-y-2.5 bg-black'>
         <form
           onSubmit={props.handleSubmit}
           className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-800'
