@@ -1,6 +1,7 @@
 import LoadingButton from './LoadingButton';
 
 export default function Form(props) {
+  
   return (
     <>
       <div className='flex flex-col items-center w-full space-y-2.5'>

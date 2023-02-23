@@ -5,11 +5,17 @@ import style from '../../styles/Home.module.css';
 import useSWR from 'swr';
 import { useState, useEffect } from 'react';
 import MapDescendent from './MapDescendent';
-
+import { useSession } from 'next-auth/react';
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
 export default function Map(props) {
   const [mapRef, setMapRef] = useState(null);
+  const {data: session} = useSession();
+  const [defaultLocation, setDefaultLocation] = useState([47.000, -122.000]);
+
+  useEffect(() => {
+    getDefaultLatLong()
+  }, []);
 
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
@@ -98,10 +104,21 @@ export default function Map(props) {
     });
   };
 
+  async function getDefaultLatLong() {
+    try{
+      const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
+      const apiData = await fetch(url);
+      const response = await apiData.json();
+      setDefaultLocation([response[0].lat, response[0].lon]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className='flex-1 '>
       <MapContainer
-        key={props.locationData ? props.locationData.center_point : null}
+        key={props.locationData ? props.locationData.center_point : defaultLocation}
         className={style.map}
         center={
           props.locationData
@@ -109,7 +126,8 @@ export default function Map(props) {
                 props.locationData.center_point[1],
                 props.locationData.center_point[0],
               ]
-            : [47.0, -122.0]
+            : defaultLocation
+              
         }
         zoom={props.locationData ? 12 : 8}
         scrollWheelZoom={true}
