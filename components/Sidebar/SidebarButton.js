@@ -24,7 +24,7 @@ export default function SidebarButton(props) {
   return (
     <>
       <div className={showFeatures ? "h-screen w-64 px-2 space-y-2.5 text-white bg-black  inset-y-0 md:relative transition duration-200 ease-in-out" :
-     "w-64 px-2 space-y-2.5 text-white bg-black  inset-y-0 md:relative transition duration-200 ease-in-out" }>
+        "w-64 px-2 space-y-2.5 text-white bg-black  inset-y-0 md:relative transition duration-200 ease-in-out"}>
         <div>
           <NavTitle />
           <div className="flex flex-col flex-1 flex-grow p-3">
@@ -47,7 +47,7 @@ export default function SidebarButton(props) {
                 handleSubmit={props.handleSubmit}
               />
               {!showFeatures && (
-                <NavLinks handleFeaturesClick={handleFeaturesClick} />
+                <NavLinks handleFeaturesClick={handleFeaturesClick} toggleModal={props.toggleModal} />
               )}
             </nav>
             {showFeatures && (
