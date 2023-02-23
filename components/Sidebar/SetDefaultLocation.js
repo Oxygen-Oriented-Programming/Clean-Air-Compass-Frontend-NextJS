@@ -43,7 +43,7 @@ export default function SetDefaultLocation({
       <div className='flex flex-col items-center w-full space-y-2.5'>
         <form
           onSubmit={backendapi_setLocation}
-          className='items-center p-3 px-4 mt-3 text-center duration-300 bg-gray-700 rounded-md cursor-pointer w-fit'
+          className='items-center p-3 px-4 mt-3 text-center duration-300 bg-gray-800 rounded-md cursor-pointer w-fit'
         >
           <div>
             <label
