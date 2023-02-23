@@ -24,7 +24,7 @@ export default function Homepage({ BASE_URL }) {
   }
 
   function fly_animation(apiData) {
-    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 12, {
+    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 11, {
       animate: true,
       duration: 5,
     });
