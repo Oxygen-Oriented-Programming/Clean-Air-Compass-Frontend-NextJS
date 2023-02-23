@@ -1,7 +1,6 @@
 export default function SetDefaultLocation({
   auth_token,
   user_id,
-  default_location,
 }) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
@@ -11,6 +10,7 @@ export default function SetDefaultLocation({
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Token ${auth_token}`,
       },
       body: JSON.stringify({ user: user_number, default_location: location }),
     })
@@ -29,6 +29,7 @@ export default function SetDefaultLocation({
             method: 'put',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Token ${auth_token}`,
             },
             body: JSON.stringify({
               user: user_number,
