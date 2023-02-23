@@ -58,6 +58,7 @@ export default NextAuth({
     async session({ session, user, token }) {
       if(token.auth_token){
         session.auth_token = token.auth_token
+        // console.log(session.auth_token.alerts[0].id)
         console.log(session)
         return session
       }
