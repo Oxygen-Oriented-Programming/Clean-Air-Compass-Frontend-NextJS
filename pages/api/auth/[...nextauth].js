@@ -8,9 +8,8 @@ let auth_token = null;
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId:
-        "319185773405-94lfgudji11fvtbrckkfsj4r7rpuaalv.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId:"319185773405-94lfgudji11fvtbrckkfsj4r7rpuaalv.apps.googleusercontent.com",
+      clientSecret: "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",
     }),
   ],
   session: {
@@ -59,8 +58,9 @@ export default NextAuth({
     async session({ session, user, token }) {
       if(token.auth_token){
         session.auth_token = token.auth_token
+        console.log(session)
+        return session
       }
-      return session
     },
   },
 });

@@ -6,7 +6,7 @@ import RightSidebar from "./RightSidebar";
 import Chart from "./Chart";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-console.log(BASE_URL);
+// console.log(BASE_URL);
 
 export default function Homepage({BASE_URL}) {
     const [showRightSidebar, setShowRightSidebar] = useState(false);
@@ -31,7 +31,7 @@ export default function Homepage({BASE_URL}) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        console.log(baseUrl);
+        // console.log(baseUrl);
 
         const zipRegex = /^\d{5}(-\d{4})?$/;
         const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
