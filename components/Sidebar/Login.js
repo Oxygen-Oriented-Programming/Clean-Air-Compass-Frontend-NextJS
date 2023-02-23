@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import SetDefaultLocation from './SetDefaultLocation';
+import { signOut } from "next-auth/react"
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -23,15 +24,17 @@ export default function Login() {
             auth_token={session.auth_token.tokens}
           />
           <div className='items-center p-3 px-4 mt-3 text-center duration-300 bg-transparent rounded-md cursor-pointer w-fit'>
-            <label
+            {/* <label
               htmlFor='first_name'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
             >
               Saved Location
             </label>
             {session.auth_token.default_location}
-            {''}
+            {''} */}
           </div>
+
+        <button onClick={() => signOut()}>Sign out</button>
         </div>
       </>
     );
