@@ -1,4 +1,8 @@
-export default function SetDefaultLocation({ auth_token, user_id, defaultCrud }) {
+export default function SetDefaultLocation({
+  auth_token,
+  user_id,
+  defaultCrud,
+}) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
     const location = e.target.default_location.value;
@@ -19,7 +23,6 @@ export default function SetDefaultLocation({ auth_token, user_id, defaultCrud })
         }
       })
       .catch((error) => {
-
         fetch(
           `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`,
           {
@@ -33,34 +36,36 @@ export default function SetDefaultLocation({ auth_token, user_id, defaultCrud })
               default_location: location,
             }),
           }
-        ).then((response) => response.json()).then(defaultCrud(location))
+        )
+          .then((response) => response.json())
+          .then(defaultCrud(location));
       });
   }
   return (
     <>
-      <div className='flex flex-col items-center w-full h-full space-y-2.5 bg-transparent'>
+      <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent'>
         <form
           onSubmit={backendapi_setLocation}
-          className='items-center p-2.5 px-4 mt-3 text-center duration-300 bg-gray-800 rounded-md cursor-pointer w-fit'
+          className='items-center transition-all p-2.5 px-4 mt-3 text-center duration-300 bg-gray-800 rounded-md cursor-pointer w-fit'
         >
-          <div className='p-2.5'>
+          <div className='p-2.5 transition-all'>
             <label
               htmlFor='first_name'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+              className='block mb-2 text-sm font-medium text-gray-900 transition-all dark:text-white'
             >
               Default Location
             </label>
             <input
               type='text'
               id='default_location'
-              className='h-10 text-lg font-normal text-center bg-transparent rounded-lg'
+              className='h-10 text-lg font-normal text-center transition-all bg-transparent rounded-lg'
               placeholder='Seattle'
               required
             ></input>
           </div>
           <button
             type='submit'
-            className='px-4 py-2 m-auto font-semibold text-blue-400 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
+            className='px-4 py-2 m-auto font-semibold text-blue-400 transition-all bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
           >
             Submit
           </button>

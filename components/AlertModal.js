@@ -15,6 +15,7 @@ export default function AlertModal(props) {
 
   return (
     <>
+
     <Modal
       isOpen={props.isModalOpen}
       onRequestClose={props.toggleModal}
@@ -40,6 +41,7 @@ export default function AlertModal(props) {
         <div>{curdDefault && <>Default changed to: {curdDefault}</>}</div>
         {!curdDefault && (
           <div className="p-3 px-4 mt-3 text-center duration-300 bg-transparent rounded-md cursor-pointer w-fit">
+
             <label
               htmlFor="first_name"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -72,7 +74,6 @@ export default function AlertModal(props) {
           width: 60%;
           border-radius: 0.5rem;
           max-height: 90%;
-        
         }
         .overlay {
           position: fixed;
@@ -80,6 +81,7 @@ export default function AlertModal(props) {
           left: 0;
           right: 0;
           bottom: 0;
+          transition: all;
           background-color: rgba(0, 0, 0, 0.5);
           z-index: 9999;
         }

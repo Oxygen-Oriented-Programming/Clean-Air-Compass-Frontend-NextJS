@@ -11,19 +11,21 @@ export default function MyAlerts(){
   function validateAndGetDigits(input) {
     // Remove all non-digit characters
     const digitsOnly = input.replace(/\D/g, '');
-  
+
     // Check if the result has exactly 10 digits
     if (digitsOnly.length !== 10) {
       return false;
     }
-  
+
     // Return the 10 digits with no hyphens or special characters
     return digitsOnly;
   }
 
   function createNewSmsAlertHandler(e) {
     e.preventDefault();
-    const phoneNumberValidation = validateAndGetDigits(e.target.phoneNumber.value)
+    const phoneNumberValidation = validateAndGetDigits(
+      e.target.phoneNumber.value
+    );
     if (phoneNumberValidation) {
       const newSmsAlert = {
         user: user,
@@ -31,13 +33,15 @@ export default function MyAlerts(){
         air_quality_threshold: e.target.airQualityThreshold.value,
         phone_number: phoneNumberValidation,
       };
-  
+
       createResource(newSmsAlert);
     } else {
-      alert('Not a valid phone number. Please enter a 10 digit US phone number.')
+      alert(
+        'Not a valid phone number. Please enter a 10 digit US phone number.'
+      );
     }
   }
-  
+
   function handleDelete(id) {
     deleteResource(id);
   }
@@ -48,6 +52,7 @@ export default function MyAlerts(){
 
   return (
     <>
+
       <h3 className="my-4 text-lg text-center">My Alerts</h3>
       <form
         onSubmit={createNewSmsAlertHandler}
