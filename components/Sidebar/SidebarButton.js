@@ -71,6 +71,7 @@ export default function SidebarButton(props) {
                   handleFeaturesClick={handleFeaturesClick}
                   handleAboutClick={handleAboutClick}
                   handleReturnClick={handleReturnClick}
+                  toggleModal={props.toggleModal} 
                 />
               )}
             </nav>

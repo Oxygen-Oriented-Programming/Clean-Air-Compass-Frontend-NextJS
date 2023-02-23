@@ -2,11 +2,9 @@ import React from 'react';
 import useResource from '../../hooks/useResource.js';
 import { useSession } from 'next-auth/react';
 
-export default function MyAlerts() {
-  const { createResource, updateResource, deleteResource, resources } =
-    useResource();
-  console.log(resources);
-  const { data: session } = useSession();
+export default function MyAlerts(){
+  const { createResource, updateResource, deleteResource, resources } = useResource();
+  const { data: session} = useSession();
   const user = session.auth_token.user_id;
   const alerts = resources || [];
 

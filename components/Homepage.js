@@ -84,7 +84,6 @@ export default function Homepage({ BASE_URL }) {
       alert('This is not a valid city name or zip code');
     }
   }
-
   return (
     <>
       <button
