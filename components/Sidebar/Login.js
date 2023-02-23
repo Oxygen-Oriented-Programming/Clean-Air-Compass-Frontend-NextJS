@@ -8,10 +8,6 @@ export default function Login() {
   if (status === 'authenticated') {
     return (
       <>
-        <SetDefaultLocation
-          user_id={session.auth_token.user_id}
-          auth_token={session.auth_token.tokens}
-        />
         <div className='flex flex-col items-center w-full space-y-2.5'>
           <div className='items-center p-3 px-4 mt-3 text-center duration-300 rounded-md cursor-pointer bg-violet-900 w-fit'>
             <label
@@ -22,7 +18,11 @@ export default function Login() {
             </label>
             {session.user.name}{' '}
           </div>
-          <div className='items-center p-3 px-4 mt-3 text-center duration-300 bg-gray-700 rounded-md cursor-pointer w-fit'>
+          <SetDefaultLocation
+            user_id={session.auth_token.user_id}
+            auth_token={session.auth_token.tokens}
+          />
+          <div className='items-center p-3 px-4 mt-3 text-center duration-300 bg-transparent rounded-md cursor-pointer w-fit'>
             <label
               htmlFor='first_name'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'

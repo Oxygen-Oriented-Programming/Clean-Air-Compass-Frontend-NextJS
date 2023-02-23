@@ -8,7 +8,7 @@ export default function Chart(props) {
     <>
       <div className='absolute flex flex-row items-center justify-around right-56 top-5 md:block sm:block'>
         <Image
-          className='h-14 w-fit hover:h-96'
+          className='h-14 w-fit hover:h-[30rem] hover:w-auto'
           src={faqChart}
           alt=''
           text='faq chart'

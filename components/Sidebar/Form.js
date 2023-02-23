@@ -6,11 +6,11 @@ export default function Form(props) {
       <div className='flex flex-col items-center w-full space-y-2.5'>
         <form
           onSubmit={props.handleSubmit}
-          className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700'
+          className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-800'
         >
           <label
             htmlFor='first_name'
-            className='block mb-2 font-medium text-gray-900 text-md dark:text-white'
+            className='block pt-2 mb-2 text-sm font-medium text-gray-900 dark:text-white'
           >
             Enter Location
           </label>
