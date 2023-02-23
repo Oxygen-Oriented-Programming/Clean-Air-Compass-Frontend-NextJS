@@ -9,12 +9,12 @@ import MapDescendent from './MapDescendent';
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
 export default function Map(props) {
-
   const [mapRef, setMapRef] = useState(null);
 
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
       radius: 8,
+
       fillColor: getFillColor(feature.properties["pm1.0"], feature.properties["pm2.5"], feature.properties["pm10.0"], feature.properties["pm2.5_10minute"], feature.properties["pm2.5_30minute"], feature.properties["pm2.5_30minute"]),
       color: "#000",
       weight: 1,
@@ -65,10 +65,9 @@ const getFillColor2 = (val) => {
   }
 };
 
-
   const onEachFeature = (feature, layer) => {
     const properties = feature.properties;
-    let tooltipContent = "";
+    let tooltipContent = '';
 
     for (const key in properties) {
       if (properties.hasOwnProperty(key)) {
@@ -77,16 +76,16 @@ const getFillColor2 = (val) => {
     }
 
     layer.bindPopup(tooltipContent);
-    layer.on("mouseover", function () {
+    layer.on('mouseover', function () {
       this.openPopup();
     });
-    layer.on("mouseout", function () {
+    layer.on('mouseout', function () {
       this.closePopup();
     });
   };
 
   return (
-    <div className="flex-1 ">
+    <div className='flex-1 '>
       <MapContainer
         key={props.locationData ? props.locationData.center_point : null}
         className={style.map}
@@ -101,12 +100,12 @@ const getFillColor2 = (val) => {
         }
         zoom={props.locationData ? 12 : 8}
         scrollWheelZoom={true}
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: '100vw', height: '100vh' }}
       >
         <MapDescendent setMap={props.setMap} map={props.map} />
         <TileLayer
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>contributors'
-          url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV"
+          url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
         />
 
         {props.locationData && (
