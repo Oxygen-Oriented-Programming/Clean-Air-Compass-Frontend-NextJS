@@ -1,10 +1,10 @@
-import Map from "./Map";
-import Sidebar from "./Sidebar/Sidebar";
-import { useState } from "react";
-import RightSidebarButton from "./RightSidebarButton";
-import RightSidebar from "./RightSidebar";
-import Chart from "./Chart";
-import AlertMessage from "./AlertMessage";
+import Map from './Map';
+import Sidebar from './Sidebar/Sidebar';
+import { useState } from 'react';
+import RightSidebarButton from './RightSidebarButton';
+import RightSidebar from './RightSidebar';
+import Chart from './Chart';
+import AlertMessage from './AlertMessage';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 // console.log(BASE_URL);
@@ -12,11 +12,11 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export default function Homepage({ BASE_URL }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
 
-  const [locationName, setLocationName] = useState("");
-  const [locationData, setLocationData] = useState("");
+  const [locationName, setLocationName] = useState('');
+  const [locationData, setLocationData] = useState('');
   const [loading, setLoading] = useState(false);
   const [map, setMap] = useState(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const baseUrl = BASE_URL;
 
   function handleLocationInput(e) {
@@ -45,7 +45,7 @@ export default function Homepage({ BASE_URL }) {
       try {
         const response = await fetch(url);
         const apiData = await response.json();
-        if (apiData.hasOwnProperty("message")) {
+        if (apiData.hasOwnProperty('message')) {
           setMessage(apiData.message);
           setLoading(false);
           return;
@@ -58,16 +58,16 @@ export default function Homepage({ BASE_URL }) {
         }, 5100);
       } catch (error) {
         console.error(error);
-        alert("An error occurred while fetching data from the API");
+        alert('An error occurred while fetching data from the API');
       }
     } else {
-      alert("This is not a valid city name or zip code");
+      alert('This is not a valid city name or zip code');
     }
   }
 
   return (
     <>
-      <div className="relative min-h-screen md:flex ">
+      <div className='relative min-h-screen md:flex '>
         <Sidebar
           handleLocationInput={handleLocationInput}
           handleSubmit={handleSubmit}
@@ -75,26 +75,27 @@ export default function Homepage({ BASE_URL }) {
         />
         {message && <AlertMessage message={message} />}
         <Map
-          className=""
+          className=''
           locationData={locationData}
           setMap={setMap}
           map={map}
         />
-
-        {showRightSidebar && (
-          <RightSidebar
-            sidebar_show={showRightSidebar}
-            set_show={setShowRightSidebar}
-          />
-        )}
-        {!showRightSidebar ? (
-          <RightSidebarButton
-            sidebar_show={showRightSidebar}
-            set_show={setShowRightSidebar}
-            text="More Info"
-          />
-        ) : null}
-        <Chart />
+        <Chart className='' />
+        <div className=''>
+          {showRightSidebar && (
+            <RightSidebar
+              sidebar_show={showRightSidebar}
+              set_show={setShowRightSidebar}
+            />
+          )}
+          {!showRightSidebar ? (
+            <RightSidebarButton
+              sidebar_show={showRightSidebar}
+              set_show={setShowRightSidebar}
+              text='More Info'
+            />
+          ) : null}
+        </div>
       </div>
     </>
   );
