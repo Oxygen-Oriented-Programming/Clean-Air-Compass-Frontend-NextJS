@@ -87,12 +87,6 @@ export default function Homepage({ BASE_URL }) {
 
     return (
         <>
-            <button
-                onClick={toggleModal}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Open Modal
-            </button>
             <div className='flex bg-black h-fit'>
                 <div className=''>
                     {showSidebar && (
@@ -102,7 +96,6 @@ export default function Homepage({ BASE_URL }) {
                             handleLocationInput={handleLocationInput}
                             handleSubmit={handleSubmit}
                             loading={loading}
-                            toggleModal={toggleModal}
                         />
                     )}
                     {!showSidebar ? (
@@ -113,6 +106,7 @@ export default function Homepage({ BASE_URL }) {
                             handleSubmit={handleSubmit}
                             loading={loading}
                             text='LEFT SIDEBAR'
+                            toggleModal={toggleModal}
                         />
                     ) : null}
                 </div>

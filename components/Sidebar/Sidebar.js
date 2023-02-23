@@ -12,7 +12,6 @@ export default function Sidebar(props) {
           handleSubmit={props.handleSubmit}
           loading={props.loading}
           text='X'
-          toggleModal={props.toggleModal}
         />
       </div>
     </>
