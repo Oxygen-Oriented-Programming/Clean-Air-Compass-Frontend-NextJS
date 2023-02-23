@@ -81,12 +81,12 @@ export default function SidebarButton(props) {
             {showFeatures && (
               <>
                 <button
-                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-transform duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
+                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-all duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
                   onClick={handleReturnClick}
                   style={{
                     transform: returnAnimation
-                      ? 'translateY(100%)'
-                      : 'translateY(0%)',
+                      ? 'transition-all translateY(100%)'
+                      : 'transition-all translateY(0%)',
                   }}
                 >
                   Close Features
@@ -96,8 +96,8 @@ export default function SidebarButton(props) {
                   style={{
                     height: '100%',
                     transform: returnAnimation
-                      ? 'translateY(100%)'
-                      : 'translateY(0%)',
+                      ? 'transition-all translateY(100%)'
+                      : 'transition-all translateY(0%)',
                     opacity: showFeatures || showAbout ? 1 : 0,
                     transition: 'all 0.5s ease-in-out',
                     overflow: 'visible',
@@ -140,12 +140,12 @@ export default function SidebarButton(props) {
             {showAbout && (
               <>
                 <button
-                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-transform duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
+                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-all duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
                   onClick={handleReturnClick}
                   style={{
                     transform: returnAnimation
-                      ? 'translateY(100%)'
-                      : 'translateY(0%)',
+                      ? 'transition-all translateY(100%)'
+                      : 'transition-all translateY(0%)',
                   }}
                 >
                   Close About
@@ -163,49 +163,51 @@ export default function SidebarButton(props) {
                   }}
                 >
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:cursor-pointer hover:text-gray-500 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all duration-100 hover:cursor-pointer hover:text-gray-500 text-white '
                     href='https://github.com/orgs/Oxygen-Oriented-Programming/repositories'
                     target='_blank'
                   >
-                    <li className='mt-4 mb-2 text-4xl font-bold'>About</li>
+                    <li className='mt-4 mb-2 text-4xl font-bold transition-all'>
+                      About
+                    </li>
                   </Link>
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:text-purple-700 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white '
                     href='https://github.com/dennis-nichols'
                     target='_blank'
                   >
                     Dennis Nichols
                   </Link>
                   <Link
-                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition duration-100 h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
+                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
                     href='https://www.linkedin.com/in/dennisgnichols/'
                     target='_blank'
                   >
                     <Image
-                      className='pb-2 h-[9.1vw] w-[9vw] rounded-3xl'
+                      className='pb-2 h-[9.1vw] w-[9vw] rounded-3xl transition-all animate-pulse hover:animate-none'
                       src={dennis}
                       alt=''
                       text='dennis nichols'
                     />
                   </Link>
-                  <li className='m-1 text-center'>
+                  <li className='m-1 text-center transition-all'>
                     Software development student with @codefellows. Former US
                     Navy servicemember and @CDCgov public health professional.
                   </li>
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:text-purple-700 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white'
                     href='https://github.com/hfoley2013'
                     target='_blank'
                   >
                     Harper Foley
                   </Link>
                   <Link
-                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition duration-100 h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
+                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
                     href='https://www.linkedin.com/in/harper-e-foley/'
                     target='_blank'
                   >
                     <Image
-                      className='pb-2 h-[9vw] w-fit rounded-3xl'
+                      className='pb-2 h-[9vw] w-fit rounded-3xl animate-pulse hover:animate-none'
                       src={harper}
                       alt=''
                       text='harper foley'
@@ -220,41 +222,41 @@ export default function SidebarButton(props) {
                     employers.
                   </li>
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:text-purple-700 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white'
                     href='https://github.com/OliverSpeir'
                     target='_blank'
                   >
                     Oliver Speir
                   </Link>
                   <Link
-                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition duration-100 h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
+                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
                     href='https://www.linkedin.com/in/oliverspeir/'
                     target='_blank'
                   >
                     <Image
-                      className='pb-2 h-fit w-[9vw] rounded-3xl'
+                      className='pb-2 h-fit w-[9vw] rounded-3xl animate-pulse hover:animate-none'
                       src={oliver}
                       alt=''
                       text='Oliver Speir'
                     />
                   </Link>
-                  <li className='m-1 text-center'>
+                  <li className='m-1 text-center transition-all'>
                     Full Stack Software Engineer | Continuous Improver
                   </li>
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:text-purple-700 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white'
                     href='https://github.com/deshondixon'
                     target='_blank'
                   >
                     DeShon Dixon
                   </Link>
                   <Link
-                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition duration-100 h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
+                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
                     href='https://www.linkedin.com/in/deshondixon/'
                     target='_blank'
                   >
                     <Image
-                      className='w-[9vw] pb-2 h-fit rounded-3xl'
+                      className='w-[9vw] pb-2 h-fit rounded-3xl animate-pulse hover:animate-none'
                       src={deshon}
                       alt=''
                       text='deshon dixon'
@@ -266,25 +268,25 @@ export default function SidebarButton(props) {
                     principles across multiple platforms.
                   </li>
                   <Link
-                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition duration-100 hover:text-purple-700 text-white'
+                    className='flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white'
                     href='https://github.com/jason-christopher'
                     target='_blank'
                   >
                     Jason Christopher
                   </Link>
                   <Link
-                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition duration-100 h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
+                    className='flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer'
                     href='https://www.linkedin.com/in/jasonchristopher24/'
                     target='_blank'
                   >
                     <Image
-                      className='pb-2 h-fit w-[9vw] rounded-3xl'
+                      className='pb-2 h-fit w-[9vw] rounded-3xl animate-pulse hover:animate-none'
                       src={jason}
                       alt=''
                       text='jason christopher'
                     />
                   </Link>
-                  <li className='m-1 text-center'>
+                  <li className='m-1 text-center transition-all'>
                     Software developer specializing in JavaScript and Python.
                     Air Force veteran with 10+ years of experience with leading
                     teams of combat aviators. Squadron’s top instructor and “Top

@@ -18,9 +18,9 @@ export default function AlertModal(props) {
       <Modal
         isOpen={props.isModalOpen}
         onRequestClose={props.toggleModal}
-        contentLabel="Example Modal"
-        className="modal"
-        overlayClassName="overlay"
+        contentLabel='Example Modal'
+        className='modal'
+        overlayClassName='overlay'
       >
         <div className='flex flex-col items-center w-full space-y-2.5 bg-black h-fit'>
           {/* <div className='items-center p-3 px-4 mt-3 text-center duration-300 rounded-md cursor-pointer bg-violet-900 w-fit'>
@@ -72,6 +72,7 @@ export default function AlertModal(props) {
           border-radius: 0.5rem;
           width: 400px;
           max-width: 100%;
+          transition: all;
         }
         .overlay {
           position: fixed;
@@ -79,6 +80,7 @@ export default function AlertModal(props) {
           left: 0;
           right: 0;
           bottom: 0;
+          transition: all;
           background-color: rgba(0, 0, 0, 0.5);
           z-index: 9999;
         }

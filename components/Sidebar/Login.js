@@ -14,11 +14,11 @@ export default function Login(props) {
   if (status === 'authenticated') {
     return (
       <>
-        <div className='flex flex-col items-center w-full space-y-2.5 bg-black h-fit'>
-          <div className='items-center p-3 px-4 mt-3 text-center duration-300 rounded-md cursor-pointer bg-violet-900 w-fit'>
+        <div className='flex flex-col transition-all items-center w-full space-y-2.5 bg-black h-fit'>
+          <div className='items-center p-3 px-4 mt-3 text-center transition-all duration-300 rounded-md cursor-pointer bg-violet-900 w-fit'>
             <label
               htmlFor='first_name'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+              className='block mb-2 text-sm font-medium text-gray-900 transition-all dark:text-white'
             >
               Logged in as:
             </label>
@@ -39,10 +39,10 @@ export default function Login(props) {
             {curdDefault && <>Default changed to: {curdDefault}</>}
           </div>
             {!curdDefault &&
-            <div className='items-center p-3 px-4 mt-3 text-center duration-300 bg-transparent rounded-md cursor-pointer w-fit'>
+            <div className='items-center p-3 px-4 mt-3 text-center duration-300 bg-transparent transition-all  rounded-md cursor-pointer w-fit'>
             <label
               htmlFor='first_name'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+              className='block mb-2 text-sm font-medium text-gray-900 transition-all  dark:text-white'
             >
               Saved Default Location:
             </label>
@@ -50,7 +50,7 @@ export default function Login(props) {
           </div>}
           <MyAlerts /> */}
           <button
-            className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
+            className='px-4 py-2 m-auto font-semibold text-blue-700 transition-all bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
             onClick={() => signOut()}
           >
             Sign out
@@ -61,9 +61,9 @@ export default function Login(props) {
   }
 
   return (
-    <div className='flex items-center bg-black'>
+    <div className='flex items-center transition-all bg-black animate-pulse hover:animate-none'>
       <button
-        className='px-4 py-2 m-auto font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
+        className='px-4 py-2 m-auto font-semibold text-blue-700 transition-all bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent'
         onClick={() => signIn('google')}
       >
         Sign In
