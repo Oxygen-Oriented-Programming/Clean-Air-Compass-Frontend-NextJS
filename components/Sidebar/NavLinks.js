@@ -9,6 +9,7 @@ export default function NavLinks(props) {
         <Link
           className='block px-4 py-2.5 font-normal rounded transition duration-100 hover:bg-gray-700 text-white'
           href='/'
+          onClick={handleAboutClick}
         >
           About
         </Link>
