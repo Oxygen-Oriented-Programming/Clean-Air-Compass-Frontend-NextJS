@@ -7,12 +7,12 @@ export default function AlertModal(props) {
       <Modal
         isOpen={props.isModalOpen}
         onRequestClose={props.toggleModal}
-        contentLabel="Example Modal"
-        className="modal"
-        overlayClassName="overlay"
+        contentLabel='Example Modal'
+        className='modal'
+        overlayClassName='overlay'
       >
-        <h1 className="text-2xl font-bold mb-4">Modal Title</h1>
-        <p className="mb-4">Modal content goes here.</p>
+        <h1 className='mb-4 text-2xl font-bold'>Modal Title</h1>
+        <p className='mb-4'>Modal content goes here.</p>
         <button onClick={props.toggleModal}>Close Modal</button>
       </Modal>
 
@@ -27,6 +27,7 @@ export default function AlertModal(props) {
           border-radius: 0.5rem;
           width: 400px;
           max-width: 100%;
+          transition: all;
         }
         .overlay {
           position: fixed;
@@ -34,6 +35,7 @@ export default function AlertModal(props) {
           left: 0;
           right: 0;
           bottom: 0;
+          transition: all;
           background-color: rgba(0, 0, 0, 0.5);
           z-index: 9999;
         }
