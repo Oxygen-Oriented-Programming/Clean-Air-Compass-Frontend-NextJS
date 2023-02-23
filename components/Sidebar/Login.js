@@ -3,34 +3,14 @@ import { useSession, signIn } from 'next-auth/react';
 import Link from "next/link";
 import SetDefaultLocation from './SetDefaultLocation';
 
-export default function Login({ providers }) {
-  const { data: session, status } = useSession();
-  const [user, setUser] = useState();
-  useEffect(() => {
-    if (session) {
-      if (session.provider === 'google') {;
-        var auth_token = session.auth_token;
-        backendapi_google(auth_token);
-      }
-    }
-  }, [session]);
-  function backendapi_google(auth_token) {
-    fetch(`http://127.0.0.1:8000/accounts/google/`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ auth_token: auth_token }),
-    })
-    .then((response) => response.json())
-    .then((data) => setUser(data))
-  }
-  console.log(status)
-  console.log(session)
-  console.log(user)
-  if (user) {
+export default function Login() {
+  const {data: session, status } = useSession();
+  if (status === 'authenticated') {
     return (
-      <SetDefaultLocation user_id={user.user_id} auth_token={user.tokens}></SetDefaultLocation>
+      <>
+        <SetDefaultLocation user_id={session.auth_token.user_id} auth_token={session.auth_token.tokens} />
+        <h1>logged in as {session.user.name} default = {session.auth_token.default_location}</h1>
+      </>
     );
   }
 

@@ -1,9 +1,9 @@
-export default function SetDefaultLocation({ auth_token, user_id }) {
+export default function SetDefaultLocation({ auth_token, user_id, default_location }) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
     const location = e.target.default_location.value;
     const user_number = { user_id }.user_id;
-    fetch(`http://127.0.0.1:8000/default_locations/create/`, {
+    fetch(`${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export default function SetDefaultLocation({ auth_token, user_id }) {
       })
       .catch((error) => {
         console.log('catching');
-        fetch(`http://127.0.0.1:8000/default_locations/${user_number}/`, {
+        fetch(`${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`, {
           method: 'put',
           headers: {
             'Content-Type': 'application/json',
