@@ -1,6 +1,6 @@
 import Map from './Map';
 import Sidebar from './Sidebar/Sidebar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RightSidebarButton from './RightSidebar/RightSidebarButton';
 import RightSidebar from './RightSidebar/RightSidebar';
 import SidebarButton from './Sidebar/SidebarButton';
@@ -18,6 +18,21 @@ export default function Homepage({ BASE_URL }) {
   const [map, setMap] = useState(null);
   const [message, setMessage] = useState('');
   const baseUrl = BASE_URL;
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) =>
+            fetch(`${baseUrl}${data.address.city}`)
+              .then((response) => response.json())
+              .then((data) =>setLocationData(data))
+          );
+      });
+    }
+  }, []);
 
   function handleLocationInput(e) {
     setLocationName(e.target.value);

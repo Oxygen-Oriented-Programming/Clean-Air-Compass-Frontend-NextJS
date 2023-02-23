@@ -2,14 +2,13 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { signIn } from "next-auth/react";
 
-var user_credential = [];
 let auth_token = null;
 
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId:"319185773405-94lfgudji11fvtbrckkfsj4r7rpuaalv.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT,
+      clientSecret: process.env.NEXT_PUBLIC_OAUTH_SECRET,
     }),
   ],
   session: {
@@ -24,7 +23,7 @@ export default NextAuth({
           let data_ = null
           let response_ = null
           await fetch(
-            `http://127.0.0.1:8000/accounts/google/`,
+            `${process.env.NEXT_PUBLIC_LOGIN_URL}`,
             {
               method: "post",
               headers: { "Content-Type": "application/json" },
