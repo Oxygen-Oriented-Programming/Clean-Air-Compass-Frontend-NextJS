@@ -1,4 +1,4 @@
-export default function SetDefaultLocation({ auth_token, user_id,  defaultCrud }) {
+export default function SetDefaultLocation({ auth_token, user_id, defaultCrud }) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
     const location = e.target.default_location.value;

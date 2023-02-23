@@ -10,11 +10,15 @@ import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
 export default function Map(props) {
   const [mapRef, setMapRef] = useState(null);
-  const {data: session} = useSession();
+  const {data: session, status} = useSession();
   const [defaultLocation, setDefaultLocation] = useState([47.000, -122.000]);
 
   useEffect(() => {
-    getDefaultLatLong()
+    // if (status === "authenticated") {
+      getDefaultLatLong()
+    // } else {
+    //   setDefaultLocation(props.userGeoCoords);
+    // }
   }, []);
 
   const pointToLayer = (feature, center_point) => {
