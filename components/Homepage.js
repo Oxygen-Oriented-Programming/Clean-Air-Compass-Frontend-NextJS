@@ -7,7 +7,7 @@ import Chart from "./Chart";
 import AlertMessage from "./AlertMessage";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-console.log(BASE_URL);
+// console.log(BASE_URL);
 
 export default function Homepage({ BASE_URL }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
@@ -29,6 +29,7 @@ export default function Homepage({ BASE_URL }) {
       duration: 5,
     });
   }
+
 
   async function handleSubmit(e) {
     e.preventDefault();
