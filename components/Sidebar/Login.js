@@ -8,8 +8,8 @@ export default function Login() {
   if (status === 'authenticated') {
     return (
       <>
-      <h1>logged in as {session.user.name} default location = {session.auth_token.default_location}</h1>
-      <SetDefaultLocation user_id={session.auth_token.user_id} auth_token={session.auth_token.tokens} default_location={session.auth_token.default_location}></SetDefaultLocation>
+        <SetDefaultLocation user_id={session.auth_token.user_id} auth_token={session.auth_token.tokens} />
+        <h1>logged in as {session.user.name} default = {session.auth_token.default_location}</h1>
       </>
     );
   }
