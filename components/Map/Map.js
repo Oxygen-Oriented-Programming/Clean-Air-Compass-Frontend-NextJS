@@ -10,12 +10,12 @@ import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 
 export default function Map(props) {
   const [mapRef, setMapRef] = useState(null);
-  const {data: session, status} = useSession();
-  const [defaultLocation, setDefaultLocation] = useState([47.000, -122.000]);
+  const { data: session, status } = useSession();
+  const [defaultLocation, setDefaultLocation] = useState([47.0, -122.0]);
 
   useEffect(() => {
     // if (status === "authenticated") {
-      getDefaultLatLong()
+    getDefaultLatLong();
     // } else {
     //   setDefaultLocation(props.userGeoCoords);
     // }
@@ -109,7 +109,7 @@ export default function Map(props) {
   };
 
   async function getDefaultLatLong() {
-    try{
+    try {
       const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
       const apiData = await fetch(url);
       const response = await apiData.json();
@@ -120,9 +120,11 @@ export default function Map(props) {
   }
 
   return (
-    <div className='flex-1 '>
+    <div className='flex'>
       <MapContainer
-        key={props.locationData ? props.locationData.center_point : defaultLocation}
+        key={
+          props.locationData ? props.locationData.center_point : defaultLocation
+        }
         className={style.map}
         center={
           props.locationData
@@ -131,15 +133,14 @@ export default function Map(props) {
                 props.locationData.center_point[0],
               ]
             : defaultLocation
-              
         }
         zoom={props.locationData ? 8 : 8}
         scrollWheelZoom={true}
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '100%', height: '100%' }}
       >
         <MapDescendent setMap={props.setMap} map={props.map} />
         <TileLayer
-          attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>contributors'
+          attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'
           url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
         />
 
