@@ -11,6 +11,7 @@ import AlertMessage from './AlertMessage';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Homepage({ BASE_URL }) {
+
   const [showRightSidebar, setShowRightSidebar] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [locationName, setLocationName] = useState('');
@@ -22,67 +23,70 @@ export default function Homepage({ BASE_URL }) {
   // const [userGeoCoords, setUserGeoCoords] = useState('');
   const baseUrl = BASE_URL;
 
-  // useEffect(() => {
-  //     if ("geolocation" in navigator) {
-  //         navigator.geolocation.getCurrentPosition(({ coords }) => {
-  //             const { latitude, longitude } = coords;
-  //             setUserGeoCoords([latitude, longitude]);
-  //             const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
-  //             fetch(url)
-  //                 .then((response) => response.json())
-  //                 .then((data) =>
-  //                     fetch(`${baseUrl}${data.address.state}`)
-  //                         .then((response) => response.json())
-  //                         .then((data) => setLocationData(data))
-  //                 );
-  //         });
-  //     }
-  // }, []);
 
-  function toggleModal() {
-    setIsModalOpen(!isModalOpen);
-  }
+    // useEffect(() => {
+    //     if ("geolocation" in navigator) {
+    //         navigator.geolocation.getCurrentPosition(({ coords }) => {
+    //             const { latitude, longitude } = coords;
+    //             setUserGeoCoords([latitude, longitude]);
+    //             const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
+    //             fetch(url)
+    //                 .then((response) => response.json())
+    //                 .then((data) =>
+    //                     fetch(`${baseUrl}${data.address.state}`)
+    //                         .then((response) => response.json())
+    //                         .then((data) => setLocationData(data))
+    //                 );
+    //         });
+    //     }
+    // }, []);
 
-  function handleLocationInput(e) {
-    setLocationName(e.target.value);
-  }
-
-  function fly_animation(apiData) {
-    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 8, {
-      animate: true,
-      duration: 5,
-    });
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const zipRegex = /^\d{5}(-\d{4})?$/;
-    const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
-    if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
-      setLoading(true);
-      let path = baseUrl;
-      let url = path + locationName;
-      try {
-        const response = await fetch(url);
-        const apiData = await response.json();
-        if (apiData.hasOwnProperty('message')) {
-          setMessage(apiData.message);
-          setLoading(false);
-          return;
-        }
-        setLoading(false);
-        setMessage('');
-        fly_animation(apiData);
-        setTimeout(() => {
-          setLocationData(apiData);
-        }, 5100);
-      } catch (error) {
-        console.error(error);
-        alert('An error occurred while fetching data from the API');
-      }
-    } else {
-      alert('This is not a valid city name or zip code');
+    function toggleModal() {
+        setIsModalOpen(!isModalOpen);
     }
+
+    function handleLocationInput(e) {
+        setLocationName(e.target.value);
+    }
+
+    function fly_animation(apiData) {
+        map.flyTo([apiData.center_point[1], apiData.center_point[0]], 8, {
+            animate: true,
+            duration: 5,
+        });
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const zipRegex = /^\d{5}(-\d{4})?$/;
+        const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+        if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
+            setLoading(true);
+            let path = baseUrl;
+            let url = path + locationName;
+            try {
+                const response = await fetch(url);
+                const apiData = await response.json();
+                if (apiData.hasOwnProperty('message')) {
+                    setMessage(apiData.message);
+                    setLoading(false);
+                    return;
+                }
+                setLoading(false);
+                setMessage('');
+                fly_animation(apiData);
+                setTimeout(() => {
+                    setLocationData(apiData);
+                }, 5100);
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while fetching data from the API');
+            }
+        } else {
+            alert('This is not a valid city name or zip code');
+        }
+    }
+
   }
   return (
     <>
@@ -142,4 +146,5 @@ export default function Homepage({ BASE_URL }) {
       </div>
     </>
   );
+
 }
