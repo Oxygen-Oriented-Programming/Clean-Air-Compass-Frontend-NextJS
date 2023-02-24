@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef } from 'react';
 import useResource from '../../hooks/useResource.js';
 import { useSession } from 'next-auth/react';
 
@@ -7,6 +8,7 @@ export default function MyAlerts(){
   const { data: session} = useSession();
   const user = session.auth_token.user_id;
   const alerts = resources || [];
+  const formRef = useRef(null);
 
   function validateAndGetDigits(input) {
     // Remove all non-digit characters
@@ -35,6 +37,7 @@ export default function MyAlerts(){
       };
 
       createResource(newSmsAlert);
+      formRef.current.reset();
     } else {
       alert(
         'Not a valid phone number. Please enter a 10 digit US phone number.'
@@ -52,11 +55,11 @@ export default function MyAlerts(){
 
   return (
     <>
-
       <h3 className="my-4 text-lg text-center">My Alerts</h3>
       <form
         onSubmit={createNewSmsAlertHandler}
         className="flex flex-col items-center justify-center w-full p-2 mx-auto my-4 bg-gray-200 rounded-md md:w-2/3"
+        ref={formRef}
       >
         <div className="flex flex-col items-center justify-center w-full px-2 sm:w-1/2 md:w-3/5 sm:px-4">
           <label
@@ -100,7 +103,7 @@ export default function MyAlerts(){
             name="airQualityThreshold"
             className="w-full px-2 py-1 text-sm rounded-md bg-gradient-to-b from-green-400 to-red-800"
           >
-            <option value="Good" selected className="bg-green-400">
+            <option value="Good" className="bg-green-400">
               Good
             </option>
             <option value="Moderate" className="bg-yellow-400">
