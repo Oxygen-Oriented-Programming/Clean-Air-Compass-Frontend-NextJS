@@ -71,7 +71,7 @@ export default function SidebarButton(props) {
                   handleFeaturesClick={handleFeaturesClick}
                   handleAboutClick={handleAboutClick}
                   handleReturnClick={handleReturnClick}
-                  toggleModal={props.toggleModal} 
+                  toggleModal={props.toggleModal}
                 />
               )}
             </nav>
@@ -81,7 +81,7 @@ export default function SidebarButton(props) {
             {showFeatures && (
               <>
                 <button
-                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-all duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
+                  className='px-4 py-2 font-bold text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
                   onClick={handleReturnClick}
                   style={{
                     transform: returnAnimation
@@ -140,7 +140,7 @@ export default function SidebarButton(props) {
             {showAbout && (
               <>
                 <button
-                  className='z-50 w-auto h-auto p-3 mt-4 font-medium text-black transition-all duration-500 ease-in-out bg-white rounded-md return-button hover:bg-purple-600 hover:text-white'
+                  className='px-4 py-2 font-bold text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
                   onClick={handleReturnClick}
                   style={{
                     transform: returnAnimation
