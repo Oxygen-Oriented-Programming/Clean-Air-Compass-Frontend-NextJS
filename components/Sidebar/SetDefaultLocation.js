@@ -7,45 +7,32 @@ export default function SetDefaultLocation({
     e.preventDefault();
     const location = e.target.default_location.value;
     const user_number = { user_id }.user_id;
-    fetch(`${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`, {
-      method: 'post',
+    let putAttempt = null
+    const postAttempt = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`, {
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token ${auth_token}`,
+        "Content-Type": "application/json",
+        "Authorization": `Token ${auth_token}`,
       },
       body: JSON.stringify({ user: user_number, default_location: location }),
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error during POST request.');
-        }
-      })
-      .catch((error) => {
-        fetch(
-          `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`,
-          {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Token ${auth_token}`,
-            },
-            body: JSON.stringify({
-              user: user_number,
-              default_location: location,
-            }),
-          }
-        )
-          .then((response) => response.json())
-          .then(defaultCrud(location));
-      });
+    if (postAttempt.status === 400){
+       putAttempt = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${auth_token}`,
+        },
+        body: JSON.stringify({ user: user_number, default_location: location }),
+      }).then(defaultCrud(location))
+    }
   }
   return (
     <>
-      <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent'>
+      <div className="flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent">
         <form
           onSubmit={backendapi_setLocation}
+
           className='items-center transition-all p-2.5 px-4 mt-3 text-center duration-300 rounded-md cursor-pointer w-fit'
         >
           <div className='p-2.5 transition-all '>
