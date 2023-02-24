@@ -42,10 +42,10 @@ export default function Map(props) {
 
   const getFillColor = (pm1, pm2, pm10, min10, min30, min60) => {
     // You can define your own color scale based on the interpolated value
-      if (val >= 250) {
-      return "#300038";
-    } else if (val >= 150) {
-      return "#6e0280";
+      if (pm2 >= 250) {
+      return "#6e0280";   
+    } else if (pm2 >= 150) {
+      return "#702963";
     } else if (pm2 >= 55) {
       return '#990033'; // unhealthy
     } else if (pm2 >= 41) {
@@ -77,9 +77,9 @@ export default function Map(props) {
   const getFillColor2 = (val) => {
     // You can define your own color scale based on the interpolated value
     if (val >= 250) {
-      return "#300038";
-    } else if (val >= 150) {
       return "#6e0280";
+    } else if (val >= 150) {
+      return "#702963";
     } else if (val >= 55) {
       return "#990033"; // unhealthy
     } else if (val >= 41) {
