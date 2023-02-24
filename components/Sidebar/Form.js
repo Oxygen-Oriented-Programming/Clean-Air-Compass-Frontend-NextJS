@@ -3,13 +3,13 @@ import LoadingButton from './LoadingButton';
 export default function Form(props) {
   return (
     <>
-      <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-black'>
+      <div className='flex flex-col transition-all items-center space-y-2.5  '>
         <form
           onSubmit={props.handleSubmit}
           className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 transition-all cursor-pointer '
         >
           <input
-            className='h-10 py-8 text-lg font-normal text-center transition-all bg-gray-800 rounded-lg font-mono mt-10'
+            className='h-10 py-8 mt-10 font-mono text-lg font-normal text-center transition-all bg-gray-800 rounded-lg'
             name='location'
             type='text'
             onChange={props.handleLocationInput}
@@ -21,7 +21,7 @@ export default function Form(props) {
               <LoadingButton className='animate-pulse hover:animate-none' />
             ) : (
               <button
-                className='px-8 py-4 text-white transition-all bg-violet-700 border border-violet-800 rounded hover:bg-white hover:text-violet-700 text-2xl font-mono'
+                className='px-8 py-4 font-mono text-2xl text-white transition-all border rounded bg-violet-700 border-violet-800 hover:bg-white hover:text-violet-700'
                 type='submit'
                 disabled={props.loading}
               >
