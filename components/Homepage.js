@@ -12,16 +12,16 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Homepage({ BASE_URL }) {
 
-  const [showRightSidebar, setShowRightSidebar] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [locationName, setLocationName] = useState('');
-  const [locationData, setLocationData] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [map, setMap] = useState(null);
-  const [message, setMessage] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [userGeoCoords, setUserGeoCoords] = useState('');
-  const baseUrl = BASE_URL;
+    const [showRightSidebar, setShowRightSidebar] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(true);
+    const [locationName, setLocationName] = useState('');
+    const [locationData, setLocationData] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [map, setMap] = useState(null);
+    const [message, setMessage] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [userGeoCoords, setUserGeoCoords] = useState('');
+    const baseUrl = BASE_URL;
 
 
     // useEffect(() => {
@@ -87,64 +87,63 @@ export default function Homepage({ BASE_URL }) {
         }
     }
 
-  }
-  return (
-    <>
-      <div className='flex transition-all bg-black cursor-auto h-fit'>
-        <div className=''>
-          {!showSidebar && (
-            <Sidebar
-              sidebar_show={showSidebar}
-              set_show={setShowSidebar}
-              handleLocationInput={handleLocationInput}
-              handleSubmit={handleSubmit}
-              loading={loading}
-              toggleModal={toggleModal}
-            />
-          )}
-          {showSidebar && (
-            <SidebarButton
-              sidebar_show={showSidebar}
-              set_show={setShowSidebar}
-              handleLocationInput={handleLocationInput}
-              handleSubmit={handleSubmit}
-              loading={loading}
-              text='LEFT SIDEBAR'
-              toggleModal={toggleModal}
-            />
-          )}
-        </div>
-        {message && <AlertMessage message={message} />}
-        <Map
-          className=''
-          locationData={locationData}
-          setMap={setMap}
-          map={map}
-          // userGeoCoords={userGeoCoords}
-        />
-        <Chart className='' />
-        <div className=''>
-          {showRightSidebar && (
-            <RightSidebar
-              sidebar_show={showRightSidebar}
-              set_show={setShowRightSidebar}
-            />
-          )}
-          {!showRightSidebar ? (
-            <RightSidebarButton
-              sidebar_show={showRightSidebar}
-              set_show={setShowRightSidebar}
-              text='More Info'
-            />
-          ) : null}
-        </div>
-        <AlertModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          toggleModal={toggleModal}
-        />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className='flex transition-all bg-black cursor-auto h-fit'>
+                <div className=''>
+                    {!showSidebar && (
+                        <Sidebar
+                            sidebar_show={showSidebar}
+                            set_show={setShowSidebar}
+                            handleLocationInput={handleLocationInput}
+                            handleSubmit={handleSubmit}
+                            loading={loading}
+                            toggleModal={toggleModal}
+                        />
+                    )}
+                    {showSidebar && (
+                        <SidebarButton
+                            sidebar_show={showSidebar}
+                            set_show={setShowSidebar}
+                            handleLocationInput={handleLocationInput}
+                            handleSubmit={handleSubmit}
+                            loading={loading}
+                            text='LEFT SIDEBAR'
+                            toggleModal={toggleModal}
+                        />
+                    )}
+                </div>
+                {message && <AlertMessage message={message} />}
+                <Map
+                    className=''
+                    locationData={locationData}
+                    setMap={setMap}
+                    map={map}
+                // userGeoCoords={userGeoCoords}
+                />
+                <Chart className='' />
+                <div className=''>
+                    {showRightSidebar && (
+                        <RightSidebar
+                            sidebar_show={showRightSidebar}
+                            set_show={setShowRightSidebar}
+                        />
+                    )}
+                    {!showRightSidebar ? (
+                        <RightSidebarButton
+                            sidebar_show={showRightSidebar}
+                            set_show={setShowRightSidebar}
+                            text='More Info'
+                        />
+                    ) : null}
+                </div>
+                <AlertModal
+                    isModalOpen={isModalOpen}
+                    setIsModalOpen={setIsModalOpen}
+                    toggleModal={toggleModal}
+                />
+            </div>
+        </>
+    );
 
 }
