@@ -33,7 +33,7 @@ export default function Login(props) {
           >
             Sign out
           </button>
-          <div className='text-white focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-md py-2 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 pt-10 font-mono'>
+          <div className='text-white focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-md py-2 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 pt-4 font-mono'>
             <svg
               className='w-8 h-8 mr-5 text-violet-700'
               aria-hidden='true'
