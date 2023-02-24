@@ -9,8 +9,10 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT,
       clientSecret: process.env.NEXT_PUBLIC_OAUTH_SECRET,
+      callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback/google`,
     }),
   ],
+  secret:process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
