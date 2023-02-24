@@ -133,7 +133,7 @@ export default function Map(props) {
             : defaultLocation
               
         }
-        zoom={props.locationData ? 12 : 8}
+        zoom={props.locationData ? 8 : 8}
         scrollWheelZoom={true}
         style={{ width: '100vw', height: '100vh' }}
       >
@@ -150,7 +150,7 @@ export default function Map(props) {
               data={props.locationData.features}
               style={(feature) => ({
                 color: null,
-                fillOpacity: 0.6,
+                fillOpacity: 0.5,
                 fillColor: getFillColor2(feature.properties.interpolated_value),
               })}
               onEachFeature={onEachFeature}
