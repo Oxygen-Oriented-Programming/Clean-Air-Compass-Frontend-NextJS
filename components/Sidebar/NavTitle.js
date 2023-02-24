@@ -10,7 +10,7 @@ export default function NavTitle() {
         src={logo}
         alt=''
       />
-      <span className='text-lg font-extrabold text-white transition-all'>
+      <span className='text-lg font-extrabold text-white transition-all hover:cursor-none'>
         <h1>CleanAir Compass</h1>
       </span>
     </div>
