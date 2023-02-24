@@ -6,20 +6,18 @@ export default function NavLinks(props) {
   return (
     <>
       <div className='flex transition-all flex-col bg-black h-[96vh] items-center w-full space-y-2.5'>
-        <Link
-          className='block px-4 py-2.5 font-normal rounded transition-all hover:bg-gray-700 text-white '
-          href='/'
+        <button
+          className='px-6 py-4 text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent text-2xl font-mono mt-10 mb-2'
           onClick={props.handleAboutClick}
         >
-          About
-        </Link>
-        <Link
-          className='block px-4 py-2.5 font-normal rounded transition-all hover:bg-gray-700 text-white '
-          href='/'
+          About Us
+        </button>
+        <button
+          className='px-6 py-4 text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent text-2xl font-mono'
           onClick={props.handleFeaturesClick}
         >
           Features
-        </Link>
+        </button>
         <Login toggleModal={props.toggleModal} />
       </div>
     </>
