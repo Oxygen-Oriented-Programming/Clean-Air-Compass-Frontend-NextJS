@@ -1,19 +1,21 @@
 import React from 'react';
-import SidebarButton from './SidebarButton';
+import Image from 'next/image';
+import logo from "public/logo.png";
 
 export default function Sidebar(props) {
   return (
     <>
-      <div className='absolute top-0 right-0 flex flex-row items-center justify-around text-white transition-all bg-black hover:bg-center w-80 md:block'>
-        <SidebarButton
-          sidebar_show={props.showSidebar}
-          set_show={props.setShowSidebar}
-          handleLocationInput={props.handleLocationInput}
-          handleSubmit={props.handleSubmit}
-          loading={props.loading}
-          text='X'
-        />
-      </div>
+      <button
+        className="fixed z-50 flex flex-col items-center p-2 ml-3 text-sm font-bold text-white bg-black border-2 border-black rounded-lg cursor-pointer top-3 left-10 w-70 hover:bg-black"
+        onClick={() => props.set_show(!props.sidebar_show)}
+      >
+        <Image
+          className="transition-all w-14 animate-pulse h-14 hover:hover:animate-spin"
+          src={logo}
+          alt=""
+        />{" "}
+        <p>Open Sidebar</p>
+      </button>
     </>
   );
 }

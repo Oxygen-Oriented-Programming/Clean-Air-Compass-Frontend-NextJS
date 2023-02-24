@@ -12,7 +12,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Homepage({ BASE_URL }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [locationName, setLocationName] = useState('');
   const [locationData, setLocationData] = useState('');
   const [loading, setLoading] = useState(false);
@@ -88,7 +88,7 @@ export default function Homepage({ BASE_URL }) {
     <>
       <div className='flex transition-all bg-black cursor-auto h-fit'>
         <div className=''>
-          {showSidebar && (
+          {!showSidebar && (
             <Sidebar
               sidebar_show={showSidebar}
               set_show={setShowSidebar}
@@ -98,7 +98,7 @@ export default function Homepage({ BASE_URL }) {
               toggleModal={toggleModal}
             />
           )}
-          {!showSidebar ? (
+          {showSidebar && (
             <SidebarButton
               sidebar_show={showSidebar}
               set_show={setShowSidebar}
@@ -108,7 +108,7 @@ export default function Homepage({ BASE_URL }) {
               text='LEFT SIDEBAR'
               toggleModal={toggleModal}
             />
-          ) : null}
+          )}
         </div>
         {message && <AlertMessage message={message} />}
         <Map
