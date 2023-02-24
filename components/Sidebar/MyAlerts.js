@@ -57,7 +57,7 @@ export default function MyAlerts() {
   return (
     <>
       <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent pt-10 border-t border-white'>
-        <h3 className='font-mono text-3xl text-center text-white '>
+        <h3 className='font-mono text-2xl text-center text-white '>
           Add Alert Location
         </h3>
         <form
@@ -65,12 +65,12 @@ export default function MyAlerts() {
           className='flex flex-col items-center justify-center w-full p-2 mx-auto text-white rounded-xl md:w-2/3 '
           ref={formRef}
         >
-          <div className='flex flex-col items-center justify-center px-2 round-4xl sm:w-1/2 md:w-3/5 sm:px-4 mb-5'>
+          <div className='flex flex-col items-center justify-center px-2 mb-5 round-4xl sm:w-1/2 md:w-3/5 sm:px-4'>
             <input
               name='location'
               id='location'
               type='text'
-              className='py-4 px-10 text-lg font-mono text-center transition-all bg-gray-800 rounded-lg'
+              className='px-10 py-4 font-mono text-lg text-center transition-all bg-gray-800 rounded-lg'
               placeholder='Enter a Location'
             />
           </div>
@@ -85,14 +85,14 @@ export default function MyAlerts() {
               name='phoneNumber'
               id='phoneNumber'
               type='text'
-              className='py-4 px-10 text-lg font-mono text-center transition-all bg-gray-800 rounded-lg'
+              className='px-10 py-4 font-mono text-lg text-center transition-all bg-gray-800 rounded-lg'
               placeholder='(xxx) xxx-xxxx'
             />
           </div>
           <div className='flex flex-col items-center p-4 pt-2 font-mono sm:w-1/2 sm:px-5'>
             <label
               htmlFor='airQualityThreshold'
-              className='w-96 block mb-1 font-mono text-2xl text-center text-white mt-5'
+              className='block mt-5 mb-1 font-mono text-2xl text-center text-white w-96'
             >
               Set Air Quality Threshold
             </label>

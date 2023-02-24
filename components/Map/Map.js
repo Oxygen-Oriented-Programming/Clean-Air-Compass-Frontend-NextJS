@@ -77,9 +77,9 @@ export default function Map(props) {
   const getFillColor2 = (val) => {
     // You can define your own color scale based on the interpolated value
     if (val >= 250) {
-      return "#6e0280";
+      return "26142a";
     } else if (val >= 150) {
-      return "#702963";
+      return "#6e0280";
     } else if (val >= 55) {
       return "#990033"; // unhealthy
     } else if (val >= 41) {

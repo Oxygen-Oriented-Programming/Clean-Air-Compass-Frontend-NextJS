@@ -41,20 +41,20 @@ export default function SetDefaultLocation({
       <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent'>
         <form
           onSubmit={backendapi_setLocation}
-          className='items-center transition-all p-2.5 px-4 text-center duration-300 rounded-md cursor-pointer w-fit'
+          className='items-center p-2 px-4 text-center transition-all duration-300 rounded-md cursor-pointer w-fit'
         >
           <div className=''>
             <input
               type='text'
               id='default_location'
-              className='py-4 px-10 text-lg font-mono text-center transition-all bg-gray-800 rounded-lg'
+              className='px-10 py-2 font-mono text-lg text-center transition-all bg-gray-800 rounded-lg'
               placeholder='Set Default Location'
               required
             />
           </div>
           <button
             type='submit'
-            className='px-6 py-2 mt-4 font-mono text-lg text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
+            className='px-6 py-1 mt-4 font-mono text-white transition-all bg-transparent border border-purple-500 rounded text-md hover:bg-purple-700 hover:border-transparent'
           >
             Set Default
           </button>
