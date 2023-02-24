@@ -33,11 +33,12 @@ export default function AlertModal(props) {
           </label>
           {session?.user?.name}{" "}
         </div>
-        <SetDefaultLocation
-          user_id={session?.auth_token?.user_id}
-          auth_token={session?.auth_token?.tokens}
+        {session&&         <SetDefaultLocation
+          user_id={session.auth_token.user_id}
+          auth_token={session.auth_token.tokens}
           defaultCrud={defaultCrud}
-        />
+        />}
+
         <div>{curdDefault && <>Default changed to: {curdDefault}</>}</div>
         {!curdDefault && (
           <div className="p-3 px-4 mt-3 text-center duration-300 bg-transparent rounded-md cursor-pointer w-fit">
