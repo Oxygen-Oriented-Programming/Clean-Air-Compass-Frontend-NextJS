@@ -62,11 +62,11 @@ export default function Login(props) {
     <div className='flex items-center transition-all bg-black hover:animate-none'>
       <button
         type='button'
-        className='text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-xl px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 mt-10'
+        className='flex text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-xl px-5 py-2.5 flex-col flex-wrap items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 mt-10'
         onClick={() => signIn('google')}
       >
         <svg
-          className='w-10 h-10'
+          className='w-10 h-10 m-2'
           aria-hidden='true'
           focusable='false'
           data-prefix='fab'
