@@ -14,11 +14,7 @@ export default function Map(props) {
   const [defaultLocation, setDefaultLocation] = useState([47.0, -122.0]);
 
   useEffect(() => {
-    // if (status === "authenticated") {
     getDefaultLatLong();
-    // } else {
-    //   setDefaultLocation(props.userGeoCoords);
-    // }
   }, []);
 
   const pointToLayer = (feature, center_point) => {
@@ -117,13 +113,11 @@ export default function Map(props) {
   };
 
   async function getDefaultLatLong() {
-    try {
+    if(session) {
       const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
       const apiData = await fetch(url);
       const response = await apiData.json();
       setDefaultLocation([response[0].lat, response[0].lon]);
-    } catch (error) {
-      console.log(error);
     }
   }
 
