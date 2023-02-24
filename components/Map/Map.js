@@ -43,7 +43,7 @@ export default function Map(props) {
   const getFillColor = (pm1, pm2, pm10, min10, min30, min60) => {
     // You can define your own color scale based on the interpolated value
       if (pm2 >= 250) {
-      return "#6e0280";   
+      return "#301934";   
     } else if (pm2 >= 150) {
       return "#702963";
     } else if (pm2 >= 55) {
@@ -77,7 +77,7 @@ export default function Map(props) {
   const getFillColor2 = (val) => {
     // You can define your own color scale based on the interpolated value
     if (val >= 250) {
-      return "26142a";
+      return '#301934';
     } else if (val >= 150) {
       return "#6e0280";
     } else if (val >= 55) {
@@ -117,13 +117,11 @@ export default function Map(props) {
   };
 
   async function getDefaultLatLong() {
-    try {
+    if(session) {
       const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
       const apiData = await fetch(url);
       const response = await apiData.json();
       setDefaultLocation([response[0].lat, response[0].lon]);
-    } catch (error) {
-      console.log(error);
     }
   }
 
