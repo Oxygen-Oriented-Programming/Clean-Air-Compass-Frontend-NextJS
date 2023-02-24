@@ -9,7 +9,7 @@ export default function Form(props) {
           className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 transition-all cursor-pointer '
         >
           <input
-            className='h-10 text-lg font-normal text-center transition-all bg-gray-800 rounded-lg'
+            className='h-10 py-8 text-lg font-normal text-center transition-all bg-gray-800 rounded-lg font-mono mt-10'
             name='location'
             type='text'
             onChange={props.handleLocationInput}
@@ -21,11 +21,11 @@ export default function Form(props) {
               <LoadingButton className='animate-pulse hover:animate-none' />
             ) : (
               <button
-                className='px-4 py-2 font-bold text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
+                className='px-8 py-4 text-white transition-all bg-violet-700 border border-violet-800 rounded hover:bg-white hover:text-violet-700 text-2xl font-mono'
                 type='submit'
                 disabled={props.loading}
               >
-                Submit
+                Explore
               </button>
             )}
           </div>
