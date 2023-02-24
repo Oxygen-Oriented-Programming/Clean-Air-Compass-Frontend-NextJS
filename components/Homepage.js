@@ -12,7 +12,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Homepage({ BASE_URL }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [locationName, setLocationName] = useState('');
   const [locationData, setLocationData] = useState('');
   const [loading, setLoading] = useState(false);

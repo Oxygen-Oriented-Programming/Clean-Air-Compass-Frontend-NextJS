@@ -3,10 +3,10 @@ import LoadingButton from './LoadingButton';
 export default function Form(props) {
   return (
     <>
-      <div className='flex flex-col transition-all items-center space-y-2.5  '>
+      <div className='flex flex-col items-center transition-all '>
         <form
           onSubmit={props.handleSubmit}
-          className='w-fit p2.5 mt-3 text-center items-center rounded-md px-4 transition-all cursor-pointer '
+          className='items-center px-4 text-center transition-all rounded-md cursor-pointer w-fit '
         >
           <input
             className='h-10 py-8 mt-10 font-mono text-lg font-normal text-center transition-all bg-gray-800 rounded-lg'
