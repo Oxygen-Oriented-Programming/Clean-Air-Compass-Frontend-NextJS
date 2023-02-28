@@ -45,7 +45,8 @@ export default function Homepage({ BASE_URL }) {
 
   function handleLocationInput(e) {
     setLocationName(e.target.value);
-  }
+    console.log(locationName);
+  };
 
   function fly_animation(apiData) {
     map.flyTo([apiData.center_point[1], apiData.center_point[0]], 8, {
@@ -57,7 +58,7 @@ export default function Homepage({ BASE_URL }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const zipRegex = /^\d{5}(-\d{4})?$/;
-    const cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+    const cityRegex = /^[a-zA-Z\s,.'-]{2,}$/;
     if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
       setLoading(true);
       let path = baseUrl;
@@ -87,7 +88,7 @@ export default function Homepage({ BASE_URL }) {
 
   return (
     <>
-      <div className='flex transition-all cursor-auto h-fit'>
+      <div className='flex cursor-auto h-fit'>
         <div className=''>
           {!showSidebar && (
             <Sidebar
