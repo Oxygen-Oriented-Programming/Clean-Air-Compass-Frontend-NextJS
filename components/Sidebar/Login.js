@@ -17,17 +17,6 @@ export default function Login(props) {
       <>
         <div className='flex flex-col items-center space-y-4 transition-all h-fit'>
           <button
-            onClick={props.toggleModal}
-            className='px-4 py-2 mt-2 font-mono text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
-          >
-            <h1 className='text-2xl transition-all hover:animate-none'>
-              Alerts &
-            </h1>
-            <h1 className='text-2xl transition-all hover:animate-none'>
-              Locations
-            </h1>
-          </button>
-          <button
             className='px-6 py-2 font-mono text-2xl text-white transition-all bg-transparent border border-purple-500 rounded hover:bg-purple-700 hover:border-transparent'
             onClick={() => signOut()}
           >
@@ -62,7 +51,7 @@ export default function Login(props) {
     <div className='flex items-center transition-all bg-black hover:animate-none'>
       <button
         type='button'
-        className='flex text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-xl px-5 py-2.5 flex-col flex-wrap items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 mt-10'
+        className='flex text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-xl px-5 py-2.5 flex-col flex-wrap items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 mt-10 ml-6'
         onClick={() => signIn('google')}
       >
         <svg
