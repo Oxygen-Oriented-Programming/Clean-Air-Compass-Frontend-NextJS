@@ -82,6 +82,7 @@ export default function Sidebar(props) {
                 loading={props.loading}
                 handleLocationInput={props.handleLocationInput}
                 handleSubmit={props.handleSubmit}
+                inputRef= {props.inputRef}
               />
               {!showFeatures && !showAbout && (
                 <NavLinks
