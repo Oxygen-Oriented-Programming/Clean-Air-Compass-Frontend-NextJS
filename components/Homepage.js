@@ -41,11 +41,11 @@ export default function Homepage({ BASE_URL }) {
              );
      });
  }
-  }, [session, baseUrl]);
+  }, [session, status, baseUrl]);
 
   useEffect(() => {
     if (session && session.auth_token.default_location){
-      console.log("default location")
+      // console.log("default location")
       fetch(`${baseUrl}${session.auth_token.default_location}`)
       .then((response) => response.json())
       .then((data) => setLocationData(data))
