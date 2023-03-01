@@ -35,7 +35,7 @@ export default function Homepage({ BASE_URL }) {
          await fetch(url)
              .then((response) => response.json())
              .then((data) =>
-                 fetch(`${baseUrl}${data.address.state}`)
+                 fetch(`${baseUrl}${data.address.city}`)
                      .then((response) => response.json())
                      .then((data) => setLocationData(data))
              );
