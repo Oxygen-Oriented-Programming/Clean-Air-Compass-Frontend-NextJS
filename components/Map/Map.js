@@ -16,7 +16,7 @@ export default function Map(props) {
   useEffect(() => {
     // if (status === "authenticated") {
 
-    if(session && session.default_location){
+    if(session && session.auth_token.default_location){
       getDefaultLatLong();
     }
     // } else {
