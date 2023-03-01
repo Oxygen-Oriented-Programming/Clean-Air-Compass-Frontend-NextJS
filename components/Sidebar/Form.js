@@ -3,15 +3,16 @@ import LoadingButton from './LoadingButton';
 export default function Form(props) {
   return (
     <>
-      <div className='flex flex-col items-center transition-all '>
+      <div className='flex flex-col items-center'>
         <form
           onSubmit={props.handleSubmit}
-          className='items-center px-4 text-center transition-all rounded-md cursor-pointer w-fit '
+          className='items-center px-4 text-center rounded-md cursor-pointer w-fit '
         >
           <input
-            className='h-10 py-8 mt-10 font-mono text-lg font-normal text-center transition-all bg-gray-800 rounded-lg'
+            className='h-10 py-8 mt-10 font-mono text-lg font-normal text-center bg-gray-800 rounded-lg'
             name='location'
             type='text'
+            value={props.locationName}
             onChange={props.handleLocationInput}
             placeholder='Enter Location'
           />

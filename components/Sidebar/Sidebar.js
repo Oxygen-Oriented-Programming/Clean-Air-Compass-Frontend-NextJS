@@ -31,6 +31,7 @@ export default function Sidebar(props) {
       setReturnAnimation(false);
     }, 500); // Wait for the animation to complete
   };
+
   return (
     <>
       <div className='h-screen bg-black'>
@@ -61,7 +62,7 @@ export default function Sidebar(props) {
               />
             </svg>
           </button>
-          
+
           <div className='flex flex-col'>
             <nav
               className='space-y-1'
@@ -95,20 +96,20 @@ export default function Sidebar(props) {
             {/* Features section */}
 
             {showFeatures && (
-              <Features 
-                handleReturnClick = {handleReturnClick}
-                returnAnimation = {returnAnimation}
-                 showFeatures = {showFeatures}
-                  showAbout = {showAbout}
+              <Features
+                handleReturnClick={handleReturnClick}
+                returnAnimation={returnAnimation}
+                showFeatures={showFeatures}
+                showAbout={showAbout}
               />
             )}
 
             {/* About section */}
             {showAbout && (
-              <About 
-                handleReturnClick={ handleReturnClick}
-                returnAnimation = {returnAnimation}
-                showAbout = {showAbout}
+              <About
+                handleReturnClick={handleReturnClick}
+                returnAnimation={returnAnimation}
+                showAbout={showAbout}
               />
             )}
           </div>
