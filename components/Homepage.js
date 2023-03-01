@@ -7,6 +7,8 @@ import SidebarButton from './Sidebar/SidebarButton';
 import Chart from './Chart';
 import AlertModal from './AlertModal';
 import AlertMessage from './AlertMessage';
+import { useSession } from 'next-auth/react';
+import { useRef } from 'react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -21,23 +23,34 @@ export default function Homepage({ BASE_URL }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [userGeoCoords, setUserGeoCoords] = useState('');
   const baseUrl = BASE_URL;
+  const { data: session, status } = useSession();
+  const inputRef = useRef();
 
-  // useEffect(() => {
-  //     if ("geolocation" in navigator) {
-  //         navigator.geolocation.getCurrentPosition(({ coords }) => {
-  //             const { latitude, longitude } = coords;
-  //             setUserGeoCoords([latitude, longitude]);
-  //             const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
-  //             fetch(url)
-  //                 .then((response) => response.json())
-  //                 .then((data) =>
-  //                     fetch(`${baseUrl}${data.address.state}`)
-  //                         .then((response) => response.json())
-  //                         .then((data) => setLocationData(data))
-  //                 );
-  //         });
-  //     }
-  // }, []);
+  useEffect(()=> {
+    if ("geolocation" in navigator && status === "unauthenticated") {
+      navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+         const { latitude, longitude } = coords;
+         // setUserGeoCoords([latitude, longitude]);
+         const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
+         await fetch(url)
+             .then((response) => response.json())
+             .then((data) =>
+                 fetch(`${baseUrl}${data.address.state}`)
+                     .then((response) => response.json())
+                     .then((data) => setLocationData(data))
+             );
+     });
+ }
+  }, [session, status, baseUrl]);
+
+  useEffect(() => {
+    if (session && session.auth_token.default_location){
+      // console.log("default location")
+      fetch(`${baseUrl}${session.auth_token.default_location}`)
+      .then((response) => response.json())
+      .then((data) => setLocationData(data))
+    }
+  }, [session, baseUrl]);
 
   function toggleModal() {
     setIsModalOpen(!isModalOpen);
@@ -45,7 +58,7 @@ export default function Homepage({ BASE_URL }) {
 
   function handleLocationInput(e) {
     setLocationName(e.target.value);
-    console.log(locationName);
+    // console.log(locationName);
   };
 
   function fly_animation(apiData) {
@@ -59,10 +72,10 @@ export default function Homepage({ BASE_URL }) {
     e.preventDefault();
     const zipRegex = /^\d{5}(-\d{4})?$/;
     const cityRegex = /^[a-zA-Z\s,.'-]{2,}$/;
-    if (zipRegex.test(locationName) || cityRegex.test(locationName)) {
+    if (zipRegex.test(inputRef.current.value) || cityRegex.test(inputRef.current.value)) {
       setLoading(true);
       let path = baseUrl;
-      let url = path + locationName;
+      let url = path + inputRef.current.value;
       try {
         const response = await fetch(url);
         const apiData = await response.json();
@@ -78,14 +91,13 @@ export default function Homepage({ BASE_URL }) {
           setLocationData(apiData);
         }, 5100);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         alert('An error occurred while fetching data from the API');
       }
     } else {
       alert('This is not a valid city name or zip code');
     }
   }
-
   return (
     <>
       <div className='flex cursor-auto h-fit'>
@@ -94,6 +106,7 @@ export default function Homepage({ BASE_URL }) {
             <Sidebar
               sidebar_show={showSidebar}
               set_show={setShowSidebar}
+              inputRef ={inputRef}
               handleLocationInput={handleLocationInput}
               handleSubmit={handleSubmit}
               loading={loading}

@@ -15,11 +15,14 @@ export default function Map(props) {
 
   useEffect(() => {
     // if (status === "authenticated") {
-    getDefaultLatLong();
+
+    if(session && session.auth_token.default_location){
+      getDefaultLatLong();
+    }
     // } else {
     //   setDefaultLocation(props.userGeoCoords);
     // }
-  }, []);
+  }, [session]);
 
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
@@ -117,12 +120,10 @@ export default function Map(props) {
   };
 
   async function getDefaultLatLong() {
-    if(session) {
       const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
       const apiData = await fetch(url);
       const response = await apiData.json();
       setDefaultLocation([response[0].lat, response[0].lon]);
-    }
   }
 
   return (
@@ -163,7 +164,7 @@ export default function Map(props) {
               onEachFeature={onEachFeature}
             />
             <GeoJSON
-              key={props.locationData}
+              key={props.locationData.points}
               data={props.locationData.points}
               pointToLayer={pointToLayer}
               onEachFeature={onEachFeature}

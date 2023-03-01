@@ -12,8 +12,9 @@ export default function Form(props) {
             className='h-10 py-8 mt-10 font-mono text-lg font-normal text-center bg-gray-800 rounded-lg'
             name='location'
             type='text'
-            value={props.locationName}
-            onChange={props.handleLocationInput}
+            ref = {props.inputRef}
+            // value={props.locationName}
+            // onChange={props.handleLocationInput}
             placeholder='Enter Location'
           />
 
