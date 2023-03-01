@@ -27,7 +27,7 @@ export default function Homepage({ BASE_URL }) {
   const inputRef = useRef();
 
   useEffect(()=> {
-    if ("geolocation" in navigator && !session?.auth_token.default_location) {
+    if ("geolocation" in navigator && status === "unauthenticated") {
       navigator.geolocation.getCurrentPosition(async ({ coords }) => {
          const { latitude, longitude } = coords;
          // setUserGeoCoords([latitude, longitude]);
@@ -41,13 +41,15 @@ export default function Homepage({ BASE_URL }) {
              );
      });
  }
-  }, []);
+  }, [session, baseUrl]);
+
   useEffect(() => {
-      if (session && session.default_location){
-        fetch(`${baseUrl}${session.default_location}`)
-        .then((response) => response.json())
-        .then((data) => setLocationData(data))
-      }
+    if (session && session.auth_token.default_location){
+      console.log("default location")
+      fetch(`${baseUrl}${session.auth_token.default_location}`)
+      .then((response) => response.json())
+      .then((data) => setLocationData(data))
+    }
   }, [session, baseUrl]);
 
   function toggleModal() {
@@ -96,7 +98,6 @@ export default function Homepage({ BASE_URL }) {
       alert('This is not a valid city name or zip code');
     }
   }
-  console.log(inputRef)
   return (
     <>
       <div className='flex cursor-auto h-fit'>

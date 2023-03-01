@@ -13,16 +13,16 @@ export default function Map(props) {
   const { data: session, status } = useSession();
   const [defaultLocation, setDefaultLocation] = useState([47.0, -122.0]);
 
-  // useEffect(() => {
-  //   // if (status === "authenticated") {
+  useEffect(() => {
+    // if (status === "authenticated") {
 
-  //   if(session && session.default_location){
-  //     getDefaultLatLong();
-  //   }
-  //   // } else {
-  //   //   setDefaultLocation(props.userGeoCoords);
-  //   // }
-  // }, [session]);
+    if(session && session.default_location){
+      getDefaultLatLong();
+    }
+    // } else {
+    //   setDefaultLocation(props.userGeoCoords);
+    // }
+  }, [session]);
 
   const pointToLayer = (feature, center_point) => {
     return L.circleMarker(center_point, {
@@ -119,12 +119,12 @@ export default function Map(props) {
     });
   };
 
-  // async function getDefaultLatLong() {
-  //     const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
-  //     const apiData = await fetch(url);
-  //     const response = await apiData.json();
-  //     setDefaultLocation([response[0].lat, response[0].lon]);
-  // }
+  async function getDefaultLatLong() {
+      const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
+      const apiData = await fetch(url);
+      const response = await apiData.json();
+      setDefaultLocation([response[0].lat, response[0].lon]);
+  }
 
   return (
     <div className='flex'>
@@ -164,7 +164,7 @@ export default function Map(props) {
               onEachFeature={onEachFeature}
             />
             <GeoJSON
-              key={props.locationData}
+              key={props.locationData.points}
               data={props.locationData.points}
               pointToLayer={pointToLayer}
               onEachFeature={onEachFeature}
