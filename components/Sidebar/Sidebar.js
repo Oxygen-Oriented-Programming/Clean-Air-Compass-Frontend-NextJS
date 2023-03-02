@@ -1,17 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import Form from './Form';
-import NavLinks from './NavLinks';
+import SearchForm from './SearchForm';
+import AboutFeaturesButtons from './AboutFeaturesButtons';
 import NavTitle from './NavTitle';
 import SetDefaultLocation from './SetDefaultLocation';
 import { useState } from 'react';
 import About from './About';
 import Features from './Features';
+import HideSidebarButton from './HideSidebarButton';
+import { useSession } from 'next-auth/react';
+import Login from './Login';
+import ModalButton from './ModalButton';
 
 export default function Sidebar(props) {
   const [showFeatures, setShowFeatures] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [returnAnimation, setReturnAnimation] = useState(false);
+  const { data: session, status } = useSession();
 
   const handleFeaturesClick = () => {
     setShowFeatures(true);
@@ -43,26 +48,8 @@ export default function Sidebar(props) {
           }
         >
           <NavTitle />
-          <button
-            className='fixed mr-5 text-purple-500 border-white rounded-md left-56 top-1'
-            onClick={() => props.set_show(!props.sidebar_show)}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='fixed z-40 w-6 h-6 left-64'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
-              />
-            </svg>
-          </button>
-
+          {/* ShowSidebarButton opens the sidebar when it is collapsed */}
+          <HideSidebarButton set_show={props.set_show} sidebar_show = {props.sidebar_show}/>
           <div className='flex flex-col'>
             <nav
               className='space-y-1'
@@ -78,14 +65,14 @@ export default function Sidebar(props) {
                 transitionDelay: showFeatures || showAbout ? '0.5s' : '0s',
               }}
             >
-              <Form
+              <SearchForm
                 loading={props.loading}
                 handleLocationInput={props.handleLocationInput}
                 handleSubmit={props.handleSubmit}
                 inputRef= {props.inputRef}
               />
               {!showFeatures && !showAbout && (
-                <NavLinks
+                <AboutFeaturesButtons
                   handleFeaturesClick={handleFeaturesClick}
                   handleAboutClick={handleAboutClick}
                   handleReturnClick={handleReturnClick}
@@ -95,7 +82,6 @@ export default function Sidebar(props) {
             </nav>
 
             {/* Features section */}
-
             {showFeatures && (
               <Features
                 handleReturnClick={handleReturnClick}
@@ -113,6 +99,9 @@ export default function Sidebar(props) {
                 showAbout={showAbout}
               />
             )}
+          {/* modalbutton opens alerts and locations modal  */}
+          {status === 'authenticated' && <ModalButton toggleModal={props.toggleAlertModal}/>}
+          <Login/>
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import Login from './Login';
 
-export default function NavLinks(props) {
+export default function AboutFeaturesButtons(props) {
   return (
     <>
       <div className='flex transition-all flex-col  items-center w-full space-y-2.5'>
@@ -18,7 +16,6 @@ export default function NavLinks(props) {
         >
           Features
         </button>
-        <Login toggleModal={props.toggleModal} />
       </div>
     </>
   );

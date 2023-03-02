@@ -14,13 +14,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Homepage({ BASE_URL }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [hideSidebar, setHideSidebar] = useState(false);
   const [locationName, setLocationName] = useState('');
   const [locationData, setLocationData] = useState('');
   const [loading, setLoading] = useState(false);
   const [map, setMap] = useState(null);
   const [message, setMessage] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
   // const [userGeoCoords, setUserGeoCoords] = useState('');
   const baseUrl = BASE_URL;
   const { data: session, status } = useSession();
@@ -35,7 +35,7 @@ export default function Homepage({ BASE_URL }) {
          await fetch(url)
              .then((response) => response.json())
              .then((data) =>
-                 fetch(`${baseUrl}${data.address.state}`)
+                 fetch(`${baseUrl}${data.address.city}`)
                      .then((response) => response.json())
                      .then((data) => setLocationData(data))
              );
@@ -52,8 +52,8 @@ export default function Homepage({ BASE_URL }) {
     }
   }, [session, baseUrl]);
 
-  function toggleModal() {
-    setIsModalOpen(!isModalOpen);
+  function toggleAlertModal() {
+    setIsAlertModalOpen(!isAlertModalOpen);
   }
 
   function handleLocationInput(e) {
@@ -102,26 +102,22 @@ export default function Homepage({ BASE_URL }) {
     <>
       <div className='flex cursor-auto h-fit'>
         <div className=''>
-          {!showSidebar && (
+          {!hideSidebar && (
             <Sidebar
-              sidebar_show={showSidebar}
-              set_show={setShowSidebar}
+              sidebar_show={hideSidebar}
+              set_show={setHideSidebar}
               inputRef ={inputRef}
               handleLocationInput={handleLocationInput}
               handleSubmit={handleSubmit}
               loading={loading}
-              toggleModal={toggleModal}
+              toggleAlertModal={toggleAlertModal}
             />
           )}
-          {showSidebar && (
+          {hideSidebar && (
             <SidebarButton
-              sidebar_show={showSidebar}
-              set_show={setShowSidebar}
-              handleLocationInput={handleLocationInput}
-              handleSubmit={handleSubmit}
-              loading={loading}
-              text='LEFT SIDEBAR'
-              toggleModal={toggleModal}
+              sidebar_show={hideSidebar}
+              set_show={setHideSidebar}
+              // text='LEFT SIDEBAR'
             />
           )}
         </div>
@@ -150,9 +146,9 @@ export default function Homepage({ BASE_URL }) {
           ) : null}
         </div>
         <AlertModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          toggleModal={toggleModal}
+          isModalOpen={isAlertModalOpen}
+          setIsModalOpen={setIsAlertModalOpen}
+          toggleModal={toggleAlertModal}
         />
       </div>
     </>
