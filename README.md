@@ -31,8 +31,6 @@ Our site will provide an interactive spatially interpolated map of air quality i
 
 <img width="791" alt="clean-air-compass logo" src="public/faqChart.png">
 
-## Instructions for local deployment and packages needed
-
 ---
 
 ## Team LinkedIn
