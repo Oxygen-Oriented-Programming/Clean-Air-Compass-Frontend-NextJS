@@ -62,7 +62,7 @@ export default function Homepage({ BASE_URL }) {
   };
 
   function fly_animation(apiData) {
-    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 8, {
+    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 10, {
       animate: true,
       duration: 5,
     });
@@ -79,13 +79,17 @@ export default function Homepage({ BASE_URL }) {
       try {
         const response = await fetch(url);
         const apiData = await response.json();
+        setMessage('');
         if (apiData.hasOwnProperty('message')) {
           setMessage(apiData.message);
           setLoading(false);
           return;
         }
+        if (apiData.expanded_search) {
+          setMessage("No sensors found for the original location. Displaying nearby sensors from an expanded search.");
+        }
         setLoading(false);
-        setMessage('');
+        
         fly_animation(apiData);
         setTimeout(() => {
           setLocationData(apiData);
