@@ -23,7 +23,7 @@ Our site will provide an interactive spatially interpolated map of air quality i
 
 ### UML documentation requirements
 
-![Whiteboard Image](./images/DIAGRAM.PNG)
+![Whiteboard Image](https://i.imgur.com/gXW0tAG.png)
 
 ---
 
