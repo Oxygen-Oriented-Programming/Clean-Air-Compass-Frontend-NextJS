@@ -1,12 +1,14 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 
-export default function MapDescendent({ setMap }) {
+export default function MapDescendent({ setMap, setIsMapLoaded, isMapLoaded }) {
   const leafletMap = useMap();
 
   useEffect(() => {
-    setTimeout(() => {
-      setMap(leafletMap);
-    }, 0);
-  }, [setMap, leafletMap]);
+    setMap(leafletMap)
+    if (!isMapLoaded) {
+        setIsMapLoaded(true);
+    }
+  }, [isMapLoaded, setIsMapLoaded, setMap, leafletMap]);
+
 }
