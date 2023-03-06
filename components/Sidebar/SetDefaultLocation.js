@@ -1,7 +1,7 @@
 export default function SetDefaultLocation({
   auth_token,
   user_id,
-  defaultCrud,
+  defaultChange,
 }) {
   async function backendapi_setLocation(e) {
     e.preventDefault();
@@ -11,9 +11,9 @@ export default function SetDefaultLocation({
     const postAttempt = await fetch(
       `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`,
       {
-        method: 'post',
+        method: "post",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Token ${auth_token}`,
         },
         body: JSON.stringify({ user: user_number, default_location: location }),
@@ -23,9 +23,9 @@ export default function SetDefaultLocation({
       putAttempt = await fetch(
         `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`,
         {
-          method: 'put',
+          method: "put",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Token ${auth_token}`,
           },
           body: JSON.stringify({
@@ -33,28 +33,28 @@ export default function SetDefaultLocation({
             default_location: location,
           }),
         }
-      ).then(defaultCrud(location));
+      ).then(defaultChange(location));
     }
   }
   return (
     <>
-      <div className='flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent'>
+      <div className="flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent">
         <form
           onSubmit={backendapi_setLocation}
-          className='items-center p-2 px-4 text-center transition-all duration-300 rounded-md cursor-pointer w-fit'
+          className="items-center p-2 px-4 text-center transition-all duration-300 rounded-md cursor-pointer w-fit"
         >
-          <div className=''>
+          <div className="">
             <input
-              type='text'
-              id='default_location'
-              className='px-10 py-2 font-mono text-lg text-center transition-all bg-gray-800 rounded-lg'
-              placeholder='Set Default Location'
+              type="text"
+              id="default_location"
+              className="px-10 py-2 font-mono text-lg text-center transition-all bg-gray-800 rounded-lg"
+              placeholder="Set Default Location"
               required
             />
           </div>
           <button
-            type='submit'
-            className='px-6 py-1 mt-4 font-mono text-white transition-all bg-transparent border border-purple-500 rounded text-md hover:bg-purple-700 hover:border-transparent'
+            type="submit"
+            className="px-6 py-1 mt-4 font-mono text-white transition-all bg-transparent border border-purple-500 rounded text-md hover:bg-purple-700 hover:border-transparent"
           >
             Set Default
           </button>
