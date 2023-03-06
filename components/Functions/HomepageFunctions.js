@@ -17,6 +17,7 @@ export const BrowserDefaultLocation = (
           .then((data) => {
             if (!data.message) {
               try {
+                // zoom setting is second param of flyTo (10 as of right now)
                 map.flyTo([data.center_point[1], data.center_point[0]], 10, {
                   animate: true,
                   duration: 5,
@@ -46,6 +47,7 @@ export const UserDefaultLocation = (session, setLocationData, map) => {
     .then((response) => response.json())
     .then((data) => {
       try {
+        // zoom setting is second param of flyTo (10 as of right now)
         map.flyTo([data.center_point[1], data.center_point[0]], 10, {
           animate: true,
           duration: 5,
