@@ -3,6 +3,10 @@ export default function SetDefaultLocation({
   user_id,
   defaultChange,
 }) {
+  // this function sends a post request and if that fails it sends a put request
+  // if the put request completes it will call defaultChange function which is a prop
+  // defaultChange function sets the state of the location modal and shows on the modal that the location is changed
+
   async function backendapi_setLocation(e) {
     e.preventDefault();
     const location = e.target.default_location.value;

@@ -1,8 +1,6 @@
 import Modal from "react-modal";
-Modal.setAppElement("#__next");
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSession } from "next-auth/react";
-import MyAlerts from "./Sidebar/MyAlerts";
 import SetDefaultLocation from "./Sidebar/SetDefaultLocation";
 
 export default function LocationModal(props) {

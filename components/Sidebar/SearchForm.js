@@ -11,7 +11,6 @@ export default function Form(props) {
               props.inputRef,
               props.setMessage,
               props.setLoading,
-              props.fly_animation,
               props.setLocationData,
               props.map
             )

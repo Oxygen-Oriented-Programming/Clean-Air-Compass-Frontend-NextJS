@@ -17,6 +17,7 @@ export const pointToLayer = (feature, center_point) => {
   });
 };
 
+// this is called by getfillcolor2
 export const getFillColor = (pm1, pm2, pm10, min10, min30, min60) => {
   // You can define your own color scale based on the interpolated value
   if (pm2 >= 250) {
@@ -51,6 +52,7 @@ export const getFillColor = (pm1, pm2, pm10, min10, min30, min60) => {
   }
 };
 
+// sets the colors of the geojson map
 export const getFillColor2 = (val) => {
   // You can define your own color scale based on the interpolated value
   if (val >= 250) {

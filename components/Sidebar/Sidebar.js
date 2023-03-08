@@ -104,7 +104,7 @@ export default function Sidebar(props) {
                 showAbout={showAbout}
               />
             )}
-            {/* this shows the alerts & locations button  */}
+            {/* this shows the alerts & locations button only if the user is logged in  */}
             {status === "authenticated" && (
               <>
                 <AlertModalButton toggleAlertModal={props.toggleAlertModal} />

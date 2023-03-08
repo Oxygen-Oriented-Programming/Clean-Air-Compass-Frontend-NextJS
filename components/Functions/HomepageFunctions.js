@@ -1,5 +1,12 @@
 import { useEffect } from "react";
 
+// this function flys to and renders geojson for the browser default location:
+// 1. gets the lat and long from users browser 2. gets the name of the city their in from locationiq 3. sends that city to our fast api
+// 4. if the return from the fast api isn't message it flys to that location and then renders the geoJson by setting locationData in state
+// 5. if the return from fast api is message:
+//            it sets the message state which displays a red alert type message on top of homepage
+//            then it calls setDefaultMapLocation function which is part of DefaultMapLocation state which is normally set to seattle
+// dev notes:  we could remove the try catch block on map.flyto if we wanted to
 export const BrowserDefaultLocation = (
   setMessage,
   setLocationData,
@@ -40,6 +47,11 @@ export const BrowserDefaultLocation = (
   });
 };
 
+// this function flys to and renders the geojson for the users default location:
+// 1. sends the default location to our fast api
+// (we assume the default location they have set won't return message from the fast api)
+// 2. flys to that location then renders the locationData
+// dev notes:  we could remove the try catch block on map.flyto if we wanted to
 export const UserDefaultLocation = (session, setLocationData, map) => {
   fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}${session.auth_token.default_location}`
@@ -59,16 +71,24 @@ export const UserDefaultLocation = (session, setLocationData, map) => {
     });
 };
 
+// this is the handleSubmit from the search form
+// this function does:
+// 1. resets message state (which when not falsey displays a red alert type message on top of homepage)
+// 2. uses regex to validate the input as either a zip code or valid city (if else) (else displays enter valid input message(which looks like an alert))
+// 3. sets the loading state which makes the search button turn into a loading icon
+// 4. trys to calls the fast api
+// 5. if fast api returns message(meaning error) it sets that error to the message state(which looks like an alert) and sets loading to be false
+// 6. if fast api doesnt return message (no error) it flys to the location and then renders the geojson
+// 7. catch from the fast api call try: displays a message saying error
 export const handleSubmit = async (
   e,
   inputRef,
   setMessage,
   setLoading,
-  fly_animation,
   setLocationData,
   map
 ) => {
-  console.log(map);
+  // console.log(map);
   e.preventDefault();
   setMessage("");
   const zipRegex = /^\d{5}(-\d{4})?$/;
@@ -78,12 +98,10 @@ export const handleSubmit = async (
     cityRegex.test(inputRef.current.value)
   ) {
     setLoading(true);
-    let path = process.env.NEXT_PUBLIC_BASE_URL;
-    let url = path + inputRef.current.value;
+    let url = process.env.NEXT_PUBLIC_BASE_URL + inputRef.current.value;
     try {
       const response = await fetch(url);
       const apiData = await response.json();
-      setMessage("");
       if (apiData.hasOwnProperty("message")) {
         setMessage(apiData.message);
         setLoading(false);
@@ -95,8 +113,8 @@ export const handleSubmit = async (
         );
       }
       setLoading(false);
-
-      map.flyTo([apiData.center_point[1], apiData.center_point[0]], 8, {
+      // zoom setting second argument to flyTo
+      map.flyTo([apiData.center_point[1], apiData.center_point[0]], 10, {
         animate: true,
         duration: 5,
       });
@@ -105,13 +123,25 @@ export const handleSubmit = async (
       }, 5100);
     } catch (error) {
       // console.error(error);
-      alert("An error occurred while fetching data from the API");
+      setMessage("An error occurred while fetching data from the API");
     }
   } else {
-    alert("This is not a valid city name or zip code");
+    setMessage("This is not a valid city name or zip code");
   }
 };
 
+// this is sets the default location when page loads
+// the dependancy array is status and isMapLoaded which means that this will be retriggered if status changes(meaning they log out or log in) or if the map is loaded
+// ismaploaded is included because this triggers immediately on page load and the map might not be rendered yet
+// this function does:
+// 1. calls functions according to 3 different condtions:
+//         a. user allows location and is not logged in
+//              calls BrowserDefaultLocation
+//         b. user is logged in and has set their default location
+//              calls UserDefaultLocation
+//         c. user is logged in and has not set their default location
+//              calls BrowserDefaultLocation
+//      <<< if the user blocks location and does not set default location in the map will display its default location with no animation(seattle)>>>
 export const useLocation = (
   status,
   session,

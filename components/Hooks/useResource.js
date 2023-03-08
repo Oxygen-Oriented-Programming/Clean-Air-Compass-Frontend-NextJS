@@ -3,8 +3,11 @@ export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_SMS_ALERT_URL;
 import { useSession } from "next-auth/react";
 
 export default function useResource() {
+  // gets the users auth token from the session data
   const { data: session } = useSession();
   const tokens = session.auth_token.tokens;
+  // useSWR gives access to data which is returned from fetchResource as 'resources' 
+  // useSWR mutate basically does a new get request to refresh the data whenever its changed
   const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
 
   async function fetchResource(url) {
@@ -12,7 +15,7 @@ export default function useResource() {
       return;
     }
     try {
-      const response = await fetch(`${apiUrl}create/`, config());
+      const response = await fetch(`${apiUrl}create/`, config());   // get request
       const responseJSON = await response.json();
       return responseJSON;
     } catch (err) {
@@ -56,6 +59,8 @@ export default function useResource() {
     }
   }
 
+// sets the headers for the requests
+// tokens is the auth token needed to access endpoints 
   function config() {
     return {
       headers: {
