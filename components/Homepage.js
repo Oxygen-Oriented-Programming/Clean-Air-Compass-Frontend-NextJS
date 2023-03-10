@@ -32,6 +32,54 @@ export default function Homepage() {
   const toggleLocationModal = () => setIsLocationModalOpen(!isLocationModalOpen);
   const toggleAlertModal = () => setIsAlertModalOpen(!isAlertModalOpen);
 
+  function handleLocationInput(e) {
+    setLocationName(e.target.value);
+    // console.log(locationName);
+  };
+
+  function fly_animation(apiData) {
+    console.log(apiData);
+    map.flyToBounds(apiData.bounds, {
+      animate: true,
+      duration: 5,
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const zipRegex = /^\d{5}(-\d{4})?$/;
+    const cityRegex = /^[a-zA-Z\s,.'-]{2,}$/;
+    if (zipRegex.test(inputRef.current.value) || cityRegex.test(inputRef.current.value)) {
+      setLoading(true);
+      let path = baseUrl;
+      let url = path + inputRef.current.value;
+      try {
+        const response = await fetch(url);
+        const apiData = await response.json();
+        setMessage('');
+        if (apiData.hasOwnProperty('message')) {
+          setMessage(apiData.message);
+          setLoading(false);
+          return;
+        }
+        if (apiData.expanded_search) {
+          setMessage("No sensors found for the original location. Displaying nearby sensors from an expanded search.");
+        }
+        setLoading(false);
+        
+        fly_animation(apiData);
+        setTimeout(() => {
+          setLocationData(apiData);
+        }, 5100);
+      } catch (error) {
+        // console.error(error);
+        alert('An error occurred while fetching data from the API');
+      }
+    } else {
+      alert('This is not a valid city name or zip code');
+    }
+  }
+
   return (
     <>
       <div className="flex cursor-auto h-fit">
