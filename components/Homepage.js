@@ -62,7 +62,8 @@ export default function Homepage({ BASE_URL }) {
   };
 
   function fly_animation(apiData) {
-    map.flyTo([apiData.center_point[1], apiData.center_point[0]], 10, {
+    console.log(apiData);
+    map.flyToBounds(apiData.bounds, {
       animate: true,
       duration: 5,
     });
