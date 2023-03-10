@@ -1,60 +1,36 @@
-import Map from './Map';
-import Sidebar from './Sidebar/Sidebar';
-import { useState, useEffect } from 'react';
-import RightSidebarButton from './RightSidebar/RightSidebarButton';
-import RightSidebar from './RightSidebar/RightSidebar';
-import SidebarButton from './Sidebar/SidebarButton';
-import Chart from './Chart';
-import AlertModal from './AlertModal';
-import AlertMessage from './AlertMessage';
-import { useSession } from 'next-auth/react';
-import { useRef } from 'react';
+import Map from "./Map";
+import Sidebar from "./Sidebar/Sidebar";
+import { useState, useRef } from "react";
+import RightSidebarButton from "./RightSidebar/RightSidebarButton";
+import RightSidebar from "./RightSidebar/RightSidebar";
+import SidebarButton from "./Sidebar/Buttons/SidebarButton";
+import Chart from "./Chart";
+import AlertModal from "./AlertModal";
+import LocationModal from "./LocationModal";
+import AlertMessage from "./AlertMessage";
+import { useSession } from "next-auth/react";
+import {
+  handleSubmit,
+  useLocation
+} from "./Functions/HomepageFunctions";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-export default function Homepage({ BASE_URL }) {
+export default function Homepage() {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
   const [hideSidebar, setHideSidebar] = useState(false);
-  const [locationName, setLocationName] = useState('');
-  const [locationData, setLocationData] = useState('');
+  const [locationData, setLocationData] = useState("");
   const [loading, setLoading] = useState(false);
   const [map, setMap] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
-  // const [userGeoCoords, setUserGeoCoords] = useState('');
-  const baseUrl = BASE_URL;
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const { data: session, status } = useSession();
   const inputRef = useRef();
+  const [defaultMapLocation, setDefaultMapLocation] = useState([47.0, -122.0]);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  useEffect(()=> {
-    if ("geolocation" in navigator && status === "unauthenticated") {
-      navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-         const { latitude, longitude } = coords;
-         // setUserGeoCoords([latitude, longitude]);
-         const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
-         await fetch(url)
-             .then((response) => response.json())
-             .then((data) =>
-                 fetch(`${baseUrl}${data.address.city}`)
-                     .then((response) => response.json())
-                     .then((data) => setLocationData(data))
-             );
-     });
- }
-  }, [session, status, baseUrl]);
-
-  useEffect(() => {
-    if (session && session.auth_token.default_location){
-      // console.log("default location")
-      fetch(`${baseUrl}${session.auth_token.default_location}`)
-      .then((response) => response.json())
-      .then((data) => setLocationData(data))
-    }
-  }, [session, baseUrl]);
-
-  function toggleAlertModal() {
-    setIsAlertModalOpen(!isAlertModalOpen);
-  }
+  useLocation(status, session, isMapLoaded, map, setMessage, setLocationData, setDefaultMapLocation);
+  const toggleLocationModal = () => setIsLocationModalOpen(!isLocationModalOpen);
+  const toggleAlertModal = () => setIsAlertModalOpen(!isAlertModalOpen);
 
   function handleLocationInput(e) {
     setLocationName(e.target.value);
@@ -103,57 +79,59 @@ export default function Homepage({ BASE_URL }) {
       alert('This is not a valid city name or zip code');
     }
   }
+
   return (
     <>
-      <div className='flex cursor-auto h-fit'>
-        <div className=''>
-          {!hideSidebar && (
-            <Sidebar
-              sidebar_show={hideSidebar}
-              set_show={setHideSidebar}
-              inputRef ={inputRef}
-              handleLocationInput={handleLocationInput}
-              handleSubmit={handleSubmit}
-              loading={loading}
-              toggleAlertModal={toggleAlertModal}
-            />
-          )}
-          {hideSidebar && (
-            <SidebarButton
-              sidebar_show={hideSidebar}
-              set_show={setHideSidebar}
-              // text='LEFT SIDEBAR'
-            />
-          )}
-        </div>
+      <div className="flex cursor-auto h-fit">
+        {!hideSidebar && (
+          <Sidebar
+            sidebar_show={hideSidebar}
+            set_show={setHideSidebar}
+            inputRef={inputRef}
+            handleSubmit={handleSubmit}
+            loading={loading}
+            toggleAlertModal={toggleAlertModal}
+            toggleLocationModal={toggleLocationModal}
+            setMessage={setMessage}
+            setLoading={setLoading}
+            setLocationData={setLocationData}
+            map={map}
+          />
+        )}
+        {hideSidebar && (
+          <SidebarButton sidebar_show={hideSidebar} set_show={setHideSidebar} />
+        )}
         {message && <AlertMessage message={message} />}
         <Map
-          className=''
+          className=""
           locationData={locationData}
           setMap={setMap}
           map={map}
-          // userGeoCoords={userGeoCoords}
+          defaultLocation={defaultMapLocation}
+          isMapLoaded={isMapLoaded}
+          setIsMapLoaded={setIsMapLoaded}
         />
-        <Chart className='' />
-        <div className=''>
-          {showRightSidebar && (
-            <RightSidebar
-              sidebar_show={showRightSidebar}
-              set_show={setShowRightSidebar}
-            />
-          )}
-          {!showRightSidebar ? (
-            <RightSidebarButton
-              sidebar_show={showRightSidebar}
-              set_show={setShowRightSidebar}
-              text='More Info'
-            />
-          ) : null}
-        </div>
+        <Chart />
+        {showRightSidebar && (
+          <RightSidebar
+            sidebar_show={showRightSidebar}
+            set_show={setShowRightSidebar}
+          />
+        )}
+        {!showRightSidebar && (
+          <RightSidebarButton
+            sidebar_show={showRightSidebar}
+            set_show={setShowRightSidebar}
+            text="More Info"
+          />
+        )}
         <AlertModal
           isModalOpen={isAlertModalOpen}
-          setIsModalOpen={setIsAlertModalOpen}
           toggleModal={toggleAlertModal}
+        />
+        <LocationModal
+          isModalOpen={isLocationModalOpen}
+          toggleModal={toggleLocationModal}
         />
       </div>
     </>

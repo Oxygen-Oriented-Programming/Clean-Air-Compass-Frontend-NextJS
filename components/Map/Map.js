@@ -47,11 +47,14 @@ export default function Map(props) {
 
   
   props.map ? console.log(props.map.getZoom()):console.log('not loaded');
+
   return (
     <div className="flex">
       <MapContainer
         key={
-          props.locationData ? props.locationData.center_point : defaultLocation
+          props.locationData
+            ? props.locationData.center_point
+            : props.defaultLocation
         }
         className={style.map}
         center={
@@ -60,14 +63,19 @@ export default function Map(props) {
                 props.locationData.center_point[1],
                 props.locationData.center_point[0],
               ]
-            : defaultLocation
+            : props.defaultLocation
         }
         zoom={props.map ? props.map.getZoom() - 0.25 : 11}
         zoomSnap={0.25}
         scrollWheelZoom={true}
         style={{ width: "100%", height: "100%" }}
       >
-        <MapDescendent setMap={props.setMap} map={props.map} />
+        <MapDescendent
+          setMap={props.setMap}
+          map={props.map}
+          isMapLoaded={props.isMapLoaded}
+          setIsMapLoaded={props.setIsMapLoaded}
+        />
         <TileLayer
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'
           url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV"
