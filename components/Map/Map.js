@@ -27,6 +27,26 @@ export default function Map(props) {
       setDefaultLocation([response[0].lat, response[0].lon]);
   }
 
+  function adjustOpacity(zoom) {
+    if (zoom > 11.5) {
+      return 0.02
+    }
+    else if (zoom > 10.5) {
+      return 0.05
+    }
+    else if (zoom > 9.5) {
+      return 0.2
+    }
+    else if (zoom > 8.5) {
+      return 0.25
+    }
+    else if (zoom > 7.5) {
+      return 0.3
+    }
+  }
+
+  
+  props.map ? console.log(props.map.getZoom()):console.log('not loaded');
   return (
     <div className="flex">
       <MapContainer
@@ -42,7 +62,7 @@ export default function Map(props) {
               ]
             : defaultLocation
         }
-        zoom={ props.map ? props.map.getZoom() - 0.25: 10}
+        zoom={props.map ? props.map.getZoom() - 0.25 : 11}
         zoomSnap={0.25}
         scrollWheelZoom={true}
         style={{ width: "100%", height: "100%" }}
@@ -61,8 +81,10 @@ export default function Map(props) {
               style={(feature) => ({
                 color: getFillColor2(feature.properties["pm2.5"]),
                 weight: 0,
-                opacity: 0.05,
-                fillOpacity: 0.05,
+                opacity: 0.02,
+                fillRule: "nonzero",
+                // fillOpacity: 0.02,
+                fillOpacity: adjustOpacity(props.map.getZoom()),
                 fillColor: getFillColor2(feature.properties["pm2.5"]),
               })}
               onEachFeature={onEachFeature}
