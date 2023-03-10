@@ -49,9 +49,11 @@ export default function Map(props) {
               key={props.locationData}
               data={props.locationData.features}
               style={(feature) => ({
-                color: null,
-                fillOpacity: 0.5,
-                fillColor: getFillColor2(feature.properties.interpolated_value),
+                color: getFillColor2(feature.properties["pm2.5"]),
+                weight: 0,
+                opacity: 0.05,
+                fillOpacity: 0.05,
+                fillColor: getFillColor2(feature.properties["pm2.5"]),
               })}
               onEachFeature={onEachFeature}
             />
