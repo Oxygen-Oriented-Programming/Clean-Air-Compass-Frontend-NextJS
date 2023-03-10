@@ -35,7 +35,7 @@ export default function Map(props) {
       return 0.07
     }
     else if (zoom >= 9.5) {
-      return 0.2
+      return 0.15
     }
     else if (zoom >= 8.5) {
       return 0.25
@@ -65,7 +65,7 @@ export default function Map(props) {
               ]
             : props.defaultLocation
         }
-        zoom={props.map ? props.map.getZoom() - 0.25 : 11}
+        zoom={props.map ? props.map.getZoom() - 0.25 : 11.5}
         zoomSnap={0.25}
         scrollWheelZoom={true}
         style={{ width: "100%", height: "100%" }}
