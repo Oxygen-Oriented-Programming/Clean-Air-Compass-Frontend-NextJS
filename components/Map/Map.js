@@ -127,7 +127,7 @@ export default function Map(props) {
   }
 
   return (
-    <div className='flex'>
+    <div className="flex">
       <MapContainer
         key={
           props.locationData ? props.locationData.center_point : defaultLocation
@@ -143,12 +143,12 @@ export default function Map(props) {
         }
         zoom={props.locationData ? 10 : 8}
         scrollWheelZoom={true}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: "100%", height: "100%" }}
       >
         <MapDescendent setMap={props.setMap} map={props.map} />
         <TileLayer
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'
-          url='https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV'
+          url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=wrICbM8xyaQ9BjsrLSNV"
         />
 
         {props.locationData && (
@@ -157,9 +157,11 @@ export default function Map(props) {
               key={props.locationData}
               data={props.locationData.features}
               style={(feature) => ({
-                color: null,
-                fillOpacity: 0.5,
-                fillColor: getFillColor2(feature.properties.interpolated_value),
+                color: getFillColor2(feature.properties["pm2.5"]),
+                weight: 0,
+                opacity: 0.05,
+                fillOpacity: 0.05,
+                fillColor: getFillColor2(feature.properties["pm2.5"]),
               })}
               onEachFeature={onEachFeature}
             />
