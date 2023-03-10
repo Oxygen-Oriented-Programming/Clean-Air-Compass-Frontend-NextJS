@@ -28,19 +28,19 @@ export default function Map(props) {
   }
 
   function adjustOpacity(zoom) {
-    if (zoom > 11.5) {
+    if (zoom >= 11.5) {
       return 0.02
     }
-    else if (zoom > 10.5) {
-      return 0.05
+    else if (zoom >= 10.5) {
+      return 0.07
     }
-    else if (zoom > 9.5) {
+    else if (zoom >= 9.5) {
       return 0.2
     }
-    else if (zoom > 8.5) {
+    else if (zoom >= 8.5) {
       return 0.25
     }
-    else if (zoom > 7.5) {
+    else if (zoom >= 7.5) {
       return 0.3
     }
   }
@@ -83,7 +83,6 @@ export default function Map(props) {
                 weight: 0,
                 opacity: 0.02,
                 fillRule: "nonzero",
-                // fillOpacity: 0.02,
                 fillOpacity: adjustOpacity(props.map.getZoom()),
                 fillColor: getFillColor2(feature.properties["pm2.5"]),
               })}
