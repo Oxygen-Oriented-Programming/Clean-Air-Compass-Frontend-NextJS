@@ -9,10 +9,7 @@ import AlertModal from "./AlertModal";
 import LocationModal from "./LocationModal";
 import AlertMessage from "./AlertMessage";
 import { useSession } from "next-auth/react";
-import {
-  handleSubmit,
-  useLocation
-} from "./homepageFunctions";
+import { handleSubmit, useLocation } from "./homepageFunctions";
 
 // const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 

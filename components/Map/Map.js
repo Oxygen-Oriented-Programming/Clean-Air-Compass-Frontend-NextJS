@@ -1,13 +1,13 @@
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 // import 'leaflet-defaulticon-compatibility';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
-import style from '../../styles/Map.module.css';
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import style from "../../styles/Map.module.css";
 // import useSWR from 'swr';
 // import { useState, useEffect } from 'react';
-import MapDescendent from './MapDescendent';
+import MapDescendent from "./MapDescendent";
 // import { useSession } from 'next-auth/react';
-import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet';
-import {getFillColor2, onEachFeature, pointToLayer} from "./mapFunctions";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { getFillColor2, onEachFeature, pointToLayer } from "./mapFunctions";
 
 export default function Map(props) {
   // const [mapRef, setMapRef] = useState(null);
@@ -29,24 +29,19 @@ export default function Map(props) {
 
   function adjustOpacity(zoom) {
     if (zoom >= 11.5) {
-      return 0.02
-    }
-    else if (zoom >= 10.5) {
-      return 0.07
-    }
-    else if (zoom >= 9.5) {
-      return 0.15
-    }
-    else if (zoom >= 8.5) {
-      return 0.25
-    }
-    else if (zoom >= 7.5) {
-      return 0.3
+      return 0.02;
+    } else if (zoom >= 10.5) {
+      return 0.07;
+    } else if (zoom >= 9.5) {
+      return 0.15;
+    } else if (zoom >= 8.5) {
+      return 0.25;
+    } else if (zoom >= 7.5) {
+      return 0.3;
     }
   }
 
-  
-  props.map ? console.log(props.map.getZoom()):console.log('not loaded');
+  props.map ? console.log(props.map.getZoom()) : console.log("not loaded");
 
   return (
     <div className="flex">
