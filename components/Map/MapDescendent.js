@@ -9,5 +9,6 @@ export default function MapDescendent({ setMap, setIsMapLoaded, isMapLoaded }) {
     if (!isMapLoaded) {
       setIsMapLoaded(true); // this only happens once when the map is originally loaded since nothing ever sets it back to false
     }
-  }, [isMapLoaded, setIsMapLoaded, setMap, leafletMap]);
+    // }, [isMapLoaded, setIsMapLoaded, setMap, leafletMap]);
+  }, []);
 }

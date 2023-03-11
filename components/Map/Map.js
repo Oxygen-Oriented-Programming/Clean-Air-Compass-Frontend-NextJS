@@ -1,52 +1,47 @@
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
-import style from '../../styles/Map.module.css';
-import useSWR from 'swr';
-import { useState, useEffect } from 'react';
-import MapDescendent from './MapDescendent';
-import { useSession } from 'next-auth/react';
-import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet';
-import {getFillColor2, onEachFeature, pointToLayer} from "./mapFunctions";
+import "leaflet/dist/leaflet.css";
+// import 'leaflet-defaulticon-compatibility';
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import style from "../../styles/Map.module.css";
+// import useSWR from 'swr';
+// import { useState, useEffect } from 'react';
+import MapDescendent from "./MapDescendent";
+// import { useSession } from 'next-auth/react';
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { getFillColor2, onEachFeature, pointToLayer } from "./mapFunctions";
 
 export default function Map(props) {
-  const [mapRef, setMapRef] = useState(null);
-  const { data: session, status } = useSession();
-  const [defaultLocation, setDefaultLocation] = useState([47.0, -122.0]);
+  // const [mapRef, setMapRef] = useState(null);
+  // const { data: session, status } = useSession();
+  // const [defaultLocation, setDefaultLocation] = useState([47.0, -122.0]);
 
-  useEffect(() => {
-    if(session && session.auth_token.default_location){
-      getDefaultLatLong();
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if(session && session.auth_token.default_location){
+  //     getDefaultLatLong();
+  //   }
+  // }, [session]);
 
-  async function getDefaultLatLong() {
-      const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
-      const apiData = await fetch(url);
-      const response = await apiData.json();
-      setDefaultLocation([response[0].lat, response[0].lon]);
-  }
+  // async function getDefaultLatLong() {
+  //     const url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&q=${session.auth_token.default_location}&format=json`;
+  //     const apiData = await fetch(url);
+  //     const response = await apiData.json();
+  //     setDefaultLocation([response[0].lat, response[0].lon]);
+  // }
 
   function adjustOpacity(zoom) {
     if (zoom >= 11.5) {
-      return 0.02
-    }
-    else if (zoom >= 10.5) {
-      return 0.07
-    }
-    else if (zoom >= 9.5) {
-      return 0.15
-    }
-    else if (zoom >= 8.5) {
-      return 0.25
-    }
-    else if (zoom >= 7.5) {
-      return 0.3
+      return 0.02;
+    } else if (zoom >= 10.5) {
+      return 0.07;
+    } else if (zoom >= 9.5) {
+      return 0.15;
+    } else if (zoom >= 8.5) {
+      return 0.25;
+    } else if (zoom >= 7.5) {
+      return 0.3;
     }
   }
 
-  
-  props.map ? console.log(props.map.getZoom()):console.log('not loaded');
+  props.map ? console.log(props.map.getZoom()) : console.log("not loaded");
 
   return (
     <div className="flex">
