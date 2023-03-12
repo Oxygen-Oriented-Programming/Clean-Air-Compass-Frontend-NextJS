@@ -2,7 +2,7 @@
 
 ### _Oliver Speir_ / _Harper Foley_ / _Jason Christopher_ / _Dennis Nichols_ / _DeShon Dixon_
 
-<img width="791" alt="clean-air-compass logo" src="public/logo.png">
+<img width="200" alt="clean-air-compass logo" src="public/logo.png">
 
 ## Overview
 
