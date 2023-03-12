@@ -1,8 +1,9 @@
-# CleanAir Compass
+<div style="display: flex; align-items: center;">
+  <img width="100" alt="clean-air-compass logo" src="public/logo.png" style="margin-left: auto;">
+  <h1 style="margin: 0;">CleanAir Compass</h1>
+</div>
 
 ### _Oliver Speir_ / _Harper Foley_ / _Jason Christopher_ / _Dennis Nichols_ / _DeShon Dixon_
-
-<img width="200" alt="clean-air-compass logo" src="public/logo.png">
 
 ## Overview
 
@@ -10,22 +11,16 @@ Clean Air Compass is a mapping interface and alert system for data from the open
 
 The pain point our site solves is that the current map provided by Purple Air only shows point location for each sensor and it would be helpful for a user to be able to access estimated air quality for their home or any other location in their area. Additionally, the ability to access fine-grained alerts for air quality in their location allows users to make critical health safety decisions. Users with asthma or other pulmonary conditions would benefit greatly from more spatially accurate information about air quality.
 
-## MVP
+## Features
 
-Our site will provide an interactive spatially interpolated map of air quality index data for a user specified location. The user will also have the opportunity to make an account to keep track of their favorite locations as well as sign up for alerts about air quality in their area.
+- Interactive spatially interpolated map of air quality index data for a user specified location. 
+- Ability for users to set default locations for their account
+- Users can sign up for text alerts about changing air quality levels in their area.
 
-## Stretch Goals
+## Connected Repositories
 
-- Provide the user graphs of historical air quality data for their location.
-- Create a predictive model of air quality for user location based on historical data.
-
----
-
-### UML documentation requirements
-
-![Whiteboard Image](https://i.imgur.com/gXW0tAG.png)
-
----
+- [Django backend](https://github.com/Oxygen-Oriented-Programming/Clean-Air-Compass-API/blob/dev/README.md) for user data management and text alert handling
+- [Mapping API](https://github.com/Oxygen-Oriented-Programming/clean-air-compass-mapping-api) for processing data from the Purple Air API and applying a machine learning model to estimate air quality (PM2.5) accross a user-specified area.
 
 ### PM2.5 Chart
 
