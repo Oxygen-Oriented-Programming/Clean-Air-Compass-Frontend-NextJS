@@ -107,7 +107,11 @@ export default function About({handleReturnClick, returnAnimation, showAbout}) {
           />
         </Link>
         <li className="m-1 text-center transition-all">
-          Full Stack Software Engineer | Continuous Improver
+          Continuous Improver
+          and a skilled Full Stack Developer who thrives on challenging assignments and opportunities to apply
+innovative problem-solving skills. Proven ability to adapt to new environments and identify critical
+resources. Possesses a comprehensive understanding of Continuous Integration and Test Driven
+Development methodologies.
         </li>
         <Link
           className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white"

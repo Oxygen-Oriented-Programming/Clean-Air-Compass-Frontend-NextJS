@@ -1,13 +1,12 @@
-import React from "react";
 import Image from "next/image";
 import faqChart from "public/faqChart.png";
 
 export default function Chart(props) {
   return (
     <>
-      <div className="fixed flex flex-row items-center justify-around transition-all right-56 top-5 ">
+      <div className="hidden md:fixed lg:fixed lg:top-5 lg:right-56 md:top-5 md:right-56 cursor-pointer">
         <Image
-          className="h-14 transition-all w-fit hover:h-[30rem] hover:w-auto"
+          className="rounded-lg h-14 transition-all w-fit hover:h-[30rem] hover:w-auto "
           src={faqChart}
           alt=""
           text="faq chart"
