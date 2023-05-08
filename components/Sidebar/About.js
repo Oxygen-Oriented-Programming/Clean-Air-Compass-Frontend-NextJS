@@ -36,7 +36,7 @@ export default function About({
         }}
       >
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-blue-500 hover:text-blue-900">
-          <a href="" target="blank_"> Project GitHub </a>
+          <a href="https://github.com/orgs/Oxygen-Oriented-Programming/repositories" target="blank_"> Project GitHub </a>
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Oliver Speir
