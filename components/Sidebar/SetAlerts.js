@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import useResource from "../Hooks/useResource.js";
 import { useSession } from "next-auth/react";
 
-export default function MyAlerts() {
+export default function SetAlerts() {
   const { createResource, updateResource, deleteResource, resources } =
     useResource();
   const { data: session } = useSession();

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import Link from 'next/link';
-import MyAlerts from './SetAlerts';
-import SetDefaultLocation from './SetDefaultLocation';
-import Google from 'next-auth/providers/google';
+
 
 export default function Login(props) {
   const { data: session, status } = useSession();

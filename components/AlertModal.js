@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import MyAlerts from "./Sidebar/SetAlerts";
+import SetAlerts from "./Sidebar/SetAlerts";
 
 if (typeof window !== 'undefined') {
   Modal.setAppElement('#modals');
@@ -20,7 +20,7 @@ export default function AlertModal(props) {
         >
           X
         </button>
-        <MyAlerts />
+        <SetAlerts />
       </Modal>
     </>
   );
