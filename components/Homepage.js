@@ -97,6 +97,8 @@ export default function Homepage() {
         <LocationModal
           isModalOpen={isLocationModalOpen}
           toggleModal={toggleLocationModal}
+          setMessage={setMessage}
+          message={message}
         />
       </div>
     </>
