@@ -95,7 +95,6 @@ export const BrowserDefaultLocation = (
   });
 };
 
-
 // this function flys to and renders the geojson for the users default location:
 // 1. sends the default location to our fast api
 // (we assume the default location they have set won't return message from the fast api)
@@ -147,8 +146,9 @@ export const handleSubmit = async (
     cityRegex.test(inputRef.current.value)
   ) {
     setLoading(true);
-    let url = process.env.NEXT_PUBLIC_BASE_URL + inputRef.current.value;
+    let url = process.env.NEXT_PUBLIC_BASE_URL + encodeURIComponent(inputRef.current.value);
     try {
+      console.log(url)
       const response = await fetch(url);
       const apiData = await response.json();
       if (apiData.hasOwnProperty("message")) {
@@ -226,7 +226,12 @@ export const useLocation = (
       "geolocation" in navigator &&
       isMapLoaded
     ) {
-      BrowserDefaultLocation(setMessage, setLocationData, map, setDefaultMapLocation);
+      BrowserDefaultLocation(
+        setMessage,
+        setLocationData,
+        map,
+        setDefaultMapLocation
+      );
     }
   }, [status, isMapLoaded]);
 };
