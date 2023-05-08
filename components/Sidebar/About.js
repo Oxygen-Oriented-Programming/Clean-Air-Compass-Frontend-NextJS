@@ -36,7 +36,14 @@ export default function About({
         }}
       >
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-blue-500 hover:text-blue-900">
-          <a href="https://github.com/orgs/Oxygen-Oriented-Programming/repositories" target="_blank"> Project GitHub </a>
+          <a
+            href="https://github.com/orgs/Oxygen-Oriented-Programming/repositories"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            Project GitHub{" "}
+          </a>
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Oliver Speir
@@ -54,6 +61,7 @@ export default function About({
             href="https://github.com/OliverSpeir"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
@@ -61,6 +69,7 @@ export default function About({
             href="https://www.linkedin.com/in/oliverspeir/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
@@ -68,13 +77,14 @@ export default function About({
             href="https://OliverSpeir.com"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
         </li>
         <li className="m-1 text-center transition-all">
-          I am open to network, freelance or work full-time at the right company,
-          please feel free to connect with me.
+          I am open to network, freelance or work full-time at the right
+          company, please feel free to connect with me.
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Harper Foley
@@ -92,6 +102,7 @@ export default function About({
             href="https://github.com/hfoley2013"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
@@ -99,6 +110,7 @@ export default function About({
             href="https://www.linkedin.com/in/harper-e-foley/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
@@ -106,6 +118,7 @@ export default function About({
             href="https://harperfoley.vercel.app/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -131,6 +144,7 @@ export default function About({
             href="https://github.com/deshondixon"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
@@ -138,6 +152,7 @@ export default function About({
             href="https://www.linkedin.com/in/deshondixon/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
@@ -145,6 +160,7 @@ export default function About({
             href="https://deshondixon.vercel.app/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -170,6 +186,7 @@ export default function About({
             href="https://github.com/dennis-nichols"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
@@ -177,6 +194,7 @@ export default function About({
             href="https://www.linkedin.com/in/dennisgnichols/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
@@ -184,6 +202,7 @@ export default function About({
             href="https://dennis-nichols-portfolio.vercel.app/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -208,6 +227,7 @@ export default function About({
             href="https://github.com/jason-christopher"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
@@ -215,6 +235,7 @@ export default function About({
             href="https://www.linkedin.com/in/jasonchristopher24/"
             target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>

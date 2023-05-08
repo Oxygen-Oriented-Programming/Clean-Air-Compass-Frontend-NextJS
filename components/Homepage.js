@@ -66,7 +66,7 @@ export default function Homepage() {
         {hideSidebar && (
           <SidebarButton sidebar_show={hideSidebar} set_show={setHideSidebar} />
         )}
-        {message && <AlertMessage message={message} />}
+        {message && <AlertMessage message={message} setMessage={setMessage} />}
         <Map
           className=""
           locationData={locationData}
