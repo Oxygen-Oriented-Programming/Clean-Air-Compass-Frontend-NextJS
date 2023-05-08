@@ -2,6 +2,9 @@ export default function SetDefaultLocation({
   auth_token,
   user_id,
   defaultChange,
+  defaultSet,
+  setMessage,
+  message
 }) {
   // this function sends a post request and if that fails it sends a put request
   // if the put request completes it will call defaultChange function which is a prop
@@ -12,6 +15,15 @@ export default function SetDefaultLocation({
     const location = e.target.default_location.value;
     const user_number = { user_id }.user_id;
     let putAttempt = null;
+    console.log(message)
+    let valid = await fetch(process.env.NEXT_PUBLIC_BASE_URL + location)
+    valid = await valid.json();
+    console.log(valid)
+    if (valid.hasOwnProperty("message")) {
+      setMessage("This location is either invalid or there is insufficient sensor data. If you typed it correctly, try a city nearby.");
+      return;
+    }
+    setMessage("")
     const postAttempt = await fetch(
       `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`,
       {
@@ -22,7 +34,7 @@ export default function SetDefaultLocation({
         },
         body: JSON.stringify({ user: user_number, default_location: location }),
       }
-    );
+    ).then(defaultSet(location));
     if (postAttempt.status === 400) {
       putAttempt = await fetch(
         `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}${user_number}/`,
@@ -40,6 +52,7 @@ export default function SetDefaultLocation({
       ).then(defaultChange(location));
     }
   }
+
   return (
     <>
       <div className="flex flex-col transition-all items-center w-full h-full space-y-2.5 bg-transparent">

@@ -1,5 +1,5 @@
 import useSWR from "swr";
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_SMS_ALERT_URL;
+export const apiUrl = process.env.NEXT_PUBLIC_EMAIL_ALERT_URL;
 import { useSession } from "next-auth/react";
 
 export default function useResource() {
@@ -36,7 +36,7 @@ export default function useResource() {
 
   async function deleteResource(id) {
     try {
-      const url = apiUrl + id;
+      const url = apiUrl + id + "/";
       const options = config();
       options.method = "DELETE";
       await fetch(url, options);
@@ -48,7 +48,7 @@ export default function useResource() {
 
   async function updateResource(id, info) {
     try {
-      const url = apiUrl + id;
+      const url = apiUrl + id + "/";
       const options = config();
       options.method = "PATCH";
       options.body = JSON.stringify(info);

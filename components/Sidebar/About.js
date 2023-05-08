@@ -1,13 +1,17 @@
-import Link from 'next/link';
-import React from 'react'
-import Image from 'next/image';
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
 import harper from "public/harper.png";
 import oliver from "public/oliver.png";
 import deshon from "public/deshon.png";
 import jason from "public/jason.png";
 import dennis from "public/dennis.png";
 
-export default function About({handleReturnClick, returnAnimation, showAbout}) {
+export default function About({
+  handleReturnClick,
+  returnAnimation,
+  showAbout,
+}) {
   return (
     <>
       <button
@@ -31,139 +35,194 @@ export default function About({handleReturnClick, returnAnimation, showAbout}) {
           overflow: "visible",
         }}
       >
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all duration-100 hover:cursor-pointer hover:text-gray-500 text-white "
-          href="https://github.com/orgs/Oxygen-Oriented-Programming/repositories"
-          target="_blank"
-        >
-          <li className="mt-4 mb-2 text-4xl font-bold transition-all">About</li>
-        </Link>
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white "
-          href="https://github.com/dennis-nichols"
-          target="_blank"
-        >
-          Dennis Nichols
-        </Link>
-        <Link
-          className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer"
-          href="https://www.linkedin.com/in/dennisgnichols/"
-          target="_blank"
-        >
-          <Image
-            className="pb-2 h-[9.1vw] w-[9vw] rounded-3xl transition-all "
-            src={dennis}
-            alt=""
-            text="dennis nichols"
-          />
-        </Link>
-        <li className="m-1 text-center transition-all">
-          Software development student with @codefellows. Former US Navy
-          servicemember and @CDCgov public health professional.
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-blue-500 hover:text-blue-900">
+          <a href="" target="blank_"> Project GitHub </a>
         </li>
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white"
-          href="https://github.com/hfoley2013"
-          target="_blank"
-        >
-          Harper Foley
-        </Link>
-        <Link
-          className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer"
-          href="https://www.linkedin.com/in/harper-e-foley/"
-          target="_blank"
-        >
-          <Image
-            className="pb-2 h-[9vw] w-fit rounded-3xl "
-            src={harper}
-            alt=""
-            text="harper foley"
-          />
-        </Link>
-        <li className="m-1 text-center">
-          As a software developer with a diverse background in Tech M&A, NFTs,
-          and Navy Special Operations, I bring a unique perspective and skill
-          set to the table. With over 8 years of professional experience , I
-          have a proven track record of delivering results and driving growth
-          for my clients and employers.
-        </li>
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white"
-          href="https://github.com/OliverSpeir"
-          target="_blank"
-        >
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Oliver Speir
-        </Link>
-        <Link
-          className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer"
-          href="https://www.linkedin.com/in/oliverspeir/"
-          target="_blank"
-        >
+        </li>
+        <div className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900">
           <Image
             className="pb-2 h-fit w-[9vw] rounded-3xl "
             src={oliver}
-            alt=""
+            alt="Picture of Oliver Speir"
             text="Oliver Speir"
           />
-        </Link>
+        </div>
+        <li>
+          <a
+            href="https://github.com/OliverSpeir"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Github
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/oliverspeir/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            LinkedIn
+          </a>{" "}
+          <a
+            href="https://OliverSpeir.com"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Portfolio
+          </a>
+        </li>
         <li className="m-1 text-center transition-all">
-          Continuous Improver
-          and a skilled Full Stack Developer who thrives on challenging assignments and opportunities to apply
-innovative problem-solving skills. Proven ability to adapt to new environments and identify critical
-resources. Possesses a comprehensive understanding of Continuous Integration and Test Driven
-Development methodologies.
+          I am open to network, freelance or work full-time at the right company,
+          please feel free to connect with me.
         </li>
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white"
-          href="https://github.com/deshondixon"
-          target="_blank"
-        >
-          DeShon Dixon
-        </Link>
-        <Link
-          className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer"
-          href="https://www.linkedin.com/in/deshondixon/"
-          target="_blank"
-        >
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
+          Harper Foley
+        </li>
+        <div className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900">
           <Image
-            className="w-[9vw] pb-2 h-fit rounded-3xl "
-            src={deshon}
-            alt=""
-            text="deshon dixon"
+            className="pb-2 h-fit w-[9vw] rounded-3xl "
+            src={harper}
+            alt="Picture of Harper Foley"
+            text="Harper Foley"
           />
-        </Link>
-        <li className="m-1 text-center">
-          Software Development Student and Army Veteran offering a strong
-          foundation in software development and programming principles across
-          multiple platforms.
+        </div>
+        <li>
+          <a
+            href="https://github.com/hfoley2013"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Github
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/harper-e-foley/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            LinkedIn
+          </a>{" "}
+          <a
+            href="https://harperfoley.vercel.app/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Portfolio
+          </a>
         </li>
-        <Link
-          className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all hover:text-purple-700 text-white"
-          href="https://github.com/jason-christopher"
-          target="_blank"
-        >
+        <li className="m-1 text-center transition-all">
+          I am a full stack engineer with experience in FinTech and blockchain
+          technologies. Currently, I am bringing greater insights into the
+          gaming NFT marketplace at Rainier Racing NFT.
+        </li>
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
+          DeShon Dixon
+        </li>
+        <div className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900">
+          <Image
+            className="pb-2 h-fit w-[9vw] rounded-3xl "
+            src={deshon}
+            alt="Picture of DeShon Dixon"
+            text="DeShon Dixon"
+          />
+        </div>
+        <li>
+          <a
+            href="https://github.com/deshondixon"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Github
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/deshondixon/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            LinkedIn
+          </a>{" "}
+          <a
+            href="https://deshondixon.vercel.app/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Portfolio
+          </a>
+        </li>
+        <li className="m-1 text-center transition-all">
+          Software Engineer and Army Veteran offering a strong foundation in
+          software development and programming principles across multiple
+          platforms.
+        </li>
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
+          Dennis Nichols
+        </li>
+        <div className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900">
+          <Image
+            className="pb-2 h-fit w-[9vw] rounded-3xl "
+            src={dennis}
+            alt="Picture of DeShon Dixon"
+            text="DeShon Dixon"
+          />
+        </div>
+        <li>
+          <a
+            href="https://github.com/dennis-nichols"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Github
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/dennisgnichols/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            LinkedIn
+          </a>{" "}
+          <a
+            href="https://dennis-nichols-portfolio.vercel.app/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Portfolio
+          </a>
+        </li>
+        <li className="m-1 text-center transition-all">
+          My goal is to bring web development and data science skills to bear on
+          the challenges of renewable energy, sustainability, and public health.
+        </li>
+        <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Jason Christopher
-        </Link>
-        <Link
-          className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900 hover:cursor-pointer"
-          href="https://www.linkedin.com/in/jasonchristopher24/"
-          target="_blank"
-        >
+        </li>
+        <div className="flex px-2 pt-2 m-auto text-2xl font-normal text-white transition-all h-fit rounded-3xl hover:bg-gray-900">
           <Image
             className="pb-2 h-fit w-[9vw] rounded-3xl "
             src={jason}
-            alt=""
-            text="jason christopher"
+            alt="Picture of DeShon Dixon"
+            text="DeShon Dixon"
           />
-        </Link>
+        </div>
+        <li>
+          <a
+            href="https://github.com/jason-christopher"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            Github
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/jasonchristopher24/"
+            target="blank_"
+            className="text-blue-500 hover:text-blue-900"
+          >
+            LinkedIn
+          </a>
+        </li>
         <li className="m-1 text-center transition-all">
           Software developer specializing in JavaScript and Python. Air Force
           veteran with 10+ years of experience with leading teams of combat
-          aviators. Squadron’s top instructor and “Top Graduate” of multiple
-          military training courses. Subject-matter expert selected to validate
-          software updates, manage courseware development, and author 1,600
-          pages of courseware and governing documents for the $2.9 billion E-3G
-          fleet upgrade.
+          aviators.
         </li>
       </ol>
     </>

@@ -7,6 +7,46 @@ import { useEffect } from "react";
 //            it sets the message state which displays a red alert type message on top of homepage
 //            then it calls setDefaultMapLocation function which is part of DefaultMapLocation state which is normally set to seattle
 // dev notes:  we could remove the try catch block on map.flyto if we wanted to
+// export const BrowserDefaultLocation = (
+//   setMessage,
+//   setLocationData,
+//   map,
+//   setDefaultMapLocation
+// ) => {
+//   navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+//     const { latitude, longitude } = coords;
+//     const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
+//     await fetch(url)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log(data)
+//         fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${data.address.city}`)
+//           .then((response) => response.json())
+//           .then((data) => {
+//             if (!data.message) {
+//               try {
+//                 // zoom setting is second param of flyTo (10 as of right now)
+//                 map.flyTo([data.center_point[1], data.center_point[0]], 10, {
+//                   animate: true,
+//                   duration: 5,
+//                 });
+//               } catch (error) {
+//                 // console.log(error);
+//               }
+//               setTimeout(() => {
+//                 setLocationData(data);
+//               }, 5100);
+//             }
+//             if (data.message) {
+//               setDefaultMapLocation([latitude, longitude]);
+//               setMessage(
+//                 "Sorry! There are no sensors in the area sent by your browser. Try searching for a city nearby then logging in and setting it as your default location OR check out PurpleAir.com and learn how to set up your own sensor."
+//               );
+//             }
+//           });
+//       });
+//   });
+// };
 export const BrowserDefaultLocation = (
   setMessage,
   setLocationData,
@@ -19,33 +59,42 @@ export const BrowserDefaultLocation = (
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${data.address.city}`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (!data.message) {
-              try {
-                // zoom setting is second param of flyTo (10 as of right now)
-                map.flyTo([data.center_point[1], data.center_point[0]], 10, {
-                  animate: true,
-                  duration: 5,
-                });
-              } catch (error) {
-                // console.log(error);
+        const locationQuery = data.address.city
+          ? data.address.city
+          : data.address.county;
+        if (locationQuery) {
+          fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${locationQuery}`)
+            .then((response) => response.json())
+            .then((data) => {
+              if (!data.message) {
+                try {
+                  map.flyTo([data.center_point[1], data.center_point[0]], 10, {
+                    animate: true,
+                    duration: 5,
+                  });
+                } catch (error) {
+                  console.log(error);
+                }
+                setTimeout(() => {
+                  setLocationData(data);
+                }, 5100);
               }
-              setTimeout(() => {
-                setLocationData(data);
-              }, 5100);
-            }
-            if (data.message) {
-              setDefaultMapLocation([latitude, longitude]);
-              setMessage(
-                "Sorry! There are no sensors in the area sent by your browser. Try searching for a city nearby then logging in and setting it as your default location OR check out PurpleAir.com and learn how to set up your own sensor."
-              );
-            }
-          });
+              if (data.message) {
+                setDefaultMapLocation([latitude, longitude]);
+                setMessage(
+                  "Sorry! There are no sensors in the area sent by your browser. Try searching for a city nearby then logging in and setting it as your default location OR check out PurpleAir.com and learn how to set up your own sensor."
+                );
+              }
+            });
+        } else {
+          setMessage(
+            "We couldn't determine your location. Please try searching for a city nearby."
+          );
+        }
       });
   });
 };
+
 
 // this function flys to and renders the geojson for the users default location:
 // 1. sends the default location to our fast api
@@ -177,7 +226,7 @@ export const useLocation = (
       "geolocation" in navigator &&
       isMapLoaded
     ) {
-      BrowserDefaultLocation(setMessage, setLocationData, map);
+      BrowserDefaultLocation(setMessage, setLocationData, map, setDefaultMapLocation);
     }
   }, [status, isMapLoaded]);
 };

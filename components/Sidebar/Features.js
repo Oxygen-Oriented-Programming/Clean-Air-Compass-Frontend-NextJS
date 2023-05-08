@@ -1,6 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export default function Features({handleReturnClick, returnAnimation, showFeatures, showAbout}) {
+export default function Features({
+  handleReturnClick,
+  returnAnimation,
+  showFeatures,
+  showAbout,
+}) {
   return (
     <>
       <button
@@ -14,7 +19,7 @@ export default function Features({handleReturnClick, returnAnimation, showFeatur
       >
         Close Features
       </button>
-      <ol
+      {/* <ol
         className="flex flex-col items-center justify-around text-sm inside "
         style={{
           height: "100%",
@@ -51,7 +56,52 @@ export default function Features({handleReturnClick, returnAnimation, showFeatur
           <span className="font-bold text-purple-600">text alerts</span> to stay
           informed about air quality risks in their area.
         </li>
-      </ol>
+      </ol> */}
+      <div className="flex flex-col items-center p-4 text-center align w-fit ">
+        <div className="w-fit p-2.5 mt-3 text-center items-center rounded-xl px-4 duration-300 h-fit bg-gray-800 ">
+          <div className="block pt-2 mb-2 font-medium ">
+            <h1 className="block font-medium text-slates-600 text-md mb-2">
+              Map
+            </h1>
+            <p className="text-sm text-gray-200 ">
+              Clean Air Compass uses data from the Purple Air network of air
+              quality monitoring sensors.
+              <br />
+              <br />
+              This data is used to estimate and display PM 2.5 values across a wide area rather than just displaying readings
+              at individual sensor locations.
+              <br />
+              <br />
+              Users can search for either a city or postal code within the US
+              and get back an air quality map.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center p-4 text-center align w-fit ">
+        <div className="w-fit p-2.5 mt-3 text-center items-center rounded-xl px-4 duration-300 h-fit bg-gray-800 ">
+          <div className="block pt-2 mb-2 font-medium ">
+            <h1 className="block font-medium text-slates-600 text-md mb-2">
+              Alerts
+            </h1>
+            <p className="text-sm text-gray-200 ">
+              Users can sign up to receive alerts to any email address about any location.<br/><br/> They will receive a notifcation when the air quality in a given area has reached the level they select.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center p-4 text-center align w-fit ">
+        <div className="w-fit p-2.5 mt-3 text-center items-center rounded-xl px-4 duration-300 h-fit bg-gray-800 ">
+          <div className="block pt-2 mb-2 font-medium ">
+            <h1 className="block font-medium text-slates-600 text-md mb-2">
+              Default Location
+            </h1>
+            <p className="text-sm text-gray-200 ">
+              When a user sets their default location anytime they log in the map will automatically display that location&#39;s information
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

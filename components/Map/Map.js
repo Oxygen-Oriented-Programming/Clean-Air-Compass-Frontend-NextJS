@@ -41,7 +41,7 @@ export default function Map(props) {
     }
   }
 
-  props.map ? console.log(props.map.getZoom()) : console.log("not loaded");
+  // props.map ? console.log(props.map.getZoom()) : console.log("not loaded");
 
   return (
     <div className="flex">

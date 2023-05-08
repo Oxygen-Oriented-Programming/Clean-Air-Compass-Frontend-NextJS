@@ -6,10 +6,14 @@ import SetDefaultLocation from "./Sidebar/SetDefaultLocation";
 export default function LocationModal(props) {
   const { data: session } = useSession();
   const [defaultChanged, setDefaultChanged] = useState();
+  const [defaultSet, setDefaultSet] = useState();
   const sessionDefault = session?.auth_token?.default_location;
 
   function defaultChange(newDefault) {
     setDefaultChanged(newDefault);
+  }
+  function firstDefaultSet(newDefault){
+    setDefaultSet(newDefault);
   }
 
   return (
@@ -32,6 +36,7 @@ export default function LocationModal(props) {
             </div>
           )}
           <div>
+            {defaultSet && !defaultChanged && <>Successfully Set</>}
             {defaultChanged && <>Successfully Changed To: {defaultChanged}</>}
           </div>
           {session && (
@@ -39,6 +44,9 @@ export default function LocationModal(props) {
               user_id={session.auth_token.user_id}
               auth_token={session.auth_token.tokens}
               defaultChange={defaultChange}
+              defaultSet={firstDefaultSet}
+              setMessage={props.setMessage}
+              message={props.message}
             />
           )}
         </div>

@@ -25,7 +25,6 @@ export default function Homepage() {
   const inputRef = useRef();
   const [defaultMapLocation, setDefaultMapLocation] = useState([47.0, -122.0]);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
-
   useLocation(
     status,
     session,
@@ -38,7 +37,6 @@ export default function Homepage() {
   const toggleLocationModal = () =>
     setIsLocationModalOpen(!isLocationModalOpen);
   const toggleAlertModal = () => setIsAlertModalOpen(!isAlertModalOpen);
-
   return (
     <>
       <Head>
@@ -99,6 +97,8 @@ export default function Homepage() {
         <LocationModal
           isModalOpen={isLocationModalOpen}
           toggleModal={toggleLocationModal}
+          setMessage={setMessage}
+          message={message}
         />
       </div>
     </>
