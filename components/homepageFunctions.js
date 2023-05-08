@@ -148,6 +148,7 @@ export const handleSubmit = async (
     setLoading(true);
     let url = process.env.NEXT_PUBLIC_BASE_URL + encodeURIComponent(inputRef.current.value);
     try {
+      console.log(url)
       const response = await fetch(url);
       const apiData = await response.json();
       if (apiData.hasOwnProperty("message")) {
