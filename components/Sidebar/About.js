@@ -73,7 +73,7 @@ export default function About({
           </a>
         </li>
         <li className="m-1 text-center transition-all">
-          I'm open to network, freelance or work full-time at the right company,
+          I&#39m open to network, freelance or work full-time at the right company,
           please feel free to connect with me.
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
