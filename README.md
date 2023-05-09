@@ -3,10 +3,6 @@
   <h1 style="margin: 0;">CleanAir Compass</h1>
 </div>
 
-### _Oliver Speir_ / _Harper Foley_ / _Jason Christopher_ / _Dennis Nichols_ / _DeShon Dixon_
-
-## Team LinkedIn
-
 - [Oliver Speir LinkedIn](https://www.linkedin.com/in/oliverspeir/)
 - [Harper Foley LinkedIn](https://www.linkedin.com/in/harper-e-foley/)
 - [DeShon Dixon LinkedIn](https://www.linkedin.com/in/deshondixon)
