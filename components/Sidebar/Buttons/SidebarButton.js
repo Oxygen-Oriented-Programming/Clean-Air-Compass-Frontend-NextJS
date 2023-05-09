@@ -6,7 +6,7 @@ export default function SidebarButton(props) {
   return (
     <>
       <button
-        className="fixed z-50 flex flex-col items-center p-2 ml-3 text-sm font-bold text-white bg-black border-2 border-black rounded-lg cursor-pointer top-3 left-10 w-70 hover:bg-black"
+        className="fixed z-50 flex flex-col items-center p-2 ml-3 text-sm font-bold text-white bg-black border-2 border-black rounded-lg cursor-pointer top-3 left-10 w-70"
         onClick={() => props.set_show(!props.sidebar_show)}
       >
         <Image
