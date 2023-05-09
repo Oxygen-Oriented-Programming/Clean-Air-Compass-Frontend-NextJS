@@ -10,7 +10,6 @@ import LocationModal from "./LocationModal";
 import AlertMessage from "./AlertMessage";
 import { useSession } from "next-auth/react";
 import { handleSubmit, useLocation } from "./homepageFunctions";
-import Head from "next/head";
 
 export default function Homepage() {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
@@ -39,15 +38,6 @@ export default function Homepage() {
   const toggleAlertModal = () => setIsAlertModalOpen(!isAlertModalOpen);
   return (
     <>
-      <Head>
-        <title>Clean Air Compass</title>
-        <link rel="shortcut icon" type="image/png" href="/your-favicon.png"/>
-        <meta property="og:title" content="Clean Air Compass" key="title" />
-        <meta
-          name="description"
-          content="Clean Air Compass is a mapping interface and alert system for data from the open Purple Air network of citizen-run air quality sensors."
-        />
-      </Head>
       <div className="flex cursor-auto h-fit">
         {!hideSidebar && (
           <Sidebar
