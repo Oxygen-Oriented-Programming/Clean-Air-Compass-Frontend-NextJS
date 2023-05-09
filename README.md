@@ -5,6 +5,14 @@
 
 ### _Oliver Speir_ / _Harper Foley_ / _Jason Christopher_ / _Dennis Nichols_ / _DeShon Dixon_
 
+## Team LinkedIn
+
+- [Oliver Speir LinkedIn](https://www.linkedin.com/in/oliverspeir/)
+- [Harper Foley LinkedIn](https://www.linkedin.com/in/harper-e-foley/)
+- [DeShon Dixon LinkedIn](https://www.linkedin.com/in/deshondixon)
+- [Dennis Nichols LinkedIn](https://www.linkedin.com/in/dennisgnichols/)
+- [Jason Christopher LinkedIn](https://www.linkedin.com/in/jasonchristopher24/)
+
 ## Overview
 
 Clean Air Compass is a mapping interface and alert system for data from the open Purple Air network of citizen-run air quality sensors.
@@ -19,19 +27,6 @@ The pain point our site solves is that the current map provided by Purple Air on
 
 ## Connected Repositories
 
-- [Django backend](https://github.com/Oxygen-Oriented-Programming/Clean-Air-Compass-API/blob/dev/README.md) for user data management and text alert handling
-- [Mapping API](https://github.com/Oxygen-Oriented-Programming/clean-air-compass-mapping-api) for processing data from the Purple Air API and applying a machine learning model to estimate air quality (PM2.5) accross a user-specified area.
+- [Django backend](https://github.com/Oxygen-Oriented-Programming/Clean-Air-Compass-API/blob/dev/README.md) for user data management and email alert handling
+- [Mapping API](https://github.com/Oxygen-Oriented-Programming/clean-air-compass-mapping-api) for processing data from the Purple Air API and applying a K Nearest Neighbor model to estimate air quality (PM2.5) accross a user-specified area.
 
-### PM2.5 Chart
-
-<img width="791" alt="clean-air-compass logo" src="public/faqChart.png">
-
----
-
-## Team LinkedIn
-
-- [Dennis Nichols LinkedIn](https://www.linkedin.com/in/dennisgnichols/)
-- [DeShon Dixon LinkedIn](https://www.linkedin.com/in/deshondixon)
-- [Harper Foley LinkedIn](https://www.linkedin.com/in/harper-e-foley/)
-- [Oliver Speir LinkedIn](https://www.linkedin.com/in/oliverspeir/)
-- [Jason Christopher LinkedIn](https://www.linkedin.com/in/jasonchristopher24/)
