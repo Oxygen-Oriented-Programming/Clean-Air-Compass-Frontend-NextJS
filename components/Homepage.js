@@ -41,6 +41,7 @@ export default function Homepage() {
     <>
       <Head>
         <title>Clean Air Compass</title>
+        <link rel="shortcut icon" type="image/png" href="/your-favicon.png"/>
         <meta property="og:title" content="Clean Air Compass" key="title" />
         <meta
           name="description"
