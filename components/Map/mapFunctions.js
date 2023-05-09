@@ -92,3 +92,18 @@ export const pointToLayer = (feature, center_point) => {
     fillOpacity: 0.8,
   });
 };
+
+export const adjustOpacity = (zoom) => {
+  switch (true) {
+    case zoom >= 13:
+      return 0.01;
+    case zoom >= 11.4:
+      return 0.06;
+    case zoom >= 10:
+      return 0.2;
+    case zoom >= 9:
+      return 0.3;
+    default:
+      return 0.5;
+  }
+};

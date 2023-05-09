@@ -36,7 +36,14 @@ export default function About({
         }}
       >
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-blue-500 hover:text-blue-900">
-          <a href="" target="blank_"> Project GitHub </a>
+          <a
+            href="https://github.com/orgs/Oxygen-Oriented-Programming/repositories"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            Project GitHub{" "}
+          </a>
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Oliver Speir
@@ -52,29 +59,32 @@ export default function About({
         <li>
           <a
             href="https://github.com/OliverSpeir"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
           <a
             href="https://www.linkedin.com/in/oliverspeir/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
           <a
             href="https://OliverSpeir.com"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
         </li>
         <li className="m-1 text-center transition-all">
-          I am open to network, freelance or work full-time at the right company,
-          please feel free to connect with me.
+          I am open to network, freelance or work full-time at the right
+          company, please feel free to connect with me.
         </li>
         <li className="flex h-fit px-4 py-2.5 font-normal text-2xl rounded transition-all text-white">
           Harper Foley
@@ -90,22 +100,25 @@ export default function About({
         <li>
           <a
             href="https://github.com/hfoley2013"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
           <a
             href="https://www.linkedin.com/in/harper-e-foley/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
           <a
             href="https://harperfoley.vercel.app/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -129,22 +142,25 @@ export default function About({
         <li>
           <a
             href="https://github.com/deshondixon"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
           <a
             href="https://www.linkedin.com/in/deshondixon/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
           <a
             href="https://deshondixon.vercel.app/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -168,22 +184,25 @@ export default function About({
         <li>
           <a
             href="https://github.com/dennis-nichols"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
           <a
             href="https://www.linkedin.com/in/dennisgnichols/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
           <a
             href="https://dennis-nichols-portfolio.vercel.app/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Portfolio
           </a>
@@ -206,15 +225,17 @@ export default function About({
         <li>
           <a
             href="https://github.com/jason-christopher"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             Github
           </a>{" "}
           <a
             href="https://www.linkedin.com/in/jasonchristopher24/"
-            target="blank_"
+            target="_blank"
             className="text-blue-500 hover:text-blue-900"
+            rel="noreferrer"
           >
             LinkedIn
           </a>

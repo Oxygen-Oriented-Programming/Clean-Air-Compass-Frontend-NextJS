@@ -17,9 +17,7 @@ export default function SetAlerts() {
 
   function createNewAlertHandler(e) {
     e.preventDefault();
-    const validInput = validateEmail(
-      e.target.email.value
-    );
+    const validInput = validateEmail(e.target.email.value);
     if (validInput) {
       const newAlert = {
         user: user,
@@ -30,9 +28,7 @@ export default function SetAlerts() {
       createResource(newAlert);
       formRef.current.reset();
     } else {
-      alert(
-        "Invalid Email"
-      );
+      alert("Invalid Email");
     }
   }
 
@@ -84,7 +80,7 @@ export default function SetAlerts() {
               htmlFor="airQualityThreshold"
               className="block mt-5 mb-1 font-mono text-2xl text-center text-white w-96"
             >
-             Receive alerts when the air quality is:
+              Receive alerts when the air quality is:
             </label>
             <select
               id="airQualityThreshold"

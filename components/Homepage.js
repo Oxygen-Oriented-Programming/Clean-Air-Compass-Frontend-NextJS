@@ -1,16 +1,14 @@
-import Map from "./Map";
+import Map from "./Map/DynamicMap";
 import Sidebar from "./Sidebar/Sidebar";
 import { useState, useRef } from "react";
 import RightSidebarButton from "./RightSidebar/RightSidebarButton";
 import RightSidebar from "./RightSidebar/RightSidebar";
 import SidebarButton from "./Sidebar/Buttons/SidebarButton";
-import Chart from "./Chart";
 import AlertModal from "./AlertModal";
 import LocationModal from "./LocationModal";
 import AlertMessage from "./AlertMessage";
 import { useSession } from "next-auth/react";
 import { handleSubmit, useLocation } from "./homepageFunctions";
-import Head from "next/head";
 
 export default function Homepage() {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
@@ -39,14 +37,6 @@ export default function Homepage() {
   const toggleAlertModal = () => setIsAlertModalOpen(!isAlertModalOpen);
   return (
     <>
-      <Head>
-        <title>Clean Air Compass</title>
-        <meta property="og:title" content="Clean Air Compass" key="title" />
-        <meta
-          name="description"
-          content="Clean Air Compass is a mapping interface and alert system for data from the open Purple Air network of citizen-run air quality sensors."
-        />
-      </Head>
       <div className="flex cursor-auto h-fit">
         {!hideSidebar && (
           <Sidebar
@@ -66,7 +56,7 @@ export default function Homepage() {
         {hideSidebar && (
           <SidebarButton sidebar_show={hideSidebar} set_show={setHideSidebar} />
         )}
-        {message && <AlertMessage message={message} />}
+        {message && <AlertMessage message={message} setMessage={setMessage} />}
         <Map
           className=""
           locationData={locationData}
@@ -76,7 +66,6 @@ export default function Homepage() {
           isMapLoaded={isMapLoaded}
           setIsMapLoaded={setIsMapLoaded}
         />
-        <Chart />
         {showRightSidebar && (
           <RightSidebar
             sidebar_show={showRightSidebar}

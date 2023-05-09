@@ -4,9 +4,7 @@ export default function RightSummary() {
       <div className="flex flex-col items-center p-4 text-center align w-fit ">
         <div className="w-fit p-2.5 mt-3 text-center items-center rounded-xl px-4 duration-300 h-fit bg-gray-800 ">
           <div className="block pt-2 mb-2 font-medium ">
-            <h1
-              className="block font-medium text-slates-600 text-md mb-2"
-            >
+            <h1 className="block font-medium text-slates-600 text-md mb-2">
               Why is PM 2.5 important?
             </h1>
             <p className="text-sm text-gray-200">

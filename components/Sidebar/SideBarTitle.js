@@ -9,7 +9,7 @@ export default function SideBarTitle() {
         src={logo}
         alt=""
       />
-      <span className="text-lg font-extrabold text-white transition-all hover:cursor-none">
+      <span className="text-lg font-extrabold text-white transition-all">
         <h1>CleanAir Compass</h1>
       </span>
     </div>

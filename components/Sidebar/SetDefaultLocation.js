@@ -4,7 +4,7 @@ export default function SetDefaultLocation({
   defaultChange,
   defaultSet,
   setMessage,
-  message
+  message,
 }) {
   // this function sends a post request and if that fails it sends a put request
   // if the put request completes it will call defaultChange function which is a prop
@@ -15,15 +15,15 @@ export default function SetDefaultLocation({
     const location = e.target.default_location.value;
     const user_number = { user_id }.user_id;
     let putAttempt = null;
-    console.log(message)
-    let valid = await fetch(process.env.NEXT_PUBLIC_BASE_URL + location)
+    let valid = await fetch(process.env.NEXT_PUBLIC_BASE_URL + location);
     valid = await valid.json();
-    console.log(valid)
     if (valid.hasOwnProperty("message")) {
-      setMessage("This location is either invalid or there is insufficient sensor data. If you typed it correctly, try a city nearby.");
+      setMessage(
+        "This location is either invalid or there is insufficient sensor data. If you typed it correctly, try a city nearby."
+      );
       return;
     }
-    setMessage("")
+    setMessage("");
     const postAttempt = await fetch(
       `${process.env.NEXT_PUBLIC_DEFAULT_LOCATION_BASE_URL}create/`,
       {
