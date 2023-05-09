@@ -254,5 +254,6 @@ export const useLocation = (
         setDefaultMapLocation
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, isMapLoaded]);
 };

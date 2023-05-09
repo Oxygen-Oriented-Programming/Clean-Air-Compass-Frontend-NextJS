@@ -7,8 +7,7 @@ export default function MapDescendent({ setMap, setIsMapLoaded, isMapLoaded }) {
   useEffect(() => {
     setMap(leafletMap);
     if (!isMapLoaded) {
-      setIsMapLoaded(true); // this only happens once when the map is originally loaded since nothing ever sets it back to false
+      setIsMapLoaded(true);
     }
-    // }, [isMapLoaded, setIsMapLoaded, setMap, leafletMap]);
-  }, []);
+  }, [isMapLoaded, leafletMap, setIsMapLoaded, setMap]);
 }
