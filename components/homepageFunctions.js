@@ -7,46 +7,6 @@ import { useEffect } from "react";
 //            it sets the message state which displays a red alert type message on top of homepage
 //            then it calls setDefaultMapLocation function which is part of DefaultMapLocation state which is normally set to seattle
 // dev notes:  we could remove the try catch block on map.flyto if we wanted to
-// export const BrowserDefaultLocation = (
-//   setMessage,
-//   setLocationData,
-//   map,
-//   setDefaultMapLocation
-// ) => {
-//   navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-//     const { latitude, longitude } = coords;
-//     const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_PUBLIC_LOCATIONIQ_API_KEY}&lat=${latitude}&lon=${longitude}&format=json`;
-//     await fetch(url)
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log(data)
-//         fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${data.address.city}`)
-//           .then((response) => response.json())
-//           .then((data) => {
-//             if (!data.message) {
-//               try {
-//                 // zoom setting is second param of flyTo (10 as of right now)
-//                 map.flyTo([data.center_point[1], data.center_point[0]], 10, {
-//                   animate: true,
-//                   duration: 5,
-//                 });
-//               } catch (error) {
-//                 // console.log(error);
-//               }
-//               setTimeout(() => {
-//                 setLocationData(data);
-//               }, 5100);
-//             }
-//             if (data.message) {
-//               setDefaultMapLocation([latitude, longitude]);
-//               setMessage(
-//                 "Sorry! There are no sensors in the area sent by your browser. Try searching for a city nearby then logging in and setting it as your default location OR check out PurpleAir.com and learn how to set up your own sensor."
-//               );
-//             }
-//           });
-//       });
-//   });
-// };
 export const BrowserDefaultLocation = (
   setMessage,
   setLocationData,
@@ -68,12 +28,16 @@ export const BrowserDefaultLocation = (
             .then((data) => {
               if (!data.message) {
                 try {
-                  map.flyTo([data.center_point[1], data.center_point[0]], 10, {
-                    animate: true,
-                    duration: 5,
-                  });
+                  map.flyTo(
+                    [data.center_point[1], data.center_point[0]],
+                    handleZoom(data.bounds),
+                    {
+                      animate: true,
+                      duration: 5,
+                    }
+                  );
                 } catch (error) {
-                  console.log(error);
+                  // console.log(error);
                 }
                 setTimeout(() => {
                   setLocationData(data);
@@ -108,16 +72,65 @@ export const UserDefaultLocation = (session, setLocationData, map) => {
     .then((data) => {
       try {
         // zoom setting is second param of flyTo (10 as of right now)
-        map.flyTo([data.center_point[1], data.center_point[0]], 10, {
-          animate: true,
-          duration: 5,
-        });
+        map.flyTo(
+          [data.center_point[1], data.center_point[0]],
+          handleZoom(data.bounds),
+          {
+            animate: true,
+            duration: 5,
+          }
+        );
       } catch (error) {}
       setTimeout(() => {
         setLocationData(data);
       }, 5100);
     });
 };
+
+//handleZoom is a helper Function for handleSubmit
+function handleZoom(bounds) {
+  // Extract latitude and longitude from bounds
+  const lat1 = bounds[0][0];
+  const lat2 = bounds[1][0];
+  const lon1 = bounds[0][1];
+  const lon2 = bounds[1][1];
+
+  // Create a bounding box array using the extracted values
+  const bbox = [lon1, lat1, lon2, lat2];
+  const earthRadius = 6371008.8;
+  const [west, south, east, north] = bbox;
+
+  // Calculate the surface area
+  const result =
+    (earthRadius *
+      earthRadius *
+      Math.PI *
+      Math.abs(Math.sin(rad(south)) - Math.sin(rad(north))) *
+      (east - west)) /
+    180;
+
+  // rad function to convert degrees to radians
+  function rad(num) {
+    return (num * Math.PI) / 180;
+  }
+
+  // Get the dynamic zoom level based on the surface area
+  const scaleFactor1 = (11.75 - 11.25) / (508733486 - 1668367727);
+  const scaleFactor2 = (11.25 - 7.75) / (1668367727 - 257501017260);
+
+  let zoomLevel;
+
+  if (result <= 508733486) {
+    zoomLevel = 11.75;
+  } else if (result <= 1668367727) {
+    zoomLevel = 11.75 - (result - 508733486) * scaleFactor1;
+  } else {
+    zoomLevel = 11.25 - (result - 1668367727) * scaleFactor2;
+  }
+
+  // Return the dynamic zoom factor
+  return zoomLevel;
+}
 
 // this is the handleSubmit from the search form
 // this function does:
@@ -128,6 +141,7 @@ export const UserDefaultLocation = (session, setLocationData, map) => {
 // 5. if fast api returns message(meaning error) it sets that error to the message state(which looks like an alert) and sets loading to be false
 // 6. if fast api doesnt return message (no error) it flys to the location and then renders the geojson
 // 7. catch from the fast api call try: displays a message saying error
+
 export const handleSubmit = async (
   e,
   inputRef,
@@ -136,7 +150,6 @@ export const handleSubmit = async (
   setLocationData,
   map
 ) => {
-  // console.log(map);
   e.preventDefault();
   setMessage("");
   const zipRegex = /^\d{5}(-\d{4})?$/;
@@ -146,9 +159,10 @@ export const handleSubmit = async (
     cityRegex.test(inputRef.current.value)
   ) {
     setLoading(true);
-    let url = process.env.NEXT_PUBLIC_BASE_URL + encodeURIComponent(inputRef.current.value);
+    let url =
+      process.env.NEXT_PUBLIC_BASE_URL +
+      encodeURIComponent(inputRef.current.value);
     try {
-      console.log(url)
       const response = await fetch(url);
       const apiData = await response.json();
       if (apiData.hasOwnProperty("message")) {
@@ -157,24 +171,31 @@ export const handleSubmit = async (
         return;
       }
       if (apiData.expanded_search) {
+        setLoading(false);
         setMessage(
           "No sensors found for the original location. Displaying nearby sensors from an expanded search."
         );
       }
       setLoading(false);
-      // zoom setting second argument to flyTo
-      map.flyTo([apiData.center_point[1], apiData.center_point[0]], 10, {
-        animate: true,
-        duration: 5,
-      });
+      // zoom setting is second argument to flyTo
+      map.flyTo(
+        [apiData.center_point[1], apiData.center_point[0]],
+        handleZoom(apiData.bounds),
+        {
+          animate: true,
+          duration: 5,
+        }
+      );
       setTimeout(() => {
         setLocationData(apiData);
       }, 5100);
     } catch (error) {
       // console.error(error);
+      setLoading(false);
       setMessage("An error occurred while fetching data from the API");
     }
   } else {
+    setLoading(false);
     setMessage("This is not a valid city name or zip code");
   }
 };

@@ -28,20 +28,27 @@ export default function Map(props) {
   // }
 
   function adjustOpacity(zoom) {
-    if (zoom >= 11.5) {
-      return 0.02;
-    } else if (zoom >= 10.5) {
-      return 0.07;
-    } else if (zoom >= 9.5) {
-      return 0.15;
-    } else if (zoom >= 8.5) {
-      return 0.25;
-    } else if (zoom >= 7.5) {
-      return 0.3;
+    switch (true) {
+      case zoom >= 13:
+        return 0.01;
+      case zoom >= 11.4:
+        return 0.06;
+      case zoom >= 10:
+        return 0.2;
+      case zoom >= 9:
+        return 0.3;
+      default:
+        return 0.5;
     }
   }
 
   // props.map ? console.log(props.map.getZoom()) : console.log("not loaded");
+  // props.map?.on('zoomend', function() {
+  //   var currentZoom = props.map.getZoom();
+  //   console.log('Current zoom level: ' + currentZoom);
+  // var currentCenter = props.map.getCenter();
+  // console.log('current center: ' + currentCenter);
+  // });
 
   return (
     <div className="flex">
@@ -55,8 +62,8 @@ export default function Map(props) {
         center={
           props.locationData
             ? [
-                props.locationData.center_point[1],
-                props.locationData.center_point[0],
+                props.locationData.center_point[1] + 0.01,
+                props.locationData.center_point[0] + 0.12,
               ]
             : props.defaultLocation
         }

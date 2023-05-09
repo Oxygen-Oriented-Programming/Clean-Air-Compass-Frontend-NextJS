@@ -12,7 +12,7 @@ export default function LocationModal(props) {
   function defaultChange(newDefault) {
     setDefaultChanged(newDefault);
   }
-  function firstDefaultSet(newDefault){
+  function firstDefaultSet(newDefault) {
     setDefaultSet(newDefault);
   }
 

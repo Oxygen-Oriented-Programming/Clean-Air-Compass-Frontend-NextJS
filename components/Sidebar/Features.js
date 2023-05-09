@@ -68,8 +68,9 @@ export default function Features({
               quality monitoring sensors.
               <br />
               <br />
-              This data is used to estimate and display PM 2.5 values across a wide area rather than just displaying readings
-              at individual sensor locations.
+              This data is used to estimate and display PM 2.5 values across a
+              wide area rather than just displaying readings at individual
+              sensor locations.
               <br />
               <br />
               Users can search for either a city or postal code within the US
@@ -85,7 +86,11 @@ export default function Features({
               Alerts
             </h1>
             <p className="text-sm text-gray-200 ">
-              Users can sign up to receive alerts to any email address about any location.<br/><br/> They will receive a notifcation when the air quality in a given area has reached the level they select.
+              Users can sign up to receive alerts to any email address about any
+              location.
+              <br />
+              <br /> They will receive a notifcation when the air quality in a
+              given area has reached the level they select.
             </p>
           </div>
         </div>
@@ -97,7 +102,8 @@ export default function Features({
               Default Location
             </h1>
             <p className="text-sm text-gray-200 ">
-              When a user sets their default location anytime they log in the map will automatically display that location&#39;s information
+              When a user sets their default location anytime they log in the
+              map will automatically display that location&#39;s information
             </p>
           </div>
         </div>
